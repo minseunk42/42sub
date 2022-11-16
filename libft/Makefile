@@ -18,7 +18,6 @@ endif
 all : $(NAME)
 
 bonus :
-	sleep 1
 	make WITH_BONUS=1
 
 $(NAME) : $(TOTAL_OBJS)
@@ -28,11 +27,11 @@ $(NAME) : $(TOTAL_OBJS)
 	$(CC) $(CFLAGS) -c -o $@ $< -I libft.h
 
 clean :
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(OBJS_B)
 
 fclean : clean
 	$(RM) $(NAME)
 
 re : fclean all
 
-.PHONY: all bonus fclean clean re
+.PHONY: all bonus clean fclean re
