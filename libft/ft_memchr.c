@@ -24,15 +24,5 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	}
 	if (i == n)
 		return (0);
-	return ((void *)&s[i]);
+	return ((void *)&((unsigned char *)s)[i]);
 }
-/*
-#include <stdio.h>
-#include <string.h>
-
-int main()
-{
-	printf("%s\n",ft_memchr("bonjourno", 'n', 2));
-	printf("%s\n",memchr("bonjourno", 'n', 2));
-}
-*/

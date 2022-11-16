@@ -1,39 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 19:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/16 19:07:31 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/13 18:43:44 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/16 20:22:09 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char	*big, const char *little, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	j;
+	t_list	*out;
+	t_list	*temp;
 
-	if (!(*little))
-		return ((char *)&big[0]);
-	i = 0;
-	while (big[i] && i + 1 < len)
+	if (!lst || !f || !del)
+		return (0);
+	out = ft_lstnew(f(lst->content));
+	temp = out;
+	lst = lst->next;
+	while (lst)
 	{
-		if (big[i] == little[0])
+		temp->next = ft_lstnew(f(lst->content));
+		if (!(ft_lstlast(out)))
 		{
-			j = 0;
-			while (big[i + j] && \
-				big[i + j] == little[j] && i + j < len)
-			{
-				if (!little[j + 1])
-					return ((char *)&big[i]);
-				j++;
-			}
+			ft_lstclear(&out, del);
+			return (0);
 		}
-		i++;
+		lst = lst->next;
+		temp = temp->next;
 	}
-	return (0);
+	return (out);
 }

@@ -65,17 +65,17 @@ char	**ft_split(char const *s, char c)
 	size_t	i;
 	size_t	j;
 
-	out = (char **)malloc(sizeof(char *) * (get_strscnt((char *)s, c) + 1));
+	out = (char **)malloc(sizeof(char *) * get_strscnt((char *)s, c));
 	if (!out)
 		return (0);
 	i = 0;
 	j = 0;
-	while (i < get_strscnt((char *)s, c))
+	while (s[j] && i < get_strscnt((char *)s, c))
 	{
 		if (!check_sep(s[j], c))
 		{
 			out[i++] = mkstr((char *)&s[j], c);
-			while (!check_sep(s[j], c) && s[j])
+			while (s[j] && !check_sep(s[j], c))
 				j++;
 		}
 		while (check_sep(s[j], c))
