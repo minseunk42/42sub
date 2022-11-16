@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:57:08 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/13 19:12:03 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/16 20:24:48 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*curr;
 	t_list	*temp;
 
-	curr = *lst;
-	while (curr)
+	while (*lst)
 	{
-		temp = curr->next;
-		del(curr->content);
-		free(curr);
-		curr = temp;
+		temp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		(*lst) = temp;
 	}
+	*lst = 0;
 }

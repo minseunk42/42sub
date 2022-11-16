@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:45:43 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/13 18:51:10 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:39:32 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*lstlst;
-
-	lstlst = ft_lstlast(*lst);
-	lstlst->next = new;
+	if (!(*lst))
+		*lst = new;
+	else
+		ft_lstlast(*lst)->next = new;
 }

@@ -6,13 +6,11 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 20:02:22 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/14 00:35:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:20:43 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 int	ft_atoi(const char *str)
 {

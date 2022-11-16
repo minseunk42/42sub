@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:39:11 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/13 18:43:18 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/16 20:18:50 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,10 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	t_list	*temp;
 	int		cnt;
 
 	cnt = 0;
-	temp = lst;
-	while (temp && cnt++)
-		temp = temp->next;
+	while (lst && ++cnt)
+		lst = lst->next;
 	return (cnt);
 }
