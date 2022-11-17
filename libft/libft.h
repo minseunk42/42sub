@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 17:32:45 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/16 20:12:36 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/17 19:53:20 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ t_list	*ft_lstnew(void *content);
 int		ft_lstsize(t_list *lst);
 void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
-void	*ft_memcpy(void *dest, void *src, size_t size);
-void	*ft_memcpy(void *dest, void *src, size_t size);
+void	*ft_memcpy(void *dest, const void *src, size_t size);
 void	*ft_memmove(void *dest, void *src, size_t size);
 void	*ft_memset(void *ptr, int val, size_t num);
 void	ft_putchar_fd(char c, int fd);
