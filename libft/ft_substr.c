@@ -6,13 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:41:50 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/16 19:17:25 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/18 03:36:50 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*out;
