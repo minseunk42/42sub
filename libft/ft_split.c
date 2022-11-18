@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:48:45 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/12 20:42:04 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/17 20:56:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,16 @@ size_t	get_strscnt(char *str, char c)
 	return (cnt);
 }
 
-char	*mkstr(char *str, char c)
+void	free_all(char **out)
+{
+	size_t	i;
+
+	i = -1;
+	while (!(out[++i]))
+		free(out[i]);
+}
+
+char	*mkstr(char *str, char c, char **out)
 {
 	int		size;
 	char	*dest;
@@ -50,7 +59,10 @@ char	*mkstr(char *str, char c)
 	}
 	dest = (char *)malloc(sizeof(char) * size + 1);
 	if (!dest)
+	{
+		free_all(out);
 		return (0);
+	}
 	str = str - size;
 	i = 0;
 	while (i < size)
@@ -74,7 +86,9 @@ char	**ft_split(char const *s, char c)
 	{
 		if (!check_sep(s[j], c))
 		{
-			out[i++] = mkstr((char *)&s[j], c);
+			out[i++] = mkstr((char *)&s[j], c, out);
+			if (!out[i])
+				return (0);
 			while (s[j] && !check_sep(s[j], c))
 				j++;
 		}
