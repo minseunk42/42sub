@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 20:15:49 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/16 20:43:58 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:59:32 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	char		c;
 	long long	nb;
 
 	if (n < 0)
@@ -22,6 +21,6 @@ void	ft_putnbr_fd(int n, int fd)
 	nb = (n * (n > 0)) - ((long long)n * (n < 0));
 	if (nb / 10 > 0)
 		ft_putnbr_fd(nb / 10, fd);
-	c = '0' + nb % 10;
-	write(fd, &c, 1);
+	nb = '0' + nb % 10;
+	write(fd, &nb, 1);
 }

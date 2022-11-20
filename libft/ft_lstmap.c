@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 18:43:44 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/16 20:22:09 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/18 20:34:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,24 @@
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
 	t_list	*out;
-	t_list	*temp;
+	void	*cont;
+	void	*new;
 
 	if (!lst || !f || !del)
 		return (0);
-	out = ft_lstnew(f(lst->content));
-	temp = out;
-	lst = lst->next;
+	out = 0;
 	while (lst)
 	{
-		temp->next = ft_lstnew(f(lst->content));
-		if (!(ft_lstlast(out)))
+		cont = f(lst->content);
+		new = ft_lstnew(cont);
+		if (!new)
 		{
 			ft_lstclear(&out, del);
+			del(cont);
 			return (0);
 		}
+		ft_lstadd_back(&out, new);
 		lst = lst->next;
-		temp = temp->next;
 	}
 	return (out);
 }

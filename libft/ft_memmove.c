@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 20:41:45 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/13 21:58:01 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:42:15 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ void	*ft_memmove(void *dest, void *src, size_t size)
 	if (dest > src)
 	{
 		i = size;
-		while (i > 0)
-		{
-			((unsigned char *)dest)[i - 1] = ((unsigned char *)src)[i - 1];
-			i--;
-		}
+		while ((long long)--i >= 0)
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 	}
 	else
 	{

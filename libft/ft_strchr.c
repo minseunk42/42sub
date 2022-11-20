@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 18:47:49 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/14 00:47:12 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/19 23:15:53 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	*ft_strchr(const char *str, int c)
 {
 	size_t	i;
+	char	*out;
 
 	i = 0;
 	while (str[i] != (char)c)
@@ -23,5 +24,6 @@ char	*ft_strchr(const char *str, int c)
 			return (NULL);
 		i++;
 	}
-	return ((char *)&str[i]);
+	out = (char *)&str[i];
+	return (out);
 }
