@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 22:07:12 by minseunk          #+#    #+#             */
-/*   Updated: 2022/10/16 19:12:29 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/20 19:03:23 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ int	main(int ac, char **av)
 	}
 	write(1, "\n", 1);
 	rm_all_list(dict);
+	system("leaks a.out");
 	return (0);
 }

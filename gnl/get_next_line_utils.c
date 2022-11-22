@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:46:32 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/18 06:35:24 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/21 01:41:55 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!out)
 		return (0);
 	ft_memmove((void *)out, (void *)s1, ft_strlen(s1));
-	ft_memmove((void *)&out[ft_strlen(s1)], (void *)s2, ft_strlen(s2) + 1);
+	ft_memmove((void *)&out[ft_strlen(s1)], (void *)s2, ft_strlen(s2));
+	out[size] = 0;
 	return (out);
 }
 
