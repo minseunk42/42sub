@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:46:32 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/21 01:41:55 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:50:23 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,13 @@ size_t	ft_strlen(const char *str)
 	while (str[l])
 		l++;
 	return (l);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+		((unsigned char *)s)[i++] = 0;
 }

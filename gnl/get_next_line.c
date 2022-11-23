@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:35:47 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/21 01:43:36 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/22 18:53:44 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,26 @@ char	*get_line(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*stt_str;
+	static char	**ba;
 	char		*buf;
 	char		*out;
 
-	while (!ft_strchr(stt_str, '\n') && !ft_strchr(stt_str, 0))
+	ba = (char **)malloc(sizeof(char *) * (OPEN_MAX + 3));
+	while (!ft_strchr(ba[fd], '\n'))
 	{
 		buf = (char *)malloc(BUFFER_SIZE);
+		ft_bzero(buf, BUFFER_SIZE);
 		if (!buf)
 			return (0);
 		read(fd, buf, BUFFER_SIZE);
-		stt_str = ft_strjoin((const char *)stt_str, (const char *)buf);
-		free(buf);
-		if (!stt_str)
+		ba[fd] = ft_strjoin((const char *)ba[fd], (const char *)buf);	
+		if (!ba[fd])
 			break ;
 	}
-	out = get_line(stt_str);
-	stt_str = ft_memmove(stt_str, stt_str + (ft_strlen(out)), ft_strlen(stt_str));
-	printf("!!!!!!!!%s",out);
+	free(buf);
+	out = get_line(ba[fd]);
+	ba[fd] = ft_memmove(ba[fd], ba[fd] + (ft_strlen(out)), ft_strlen(ba[fd]));
+	printf("%s",out);
 	return (out);
 }
 

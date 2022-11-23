@@ -6,18 +6,18 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:48:45 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/18 20:07:50 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/23 17:36:06 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	check_sep(char s, char c)
+static int	check_sep(char s, char c)
 {
 	return (s == c);
 }
 
-size_t	get_strscnt(char *str, char c)
+static size_t	get_strscnt(char *str, char c)
 {
 	size_t	cnt;
 
@@ -38,7 +38,7 @@ size_t	get_strscnt(char *str, char c)
 	return (cnt);
 }
 
-void	free_all(char **out, int size)
+static void	free_all(char **out, int size)
 {
 	int	i;
 
@@ -49,7 +49,7 @@ void	free_all(char **out, int size)
 	free(out);
 }
 
-int	mkstr(char *str, char c, char **out, int idx)
+static int	mkstr(char *str, char c, char **out, int idx)
 {
 	int		size;
 	char	*dest;
