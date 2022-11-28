@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:46:53 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/22 18:51:12 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/27 22:00:52 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,13 @@
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h>
 # include <limits.h>
+# include <stdio.h>
 
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strchr(const char *str, int c);
 size_t	ft_strlen(const char *str);
 void	*ft_memmove(void *dest, void *src, size_t size);
 char	*get_next_line(int fd);
-void	ft_bzero(void *s, size_t n);
 
 #endif

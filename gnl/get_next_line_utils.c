@@ -6,26 +6,26 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:46:32 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/22 18:50:23 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/11/28 05:55:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	size_t	size;
 	char	*out;
 
-	size = ft_strlen(s1) + ft_strlen(s2);
-	if (!size)
+	if (!s1 && !s2)
 		return (0);
+	size = ft_strlen(s1) + ft_strlen(s2);
 	out = (char *)malloc(sizeof(char) * size + sizeof(char));
 	if (!out)
 		return (0);
 	ft_memmove((void *)out, (void *)s1, ft_strlen(s1));
-	ft_memmove((void *)&out[ft_strlen(s1)], (void *)s2, ft_strlen(s2));
-	out[size] = 0;
+	ft_memmove((void *)&out[ft_strlen(s1)], (void *)s2, ft_strlen(s2) + 1);
+	free(s1);
 	return (out);
 }
 
@@ -64,9 +64,12 @@ void	*ft_memmove(void *dest, void *src, size_t size)
 	}
 	else
 	{
-		i = -1;
-		while (++i < size)
+		i = 0;
+		while (i < size)
+		{
 			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
 	}
 	return (dest);
 }
@@ -74,20 +77,13 @@ void	*ft_memmove(void *dest, void *src, size_t size)
 size_t	ft_strlen(const char *str)
 {
 	size_t	l;
+	char	*temp;
 
 	if (!str)
 		return (0);
 	l = 0;
-	while (str[l])
+	temp = (char *)str;
+	while (temp[l])
 		l++;
 	return (l);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < n)
-		((unsigned char *)s)[i++] = 0;
 }
