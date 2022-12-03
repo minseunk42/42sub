@@ -6,11 +6,11 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:35:47 by minseunk          #+#    #+#             */
-/*   Updated: 2022/12/04 00:09:32 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/12/04 00:26:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_one_line(char *str)
 {

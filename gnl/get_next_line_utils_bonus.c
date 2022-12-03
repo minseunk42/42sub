@@ -6,11 +6,11 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:46:32 by minseunk          #+#    #+#             */
-/*   Updated: 2022/12/04 00:08:50 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/12/04 00:27:01 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strjoin(char *s1, char *s2)
 {
