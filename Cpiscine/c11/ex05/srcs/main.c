@@ -3,13 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42seoul.>       +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 10:49:25 by minseunk          #+#    #+#             */
-/*   Updated: 2022/10/12 18:52:25 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/12/15 19:20:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "op.h"
+
 
 int	my_atoi(char *str)
 {
