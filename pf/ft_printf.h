@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2022/12/19 02:27:40 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:27:37 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 typedef struct s_format
 {
 	int	flag;
-	int	width;
+	int	widt;
 	int	prec;
 	int	type;
 }	t_format;

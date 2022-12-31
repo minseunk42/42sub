@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2022/12/31 18:20:53 by minseunk         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:27:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	print_format(char **str, va_list *ap, int *cnt)
 {
-	t_format	form;
 	int			(*fp[7])(t_format, va_list, int *);
+	t_format	form;
 
 	fp[CHR] = print_chr;
 	fp[STR] = print_str;
