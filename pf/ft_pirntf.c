@@ -6,15 +6,39 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2022/12/31 18:27:54 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:25:06 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+int	set_type(char c)
+{
+	char	*str;
+	int		i;
+
+	str = "cspdiuxX%";
+	while (str[i])
+	{
+		if (c == str[i++])
+			return (i);
+	}
+	return (0);
+}
+
+void	set_format(char **str, t_format *form)
+{
+	form->type = 0;
+	while (!(form->type))
+	{
+		
+	}
+	form->type = is_type(**str);
+}
+
 int	print_format(char **str, va_list *ap, int *cnt)
 {
-	int			(*fp[7])(t_format, va_list, int *);
+	int			(*fp[7])(t_format, va_list *, int *);
 	t_format	form;
 
 	fp[CHR] = print_chr;
@@ -24,8 +48,8 @@ int	print_format(char **str, va_list *ap, int *cnt)
 	fp[USI] = print_usi;
 	fp[HEX] = print_hex;
 	fp[PCT] = print_pct;
-	set_format(str, &ft);
-	return (fp[form.type](ft, ap, cnt));
+	set_format(++str, &form);
+	return (fp[form.type](form, ap, cnt));
 }
 
 int	proc_str(char *str, va_list *ap)
