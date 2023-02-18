@@ -6,34 +6,44 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2023/01/23 19:25:06 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:50:01 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	set_type(char c)
+int	set_type(char *c)
 {
-	char	*str;
-	int		i;
-
-	str = "cspdiuxX%";
-	while (str[i])
+	while (++c)
 	{
-		if (c == str[i++])
-			return (i);
+		if (*c == 'c')
+			return (CHR);
+		if (*c == 's')
+			return (STR);
+		if (*c == 'p')
+			return (PTR);
+		if (*c == 'd')
+			return (INT);
+		if (*c == 'i')
+			return (INT);
+		if (*c == 'u')
+			return (USI);
+		if (*c == 'x')
+			return (HEX);
+		if (*c == 'X')
+			return (HEX);
+		if (*c == '%')
+			return (PCT);
 	}
-	return (0);
+	return (-1);
 }
 
 void	set_format(char **str, t_format *form)
 {
-	form->type = 0;
-	while (!(form->type))
-	{
-		
-	}
-	form->type = is_type(**str);
+	form->type = set_type(*str);
+	form->flag = set_flag(*str);
+	form->widt = set_with(*str);
+	form->prec = set_prec(*str);
 }
 
 int	print_format(char **str, va_list *ap, int *cnt)
@@ -48,7 +58,7 @@ int	print_format(char **str, va_list *ap, int *cnt)
 	fp[USI] = print_usi;
 	fp[HEX] = print_hex;
 	fp[PCT] = print_pct;
-	set_format(++str, &form);
+	set_format(str, &form);
 	return (fp[form.type](form, ap, cnt));
 }
 

@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2023/01/23 18:52:22 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/02/18 19:24:27 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,5 @@ int	print_chr(t_format form, va_list ap, int *cnt);
 # define USI 4
 # define HEX 5
 # define PCT 6
-
 
 #endif
