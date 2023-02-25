@@ -6,44 +6,49 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2023/02/18 19:50:01 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/02/26 05:31:01 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	set_type(char *c)
+int	set_type(char **str)
 {
-	while (++c)
+	while ((*str)++)
 	{
-		if (*c == 'c')
+		if (**str == 'c' && (*str)++)
 			return (CHR);
-		if (*c == 's')
+		if (**str == 's' && (*str)++)
 			return (STR);
-		if (*c == 'p')
+		if (**str == 'p' && (*str)++)
 			return (PTR);
-		if (*c == 'd')
+		if (**str == 'd' && (*str)++)
 			return (INT);
-		if (*c == 'i')
+		if (**str == 'i' && (*str)++)
 			return (INT);
-		if (*c == 'u')
+		if (**str == 'u' && (*str)++)
 			return (USI);
-		if (*c == 'x')
+		if (**str == 'x' && (*str)++)
 			return (HEX);
-		if (*c == 'X')
+		if (**str == 'X' && (*str)++)
 			return (HEX);
-		if (*c == '%')
+		if (**str == '%' && (*str)++)
 			return (PCT);
 	}
 	return (-1);
 }
 
+int	set_flag(char *str)
+{
+	
+}
+
 void	set_format(char **str, t_format *form)
 {
-	form->type = set_type(*str);
 	form->flag = set_flag(*str);
-	form->widt = set_with(*str);
+	form->widt = set_widt(*str);
 	form->prec = set_prec(*str);
+	form->type = set_type(str);
 }
 
 int	print_format(char **str, va_list *ap, int *cnt)
