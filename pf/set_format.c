@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_str.c                                        :+:      :+:    :+:   */
+/*   set_format.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:18:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/02/26 20:45:02 by minseunk         ###   ########.fr       */
+/*   Created: 2023/02/26 19:23:10 by minseunk          #+#    #+#             */
+/*   Updated: 2023/02/26 21:25:48 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_str(t_format form, va_list *ap, int *cnt)
+void	set_format(char **str, t_format *form)
 {
 	
-	return ();
 }

@@ -6,16 +6,11 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2023/02/26 19:20:50 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/02/26 19:23:28 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-void	set_format(char **str, t_format *form)
-{
-	
-}
 
 int	print_format(char **str, va_list *ap, int *cnt)
 {
