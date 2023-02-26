@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_chr.c                                        :+:      :+:    :+:   */
+/*   print_pct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 17:08:39 by minseunk          #+#    #+#             */
-/*   Updated: 2023/02/26 19:20:00 by minseunk         ###   ########.fr       */
+/*   Created: 2023/02/26 19:20:11 by minseunk          #+#    #+#             */
+/*   Updated: 2023/02/26 19:21:37 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	print_chr(t_format form, va_list *ap, int *cnt)
+int	print_pct(t_format form, va_list *ap, int *cnt)
 {
 	
 	return ();
