@@ -73,22 +73,32 @@ int	set_flag(char c)
 	return (0);
 }
 
+void init_form(t_format *form)
+{
+	form->widt = -1;
+	form->flag = 0;
+	form->prec = -1;
+	form->type = -1;
+}
+
 void	set_format(char **str, t_format *form)
 {
-	printf("intput = %s\n",*str);
-	while (!is_type(*(++(*str))) && **str)
+	(*str)++;
+	init_form(form);
+	while (!is_type(**str) && **str)
 	{
-		form->flag += set_flag(**str);
+		if (form->widt > 0 && form->prec > 0 && set_flag > 0)
+		//	return (-1);
+		form->flag |= set_flag(*(*str)++);
 		if (**str >= '1' && **str <= '9')
 		{
 			form->widt = ft_atoi(*str);
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
 		}
-		else if (**str == '.')
+		if (**str == '.' && (*str)++)
 		{
-			printf("%s",*str);
-			form->prec = ft_atoi(*str++);
+			form->prec = ft_atoi(*str);
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
 		}
@@ -103,8 +113,9 @@ int main(int ac, char **av)
     if (ac < 2)
         return (0);
     set_format(&av[1], &form);
-    printf("type = %d\n",form.type);
+/*    printf("type = %d\n",form.type);
     printf("widt = %d\n",form.widt);
     printf("prec = %d\n",form.prec);
-    printf("flag = %d\n",form.flag);
+    printf("flag = %d\n",form.flag);*/
+	printf("%-3+d",3);
 }
