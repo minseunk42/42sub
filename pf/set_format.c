@@ -5,21 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:23:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/02/26 22:42:56 by minseunk         ###   ########.fr       */
+/*   Created: 2023/02/28 22:49:33 by minseunk          #+#    #+#             */
+/*   Updated: 2023/03/04 04:18:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "ft_printf.h"
 
 int	is_type(char c)
 {
 	char	*str;
+	int		i;
 
+	i = -1;
 	str = "cspdiuxX%";
-	while (*str)
+	while (str[++i])
 	{
-		if (c == *(str++))
+		if (c == str[i])
 			return (1);
 	}
 	return (0);
@@ -41,26 +41,56 @@ int	set_type(char c)
 		return (HEX);
 	if (c == '%')
 		return (PCT);
+	return (-1);
+}
+
+int	set_flag(char c)
+{
+	if (c == '-')
+		return (MNS);
+	if (c == '+')
+		return (PLS);
+	if (c == ' ')
+		return (SPC);
+	if (c == '0')
+		return (ZRO);
+	if (c == '#')
+		return (SHP);
+	return (0);
+}
+
+void init_form(t_format *form)
+{
+	form->widt = -1;
+	form->flag = 0;
+	form->prec = -1;
+	form->type = -1;
 }
 
 void	set_format(char **str, t_format *form)
 {
-	while (is_type(*(*++str)))
+	init_form(form);
+	while (form->type && **str)
 	{
-		if (form->flag && **str >= '1' && **str <= '9')
+		form->flag |= set_flag(**str);
+		if (**str >= '1' && **str <= '9')
 		{
 			form->widt = ft_atoi(*str);
 			while (**str >= '0' && **str <= '9')
-				*str++;
+				(*str)++;
+			continue;
 		}
-		else if (**str == '.')
-		{
-			form->prec = ft_atoi(*str++);
+		if (**str == '.' && (*str)++)
+		{	
+			if (**str >= '0' && **str <= '9')
+				form->prec = ft_atoi(*str);
 			while (**str >= '0' && **str <= '9')
-				*str++;
+				(*str)++;
+			continue;
 		}
+		if (is_type(**str))
+			form->type = set_type(*(*str)++);
 		else
-			form->flag += set_flag(**str);
+			(*str)++;
 	}
-	form->type = set_type(**str);
 }

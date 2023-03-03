@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2023/02/26 22:59:48 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/04 04:17:27 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	print_format(char **str, va_list *ap, int *cnt)
 	fp[USI] = print_usi;
 	fp[HEX] = print_hex;
 	fp[PCT] = print_pct;
-	set_format(str, &form);
-	
+	set_format(&((*str)++), &form);
 	return (fp[form.type](form, ap, cnt));
 }
 
