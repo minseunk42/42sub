@@ -122,5 +122,5 @@ int main(int ac, char **av)
     printf("widt = %d\n",form.widt);
     printf("prec = %d\n",form.prec);
     printf("flag = %d\n",form.flag);
-	printf("!!%d!!\n",printf(temp,42));
+	printf(temp,42);
 }
