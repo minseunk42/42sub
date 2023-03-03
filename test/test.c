@@ -103,9 +103,8 @@ void	set_format(char **str, t_format *form)
 			continue;
 		}
 		if (is_type(**str))
-			form->type = set_type(*(*str)++);
-		else
-			(*str)++;
+			form->type = set_type(**str);
+		(*str)++;
 	}
 }
 
