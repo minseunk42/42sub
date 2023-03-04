@@ -75,16 +75,17 @@ int	set_flag(char c)
 
 void init_form(t_format *form)
 {
+	form->prec = -1;
 	form->widt = -1;
 	form->flag = 0;
-	form->prec = -1;
-	form->type = -1;
+	form->type = 0;	
 }
 
 void	set_format(char **str, t_format *form)
 {
+
 	init_form(form);
-	while (form->type && **str)
+	while (!(form->type) && **str)
 	{
 		form->flag |= set_flag(**str);
 		if (**str >= '1' && **str <= '9')
@@ -112,11 +113,14 @@ int main(int ac, char **av)
 {
     t_format form;
 	char *temp;
+	char *temp2;
+
     if (ac < 2)
         return (0);
     
 	temp = av[1];
-	set_format(&av[1], &form);
+	temp2 = av[1] + 1;
+	set_format(&temp2, &form);
 	printf("type = %d\n",form.type);
     printf("widt = %d\n",form.widt);
     printf("prec = %d\n",form.prec);

@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:49:33 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/04 04:18:54 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/04 21:19:13 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ int	set_flag(char c)
 
 void init_form(t_format *form)
 {
+	form->prec = -1;
 	form->widt = -1;
 	form->flag = 0;
-	form->prec = -1;
-	form->type = -1;
+	form->type = 0;	
 }
 
 void	set_format(char **str, t_format *form)
 {
 	init_form(form);
-	while (form->type && **str)
+	while (!(form->type) && **str)
 	{
 		form->flag |= set_flag(**str);
 		if (**str >= '1' && **str <= '9')
@@ -89,8 +89,7 @@ void	set_format(char **str, t_format *form)
 			continue;
 		}
 		if (is_type(**str))
-			form->type = set_type(*(*str)++);
-		else
-			(*str)++;
+			form->type = set_type(**str);
+		(*str)++;
 	}
 }

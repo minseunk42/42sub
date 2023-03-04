@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2023/02/28 22:50:14 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/04 21:20:42 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,18 @@ typedef struct s_format
 	int	type;
 }	t_format;
 
-# define CHR 0
-# define STR 1
-# define PTR 2
-# define INT 3
-# define USI 4
-# define HEX 5
-# define PCT 6
-
-# define MNS 0b10000
-# define PLS 0b01000
-# define SHP 0b00100
-# define SPC 0b00010
-# define ZRO 0b00001
+# define CHR 1
+# define STR 2
+# define PTR 3
+# define INT 4
+# define USI 5
+# define HEX 6
+# define PCT 7
+# define MNS 0b1
+# define PLS 0b10
+# define SHP 0b100
+# define SPC 0b1000
+# define ZRO 0b10000
 
 void	set_format(char **str, t_format *form);
 int		print_chr(t_format form, va_list ap, int *cnt);
