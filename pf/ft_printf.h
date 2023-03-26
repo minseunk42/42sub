@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/26 11:40:14 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/03/26 21:23:32 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_format
 # define INT 4
 # define USI 5
 # define PCT 6
+# define HEX 7
 # define HEX0 70
 # define HEX1 71
 # define MNS 0b00001

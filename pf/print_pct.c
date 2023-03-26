@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_pct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/26 11:40:37 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/03/26 21:57:27 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	putchar_proc_error(char c)
 	return (0);
 }
 
-int	print_pct(t_format form, va_list *ap, int *cnt)
+int	print_pct(t_format *form, va_list *ap, int *cnt)
 {
 	int		i;
 
@@ -31,7 +31,7 @@ int	print_pct(t_format form, va_list *ap, int *cnt)
 		*cnt += form.widt;
 	else
 		*cnt++;
-	if ((form.flag |= MNS) == form.flag)
+	if (form.flag & MNS)
 	{
 		if (putchar_proc_error('%') == -1)
 			return (-1);
@@ -42,7 +42,7 @@ int	print_pct(t_format form, va_list *ap, int *cnt)
 		if (putchar_proc_error(' ') == -1)
 			return (-1);
 	}
-	if ((form.flag |= MNS) != form.flag)
+	if (form.flag & MNS)
 	{
 		if (putchar_proc_error('%') == -1)
 			return (-1);

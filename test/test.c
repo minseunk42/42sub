@@ -83,7 +83,6 @@ void init_form(t_format *form)
 
 void	set_format(char **str, t_format *form)
 {
-
 	init_form(form);
 	while (!(form->type) && **str)
 	{
@@ -93,7 +92,7 @@ void	set_format(char **str, t_format *form)
 			form->widt = ft_atoi(*str);
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
-			continue;
+			continue ;
 		}
 		if (**str == '.' && (*str)++)
 		{	

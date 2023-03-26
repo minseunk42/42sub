@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   set_format.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:49:33 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/26 11:42:54 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/03/26 21:12:23 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "ft_printf.h"
 
 int	is_type(char c)
 {
@@ -61,12 +63,12 @@ int	set_flag(char c)
 	return (0);
 }
 
-void init_form(t_format *form)
+void	init_form(t_format *form)
 {
 	form->prec = -1;
 	form->widt = -1;
 	form->flag = 0;
-	form->type = 0;	
+	form->type = 0;
 }
 
 void	set_format(char **str, t_format *form)
@@ -80,7 +82,7 @@ void	set_format(char **str, t_format *form)
 			form->widt = ft_atoi(*str);
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
-			continue;
+			continue ;
 		}
 		if (**str == '.' && (*str)++)
 		{	
@@ -88,7 +90,7 @@ void	set_format(char **str, t_format *form)
 				form->prec = ft_atoi(*str);
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
-			continue;
+			continue ;
 		}
 		if (is_type(**str))
 			form->type = set_type(**str);
