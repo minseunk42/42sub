@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/04 21:20:42 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/26 11:40:14 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ typedef struct s_format
 # define PTR 3
 # define INT 4
 # define USI 5
-# define HEX 6
-# define PCT 7
-# define MNS 0b1
-# define PLS 0b10
-# define SHP 0b100
-# define SPC 0b1000
+# define PCT 6
+# define HEX0 70
+# define HEX1 71
+# define MNS 0b00001
+# define PLS 0b00010
+# define SHP 0b00100
+# define SPC 0b01000
 # define ZRO 0b10000
 
 void	set_format(char **str, t_format *form);

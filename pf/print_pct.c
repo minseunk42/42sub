@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_pct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/07 22:55:54 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/26 11:40:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	print_pct(t_format form, va_list *ap, int *cnt)
 		if (putchar_proc_error('%') == -1)
 			return (-1);
 	}
-	i = 1;
+	i = 0;
 	while (++i < form.widt)
 	{
 		if (putchar_proc_error(' ') == -1)

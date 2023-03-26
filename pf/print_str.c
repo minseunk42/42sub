@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:18:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/10 00:32:56 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/26 11:42:29 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ int	print_widt(int widt, va_list *ap)
 {
 	int	i;
 	
-	i = 1;
+	i = 0;
 	while (++i < widt)
 	{
-		if ((form.flag |= MNS) != form.flag 
-			\ && (form.flag |= ZRO) == form.flag
-			\ (putstr_proc_error('0') == -1))
+		if ((form.flag |= ZRO) == form.flag
+			\ && (putstr_proc_error('0') == -1))
 			return (-1);
 		else if ((putstr_proc_error(' ') == -1))
 			return (-1);

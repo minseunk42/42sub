@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_chr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 17:08:39 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/07 22:55:55 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/26 11:42:19 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ int	print_widt(t_format form, va_list *ap)
 {
 	int	i;
 	
-	i = 1;
+	i = 0;
 	while (++i < form.widt)
 	{
-		if ((form.flag |= MNS) != form.flag 
-			\ && (form.flag |= ZRO) == form.flag
-			\ (putchar_proc_error('0') == -1))
+		if ((form.flag |= ZRO) == form.flag
+			\ && (putchar_proc_error('0') == -1))
 			return (-1);
 		else if ((putchar_proc_error(' ') == -1))
 			return (-1);
