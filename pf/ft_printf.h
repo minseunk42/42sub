@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/26 21:23:32 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:33:37 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ typedef struct s_format
 # define ZRO 0b10000
 
 void	set_format(char **str, t_format *form);
-int		print_chr(t_format form, va_list ap, int *cnt);
-int		print_hex(t_format form, va_list ap, int *cnt);
-int		print_int(t_format form, va_list ap, int *cnt);
-int		print_pct(t_format form, va_list ap, int *cnt);
-int		print_ptr(t_format form, va_list ap, int *cnt);
-int		print_str(t_format form, va_list ap, int *cnt);
-int		print_usi(t_format form, va_list ap, int *cnt);
+int		putchar_proc_error(char c);
+int		print_chr(t_format form, va_list *ap, int *cnt);
+int		print_hex(t_format form, va_list *ap, int *cnt);
+int		print_int(t_format form, va_list *ap, int *cnt);
+int		print_pct(t_format form, va_list *ap, int *cnt);
+int		print_ptr(t_format form, va_list *ap, int *cnt);
+int		print_str(t_format form, va_list *ap, int *cnt);
+int		print_usi(t_format form, va_list *ap, int *cnt);
 
 #endif

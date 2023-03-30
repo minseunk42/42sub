@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:18:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/26 21:57:12 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:43:55 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,6 @@ int	putstr_proc_error(char *str)
 	if (flag == -1)
 		return (-1);
 	return (0);
-}
-
-int	print_widt(t_format form, int widt)
-{
-	int	i;
-
-	i = 0;
-	while (++i < widt)
-	{
-		if (((form.flag & ZRO) == form.flag) && (putstr_proc_error('0') == -1))
-			return (-1);
-		else if ((putstr_proc_error(' ') == -1))
-			return (-1);
-	}
 }
 
 int	set_cnt(t_format form, va_list *ap, int *cnt)
@@ -54,7 +40,8 @@ int	print_str(t_format form, va_list *ap, int *cnt)
 {
 	int		width;
 
-	width = set_cnt(form, ap, cnt);
+	width = set_cnt(forbundle
+	m, ap, cnt);
 	if (form.flag & MNS)
 	{
 		if (putstr_proc_error(va_args(*ap, int)) == -1)

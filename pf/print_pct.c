@@ -3,26 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   print_pct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/26 21:57:27 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:33:16 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	putchar_proc_error(char c)
-{
-	int	flag;
-
-	flag = write(1, c, 1);
-	if (flag == -1)
-		return (-1);
-	return (0);
-}
-
-int	print_pct(t_format *form, va_list *ap, int *cnt)
+int	print_pct(t_format form, va_list *ap, int *cnt)
 {
 	int		i;
 
@@ -30,7 +20,7 @@ int	print_pct(t_format *form, va_list *ap, int *cnt)
 	if (form.widt > 1)
 		*cnt += form.widt;
 	else
-		*cnt++;
+		*cnt += 1;
 	if (form.flag & MNS)
 	{
 		if (putchar_proc_error('%') == -1)
@@ -42,7 +32,7 @@ int	print_pct(t_format *form, va_list *ap, int *cnt)
 		if (putchar_proc_error(' ') == -1)
 			return (-1);
 	}
-	if (form.flag & MNS)
+	if (!(form.flag & MNS))
 	{
 		if (putchar_proc_error('%') == -1)
 			return (-1);
