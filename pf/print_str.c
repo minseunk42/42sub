@@ -6,21 +6,11 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:18:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/30 13:43:55 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/04 13:48:35 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	putstr_proc_error(char *str)
-{
-	int	flag;
-
-	flag = write(1, str, ft_strlen((const char *)str));
-	if (flag == -1)
-		return (-1);
-	return (0);
-}
 
 int	set_cnt(t_format form, va_list *ap, int *cnt)
 {
@@ -28,9 +18,9 @@ int	set_cnt(t_format form, va_list *ap, int *cnt)
 	char	*str;
 
 	va_copy(cp, *ap);
-	str = va_args(cp);
+	str = va_arg(cp, char *);
 	if (ft_strlen(str) >= form.widt)
-		*cnt = ft_strlen(str);
+		*cnt += ft_strlen(str);
 	else
 		*cnt += form.widt;
 	return (form.widt - ft_strlen(str));
@@ -40,18 +30,17 @@ int	print_str(t_format form, va_list *ap, int *cnt)
 {
 	int		width;
 
-	width = set_cnt(forbundle
-	m, ap, cnt);
+	width = set_cnt(form, ap, cnt);
 	if (form.flag & MNS)
 	{
-		if (putstr_proc_error(va_args(*ap, int)) == -1)
+		if (putstr_proc_error(va_arg(*ap, char *)) == -1)
 			return (-1);
 	}
 	if (print_widt(form, width) == -1)
 		return (-1);
-	if (form.flag & MNS)
+	if (!(form.flag & MNS))
 	{
-		if (putstr_proc_error(va_args(*ap, int)) == -1)
+		if (putstr_proc_error(va_arg(*ap, char *)) == -1)
 			return (-1);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/27 15:33:37 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/04 20:21:42 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,13 @@ typedef struct s_format
 # define SPC 0b01000
 # define ZRO 0b10000
 
-void	set_format(char **str, t_format *form);
+int		ft_strlen(const char *str);
+int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 int		putchar_proc_error(char c);
+int		putstr_proc_error(char *str);
+int		print_widt(t_format form, int widt);
+void	set_format(char **str, t_format *form);
 int		print_chr(t_format form, va_list *ap, int *cnt);
 int		print_hex(t_format form, va_list *ap, int *cnt);
 int		print_int(t_format form, va_list *ap, int *cnt);

@@ -6,34 +6,11 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:49:33 by minseunk          #+#    #+#             */
-/*   Updated: 2023/03/27 15:18:23 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/04 13:44:14 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-int	ft_isdigit(int c)
-{
-	return ('0' <= c && c <= '9');
-}
-
-int	ft_atoi(const char *str)
-{
-	int	val;
-	int	sign;
-	int	i;
-
-	val = 0;
-	i = 0;
-	sign = 1;
-	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
-		i++;
-	if (str[i] == '+' || ((str[i] == '-') && ++i && sign-- && sign--))
-		i++;
-	while (ft_isdigit(str[i]))
-		val = 10 * val + (str[i++] - '0');
-	return (sign * val);
-}
 
 int	is_type(char c)
 {

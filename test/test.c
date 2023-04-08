@@ -51,8 +51,10 @@ int	set_type(char c)
 		return (INT);
 	if (c == 'u')
 		return (USI);
-	if (c == 'x' || c == 'X')
-		return (HEX);
+	if (c == 'x')
+		return (HEX0);
+	if (c == 'X')
+		return (HEX1);
 	if (c == '%')
 		return (PCT);
 	return (-1);
