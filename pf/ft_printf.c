@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/07 21:42:16 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/15 22:59:33 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	print_format(char **str, va_list *ap, int *cnt)
 {
-	int			(*fp[8])(t_format , va_list *, int *);
+	int			(*fp[9])(t_format, va_list *, int *);
 	t_format	form;
 
 	fp[PCT] = print_pct;
 	fp[CHR] = print_chr;
 	fp[STR] = print_str;
 	fp[INT] = print_int;
-	fp[USI] = print_int;
+	fp[USI] = print_usi;
 	fp[PTR] = print_ptr;
-	fp[HEX0] = print_hex;  
-	fp[HEX1] = print_hex; 
+	fp[HEX0] = print_hex;
+	fp[HEX1] = print_hex;
 	set_format(str, &form);
 	return (fp[form.type](form, ap, cnt));
 }
@@ -53,13 +53,7 @@ int	ft_printf(const char *str, ...)
 	va_list	ap;
 
 	va_start(ap, str);
-	out = proc_str((char *)str, &ap);1
+	out = proc_str((char *)str, &ap);
 	va_end(ap);
 	return (out);
-}
-
-int main()
-{
-	printf("%d\n",ft_printf("%214s","hi!"));
-	printf("%d",printf("%214s","hi!"));
 }

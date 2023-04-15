@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_format.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:49:33 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/04 13:44:14 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/15 23:26:31 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ void	init_form(t_format *form)
 	form->type = 0;
 }
 
-#include <stdio.h>
-
 void	set_format(char **str, t_format *form)
 {
 	init_form(form);
@@ -90,6 +88,8 @@ void	set_format(char **str, t_format *form)
 		{	
 			if (**str >= '0' && **str <= '9')
 				form->prec = ft_atoi(*str);
+			else
+				form->prec = 0;
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
 			continue ;

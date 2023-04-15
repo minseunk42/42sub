@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/13 18:43:44 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/16 20:22:09 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+t_list	*ft_lstlast(t_list *lst)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	if (!lst)
+		return (0);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }

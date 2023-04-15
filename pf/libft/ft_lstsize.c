@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/13 18:39:11 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/17 19:27:39 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+int	ft_lstsize(t_list *lst)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	int		cnt;
+
+	cnt = 0;
+	while (lst && ++cnt)
+		lst = lst->next;
+	return (cnt);
 }

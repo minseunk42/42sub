@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/11 18:53:24 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/14 00:51:32 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+char	*ft_strrchr(const char *str, int c)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	size_t	i;
+
+	i = ft_strlen(str) - 1;
+	if ((char)c == '\0')
+		return ((char *)&str[i + 1]);
+	if (!str[0])
+		return (0);
+	while (str[i] != (char)c && i)
+		i--;
+	if (str[i] != (char)c)
+		return (0);
+	return ((char *)&str[i]);
 }

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/11 18:46:57 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/11 18:47:14 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+int	ft_tolower(int c)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	if ('A' <= c && c <= 'Z')
+		c += 'a' - 'A';
+	return (c);
 }

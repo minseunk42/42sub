@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/08 20:22:41 by minseunk          #+#    #+#             */
+/*   Updated: 2023/04/09 02:07:38 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+size_t	ft_strlen(const char *str)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	size_t	l;
+
+	if (str == NULL)
+		return (0);
+	l = 0;
+	while (str[l])
+		l++;
+	return (l);
 }

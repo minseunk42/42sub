@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/11 20:30:59 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/13 17:56:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+void	*ft_calloc(size_t num, size_t size)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	void	*out;
+
+	out = malloc(num * size);
+	if (!out)
+		return (0);
+	out = ft_memset(out, 0, num * size);
+	return (out);
 }

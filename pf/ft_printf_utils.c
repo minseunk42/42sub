@@ -3,20 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 19:20:08 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/04/04 13:48:42 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/15 23:43:26 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	putstr_proc_error(char *str)
+int	putstr_proc_error(char *str, t_format form)
 {
 	int	flag;
+	int	outlen;
 
-	flag = write(1, str, ft_strlen((const char *)str));
+	if (form.prec < 0)
+		outlen = ft_strlen((const char *)str);
+	else
+		outlen = form.prec;
+	flag = write(1, str, outlen);
 	if (flag == -1)
 		return (-1);
 	return (0);
@@ -32,15 +37,13 @@ int	putchar_proc_error(char c)
 	return (0);
 }
 
-int	print_widt(t_format form, int widt)
+int	print_space(t_format form, int widt)
 {
 	int	i;
-	int flag;
-	
+	int	flag;
+
 	i = 0;
-	if (widt != 0)
-		form.widt = widt;
-	while (++i <= form.widt)
+	while (++i <= widt)
 	{
 		if (form.flag & ZRO)
 			flag = putchar_proc_error('0');

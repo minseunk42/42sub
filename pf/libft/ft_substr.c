@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pct.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:03:59 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/12 19:41:50 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/17 20:48:03 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_pct(t_format form, va_list *ap, int *cnt)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		i;
+	size_t	i;
+	char	*out;
 
-	(void)ap;
-	if (form.widt > 1)
-		*cnt += form.widt;
-	else
-		*cnt += 1;
-	if (form.flag & MNS)
-	{
-		if (putchar_proc_error('%') == -1)
-			return (-1);
-	}
+	if (len > ft_strlen(s) - (size_t)start)
+		len = ft_strlen(s) - (size_t)start;
+	if (ft_strlen(s) <= (size_t)start)
+		len = 0;
+	out = (char *)malloc(sizeof(char) * len + 1);
+	if (!out)
+		return (0);
 	i = 0;
-	while (++i < form.widt)
+	while (i < len && start < ft_strlen(s) && s[start + i])
 	{
-		if (putchar_proc_error(' ') == -1)
-			return (-1);
+		out[i] = s[start + i];
+		i++;
 	}
-	if (!(form.flag & MNS))
-	{
-		if (putchar_proc_error('%') == -1)
-			return (-1);
-	}
-	return (0);
+	out[i] = 0;
+	return (out);
 }

@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:18:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/04 13:48:35 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/15 23:37:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	putnull(t_format form, int *cnt)
+{
+	int		flag;
+	int		i;
+	char	*null;
+
+	flag = 0;
+	null = "(null)";
+	i = 0;
+	if (form.prec < 0)
+		form.prec = 6;
+	while (i < form.prec)
+	{
+		flag = write(1, &(null[i++]), 1);
+		if (flag == -1)
+			return (-1);
+		*cnt += 1;
+	}
+	return (0);
+}
 
 int	set_cnt(t_format form, va_list *ap, int *cnt)
 {
@@ -28,19 +49,23 @@ int	set_cnt(t_format form, va_list *ap, int *cnt)
 
 int	print_str(t_format form, va_list *ap, int *cnt)
 {
+	va_list	cp;
 	int		width;
 
 	width = set_cnt(form, ap, cnt);
+	va_copy(cp, *ap);
+	if (va_arg(cp, char *) == NULL)
+		return (putnull(form, cnt));
 	if (form.flag & MNS)
 	{
-		if (putstr_proc_error(va_arg(*ap, char *)) == -1)
+		if (putstr_proc_error(va_arg(*ap, char *), form) == -1)
 			return (-1);
 	}
-	if (print_widt(form, width) == -1)
+	if (print_space(form, width) == -1)
 		return (-1);
 	if (!(form.flag & MNS))
 	{
-		if (putstr_proc_error(va_arg(*ap, char *)) == -1)
+		if (putstr_proc_error(va_arg(*ap, char *), form) == -1)
 			return (-1);
 	}
 	return (0);

@@ -1,21 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/08 18:48:24 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/11 19:20:55 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+int	ft_isalpha(int c)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	return (('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z'));
 }

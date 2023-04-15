@@ -1,37 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_chr.c                                        :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 17:08:39 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/15 23:42:17 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/12 19:46:17 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/12 19:47:33 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_chr(t_format form, va_list *ap, int *cnt)
+int	is_set(char c, char const *set)
 {
-	char	temp;
+	size_t	i;
 
-	temp = va_arg(*ap, int);
-	if (form.widt > 1)
-		(*cnt) += form.widt;
-	else
-		(*cnt) += 1;
-	if (form.flag & MNS)
+	i = -1;
+	while (set[++i])
 	{
-		if (putchar_proc_error(temp) == -1)
-			return (-1);
-	}
-	if (print_space(form, (form.widt - 1)) == -1)
-		return (-1);
-	if (!(form.flag & MNS))
-	{
-		if (putchar_proc_error(temp) == -1)
-			return (-1);
+		if (set[i] == c)
+			return (1);
 	}
 	return (0);
+}
+
+char	*ft_strtrim(char const *s1, char const *set)
+{
+	size_t	sti;
+	size_t	edi;
+	char	*out;
+
+	sti = 0;
+	while (is_set(s1[sti], set))
+		sti++;
+	edi = ft_strlen(s1) - 1;
+	while (is_set(s1[edi], set))
+		edi--;
+	out = ft_substr(s1, sti, edi - sti + 1);
+	return (out);
 }

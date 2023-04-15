@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_chr.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 17:08:39 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/15 23:42:17 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/13 18:43:44 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/18 20:34:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_chr(t_format form, va_list *ap, int *cnt)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	char	temp;
+	t_list	*out;
+	void	*cont;
+	void	*new;
 
-	temp = va_arg(*ap, int);
-	if (form.widt > 1)
-		(*cnt) += form.widt;
-	else
-		(*cnt) += 1;
-	if (form.flag & MNS)
+	if (!lst || !f || !del)
+		return (0);
+	out = 0;
+	while (lst)
 	{
-		if (putchar_proc_error(temp) == -1)
-			return (-1);
+		cont = f(lst->content);
+		new = ft_lstnew(cont);
+		if (!new)
+		{
+			ft_lstclear(&out, del);
+			del(cont);
+			return (0);
+		}
+		ft_lstadd_back(&out, new);
+		lst = lst->next;
 	}
-	if (print_space(form, (form.widt - 1)) == -1)
-		return (-1);
-	if (!(form.flag & MNS))
-	{
-		if (putchar_proc_error(temp) == -1)
-			return (-1);
-	}
-	return (0);
+	return (out);
 }

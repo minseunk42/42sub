@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/11 20:37:31 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/13 22:07:28 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+char	*ft_strdup(const char *str)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	char	*out;
+
+	out = (char *)malloc(ft_strlen(str) + 1);
+	if (!out)
+		return (0);
+	out = (char *)ft_memmove(out, (void *)str, ft_strlen(str) + 1);
+	return (out);
 }

@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_chr.c                                        :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/21 17:08:39 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/15 23:42:17 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/10 20:41:45 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/22 20:46:46 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_chr(t_format form, va_list *ap, int *cnt)
+void	*ft_memmove(void *dest, void *src, size_t size)
 {
-	char	temp;
+	size_t	i;
 
-	temp = va_arg(*ap, int);
-	if (form.widt > 1)
-		(*cnt) += form.widt;
+	if (!src && !dest)
+		return (0);
+	if (!size)
+		return (dest);
+	if (dest > src)
+	{
+		i = size;
+		while ((long long)--i >= 0)
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+	}
 	else
-		(*cnt) += 1;
-	if (form.flag & MNS)
 	{
-		if (putchar_proc_error(temp) == -1)
-			return (-1);
+		i = -1;
+		while (++i < size)
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 	}
-	if (print_space(form, (form.widt - 1)) == -1)
-		return (-1);
-	if (!(form.flag & MNS))
-	{
-		if (putchar_proc_error(temp) == -1)
-			return (-1);
-	}
-	return (0);
+	return (dest);
 }

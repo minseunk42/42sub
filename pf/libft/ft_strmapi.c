@@ -1,21 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/12 20:05:03 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/20 00:17:35 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	size_t	i;
+	size_t	size;
+	char	*out;
+
+	size = ft_strlen(s);
+	out = (char *)malloc(sizeof(char) * size + 1);
+	if (!out)
+		return (0);
+	i = -1;
+	while (s[++i])
+		out[i] = f(i, s[i]);
+	out[i] = 0;
+	return (out);
 }

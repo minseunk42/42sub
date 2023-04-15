@@ -1,37 +1,47 @@
-CC = gcc
+NAME = libftprintf.a
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
-HEADER = .
-SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_strncmp.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c
-SRCS_B = ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_lstmap.c
-OBJS = ${SRCS:.c=.o}
-OBJS_B = ${SRCS_B:.c=.o}
-NAME = libft.a
-RM = rm -f
-AR = ar rsc
+RM = rm -rf
+AR = ar -rcs
+LIBFT = ./libft/libft.a
+LIBFT_DIR = libft/
+SRCS = ft_printf.c ft_printf_utils.c print_pct.c print_chr.c print_str.c print_int.c print_usi.c print_hex.c print_ptr.c set_format.c
+OBJS = $(SRCS:.c=.o)
+B_SRCS = 
+B_OBJS = $(B_SRCS:.c=.o)
 
-ifdef WITH_BONUS
-	TOTAL_OBJS = $(OBJS) $(OBJS_B)
+ifdef BONUS
+	F_OBJS = $(B_OBJS)
 else
-	TOTAL_OBJS = $(OBJS)
+    F_OBJS = $(OBJS)
 endif
 
-all : $(NAME)
-
-bonus :
-	make WITH_BONUS=1
-
-$(NAME) : $(TOTAL_OBJS)
-	$(AR) $@ $^
-
-.c.o :
-	$(CC) $(CFLAGS) -c -o $@ $< -I $(HEADER)
+all :
+	make $(NAME)
 
 clean :
-	$(RM) $(OBJS) $(OBJS_B)
+	make -C $(LIBFT_DIR) clean
+	$(RM) $(OBJS) $(B_OBJS)
 
 fclean : clean
+	make -C $(LIBFT_DIR) fclean
 	$(RM) $(NAME)
 
-re : fclean all
+re :
+	make fclean
+	make all
 
-.PHONY: all bonus clean fclean re
+bonus :
+	make BONUS=1 $(NAME)
+
+$(NAME) : $(LIBFT) $(F_OBJS)
+	cp $(LIBFT) $(NAME)
+	$(AR) $@ $^
+
+$(LIBFT) :
+	make -C $(LIBFT_DIR) all
+
+%.o : %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+.PHONY : all clean fclean re bonus

@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pct.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:03:59 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/11 20:02:22 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/19 23:20:09 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_pct(t_format form, va_list *ap, int *cnt)
+int	ft_atoi(const char *str)
 {
-	int		i;
+	int	val;
+	int	sign;
+	int	i;
 
-	(void)ap;
-	if (form.widt > 1)
-		*cnt += form.widt;
-	else
-		*cnt += 1;
-	if (form.flag & MNS)
-	{
-		if (putchar_proc_error('%') == -1)
-			return (-1);
-	}
+	val = 0;
 	i = 0;
-	while (++i < form.widt)
-	{
-		if (putchar_proc_error(' ') == -1)
-			return (-1);
-	}
-	if (!(form.flag & MNS))
-	{
-		if (putchar_proc_error('%') == -1)
-			return (-1);
-	}
-	return (0);
+	sign = 1;
+	while ((9 <= str[i] && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+' || ((str[i] == '-') && ++i && sign-- && sign--))
+		i++;
+	while (ft_isdigit(str[i]))
+		val = 10 * val + (str[i++] - '0');
+	return (sign * val);
 }

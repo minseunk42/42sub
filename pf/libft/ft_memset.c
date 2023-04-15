@@ -1,41 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_pct.c                                        :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:03:59 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/10 17:44:29 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/13 17:53:39 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_pct(t_format form, va_list *ap, int *cnt)
+void	*ft_memset(void *ptr, int val, size_t num)
 {
-	int		i;
+	size_t	i;
 
-	(void)ap;
-	if (form.widt > 1)
-		*cnt += form.widt;
-	else
-		*cnt += 1;
-	if (form.flag & MNS)
-	{
-		if (putchar_proc_error('%') == -1)
-			return (-1);
-	}
 	i = 0;
-	while (++i < form.widt)
-	{
-		if (putchar_proc_error(' ') == -1)
-			return (-1);
-	}
-	if (!(form.flag & MNS))
-	{
-		if (putchar_proc_error('%') == -1)
-			return (-1);
-	}
-	return (0);
+	while (i < num)
+		((unsigned char *)ptr)[i++] = val;
+	return (ptr);
 }

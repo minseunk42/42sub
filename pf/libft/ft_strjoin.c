@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/12 19:43:53 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/19 23:16:37 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	size_t	size;
+	char	*out;
+
+	size = ft_strlen(s1) + ft_strlen(s2);
+	out = (char *)malloc(sizeof(char) * size + sizeof(char));
+	if (!out)
+		return (0);
+	ft_memmove((void *)out, (void *)s1, ft_strlen(s1));
+	ft_memmove((void *)&out[ft_strlen(s1)], (void *)s2, ft_strlen(s2) + 1);
+	return (out);
 }

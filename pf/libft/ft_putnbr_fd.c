@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_ptr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/08 21:54:35 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/12 20:15:49 by minseunk          #+#    #+#             */
+/*   Updated: 2022/11/19 23:59:32 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	print_ptr(t_format form, va_list *ap, int *cnt)
+void	ft_putnbr_fd(int n, int fd)
 {
-	(void)ap;
-	(void)form;
-	(void)cnt;
-	return (0);
+	long long	nb;
+
+	if (n < 0)
+		write(fd, "-", 1);
+	nb = (n * (n > 0)) - ((long long)n * (n < 0));
+	if (nb / 10 > 0)
+		ft_putnbr_fd(nb / 10, fd);
+	nb = '0' + nb % 10;
+	write(fd, &nb, 1);
 }
