@@ -100,9 +100,11 @@ void	set_format(char **str, t_format *form)
 		{	
 			if (**str >= '0' && **str <= '9')
 				form->prec = ft_atoi(*str);
+			else
+				form->prec = 0;
 			while (**str >= '0' && **str <= '9')
 				(*str)++;
-			continue;
+			continue ;
 		}
 		if (is_type(**str))
 			form->type = set_type(**str);
@@ -126,5 +128,5 @@ int main(int ac, char **av)
     printf("widt = %d\n",form.widt);
     printf("prec = %d\n",form.prec);
     printf("flag = %d\n",form.flag);
-	printf(temp, 42);
+	printf("%.3s", "hihi123");
 }
