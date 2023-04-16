@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:18:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/16 21:27:09 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:42:34 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	putstr_proc_error(char *str, t_format form, int *cnt)
 		if (putnull(form, cnt))
 			return (-1);
 	}
-	while (i < len && str[i])
+	while (i < len && str != NULL && str[i])
 	{	
 		flag = putchar_proc_error(str[i++], cnt);
 		if (flag == -1)
@@ -71,7 +71,14 @@ int	get_spwi(t_format form, va_list *ap)
 	else
 		strlen = ft_strlen(str);
 	if (str == NULL)
-		strlen = 6 - (form.prec * (form.prec >= 0 && form.prec < 6));
+	{
+		if (form.prec >= 6 || form.prec < 0)
+			strlen = 6;
+		else if (form.prec == 0)
+			strlen = 0;
+		else
+			strlen = form.prec;
+	}
 	return (form.widt - strlen);
 }
 

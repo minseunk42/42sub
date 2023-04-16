@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 19:20:08 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/04/16 20:35:29 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/16 21:41:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	print_space(t_format form, int widt, int *cnt)
 	int	i;
 	int	flag;
 
-	i = 0;
-	while (++i <= widt)
+	i = -1;
+	while (++i < widt)
 	{
 		if (form.flag & ZRO)
 			flag = putchar_proc_error('0', cnt);
