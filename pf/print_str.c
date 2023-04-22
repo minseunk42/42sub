@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:18:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/16 21:42:34 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/21 20:50:03 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	putnull(t_format form, int *cnt)
 	return (0);
 }
 
-int	putstr_proc_error(char *str, t_format form, int *cnt)
+int	putstr(char *str, t_format form, int *cnt)
 {
 	int	flag;
 	int	i;
@@ -57,12 +57,14 @@ int	putstr_proc_error(char *str, t_format form, int *cnt)
 	return (0);
 }
 
-int	get_spwi(t_format form, va_list *ap)
+int	get_spwi_str(t_format form, va_list *ap)
 {
 	va_list	cp;
 	char	*str;
 	int		strlen;
 
+	if (!(form.flag & MNS) && form.flag & ZRO)
+		return (0);
 	va_copy(cp, *ap);
 	str = va_arg(cp, char *);
 	strlen = 0;
@@ -79,24 +81,25 @@ int	get_spwi(t_format form, va_list *ap)
 		else
 			strlen = form.prec;
 	}
+	va_end(cp);
 	return (form.widt - strlen);
 }
 
 int	print_str(t_format form, va_list *ap, int *cnt)
 {
-	int		sp_width;
+	int	sp_width;
 
-	sp_width = get_spwi(form, ap);
+	sp_width = get_spwi_str(form, ap);
 	if (form.flag & MNS)
 	{
-		if (putstr_proc_error(va_arg(*ap, char *), form, cnt) == -1)
+		if (putstr(va_arg(*ap, char *), form, cnt) == -1)
 			return (-1);
 	}
-	if (print_space(form, sp_width, cnt) == -1)
+	if (print_space(sp_width, cnt) == -1)
 		return (-1);
 	if (!(form.flag & MNS))
 	{
-		if (putstr_proc_error(va_arg(*ap, char *), form, cnt) == -1)
+		if (putstr(va_arg(*ap, char *), form, cnt) == -1)
 			return (-1);
 	}
 	return (0);

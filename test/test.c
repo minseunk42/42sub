@@ -117,6 +117,8 @@ int main(int ac, char **av)
     t_format form;
 	char *temp;
 	char *temp2;
+	char *pt = "hihi";
+	char *pt2 = "hihi";
 
     if (ac < 2)
         return (0);
@@ -128,5 +130,5 @@ int main(int ac, char **av)
     printf("widt = %d\n",form.widt);
     printf("prec = %d\n",form.prec);
     printf("flag = %d\n",form.flag);
-	printf("%.3s", "hihi123");
+	printf(temp, pt2);
 }

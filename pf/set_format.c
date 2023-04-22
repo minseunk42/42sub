@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_format.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 22:49:33 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/15 23:57:55 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:55:17 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	set_type(char c)
 	if (c == 'u')
 		return (USI);
 	if (c == 'x')
-		return (HEX0);
+		return (HXS);
 	if (c == 'X')
-		return (HEX1);
+		return (HXR);
 	if (c == '%')
 		return (PCT);
 	return (-1);

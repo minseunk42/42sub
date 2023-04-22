@@ -4,6 +4,7 @@ int ft_printf(char *str, ...);
 
 int main()
 {
-	printf("%d\n",printf("%32s", NULL));
-	printf("%d\n",ft_printf("%32s", NULL));
+	char *s = "hihi";
+	printf("!\n%d\n",printf("%015x", 2));
+	printf("!\n%d\n",ft_printf("%015x", 2));
 }

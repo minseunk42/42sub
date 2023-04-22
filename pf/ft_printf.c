@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:41:52 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/15 22:59:33 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:54:49 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int	print_format(char **str, va_list *ap, int *cnt)
 	fp[INT] = print_int;
 	fp[USI] = print_usi;
 	fp[PTR] = print_ptr;
-	fp[HEX0] = print_hex;
-	fp[HEX1] = print_hex;
+	fp[HXS] = print_hex;
+	fp[HXR] = print_hex;
 	set_format(str, &form);
 	return (fp[form.type](form, ap, cnt));
 }
