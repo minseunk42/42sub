@@ -31,8 +31,7 @@ re :
 	make fclean
 	make all
 
-bonus :
-	make BONUS=1 $(NAME)
+bonus : all
 
 $(NAME) : $(LIBFT) $(F_OBJS)
 	cp $(LIBFT) $(NAME)
