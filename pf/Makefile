@@ -7,7 +7,7 @@ LIBFT = ./libft/libft.a
 LIBFT_DIR = libft/
 SRCS = ft_printf.c ft_printf_utils.c ft_printf_utils2.c print_pct.c print_chr.c print_str.c print_int.c print_usi.c print_hex.c print_ptr.c set_format.c
 OBJS = $(SRCS:.c=.o)
-B_SRCS = ft_printf_bonus.c ft_printf_utils_bonus.c ft_printf_utils2_bonus.c print_pct_bonus.c print_chr_bonus.c print_str_bonus.c print_int_bonus.c print_usi_bonus.c print_hex_bonus.c print_ptr_bonus.c set_format_bonus.c
+#B_SRCS = ft_printf_bonus.c ft_printf_utils_bonus.c ft_printf_utils2_bonus.c print_pct_bonus.c print_chr_bonus.c print_str_bonus.c print_int_bonus.c print_usi_bonus.c print_hex_bonus.c print_ptr_bonus.c set_format_bonus.c
 B_OBJS = $(B_SRCS:.c=.o)
 
 ifdef BONUS

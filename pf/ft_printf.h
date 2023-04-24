@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 13:46:30 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/22 22:54:44 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/23 21:16:01 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ typedef struct s_format
 # define HXS 7
 # define HXR 8
 # define MNS 0b00001
-# define PLS 0b00010
-# define SHP 0b00100
+# define PLS 0b00010 
+# define SHP 0b00100 
 # define SPC 0b01000
 # define ZRO 0b10000
 

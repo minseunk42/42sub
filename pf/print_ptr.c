@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/23 01:51:20 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/24 13:15:35 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ int	putsign_ptr(t_format form, int *cnt)
 {
 	int	flag;
 
-	if (form.flag & PLS)
-		flag = putchar_proc_error('+', cnt);
-	if (form.flag & SPC)
-		flag = putchar_proc_error(' ', cnt);
-	if (flag == -1)
-		return (-1);
 	if (putchar_proc_error('0', cnt) == -1)
 		return (-1);
 	if (putchar_proc_error('x', cnt) == -1)
@@ -59,12 +53,6 @@ int	putptr(unsigned long long nb, t_format form, int *cnt)
 	int		i;
 
 	str = ulltoh(nb);
-	if (form.type == HXR)
-	{
-		i = -1;
-		while (str[++i])
-			str[i] = ft_toupper(str[i]);
-	}
 	if (putsign_ptr(form, cnt) == -1 && free_str(str))
 		return (-1);
 	if (putzero_ptr(nb, form, cnt) == -1 && free_str(str))
@@ -113,8 +101,6 @@ int	print_ptr(t_format form, va_list *ap, int *cnt)
 	{
 		if (putptr(va_arg(*ap, unsigned long long), form, cnt) == -1)
 			return (-1);
-		if (form.flag & ZRO)
-			form.flag ^= ZRO;
 	}
 	if (print_space(sp_width, cnt) == -1)
 		return (-1);
