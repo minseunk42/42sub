@@ -6,16 +6,14 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 19:17:42 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/24 13:15:35 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/24 19:35:01 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	putsign_ptr(t_format form, int *cnt)
+int	putsign_ptr(int *cnt)
 {
-	int	flag;
-
 	if (putchar_proc_error('0', cnt) == -1)
 		return (-1);
 	if (putchar_proc_error('x', cnt) == -1)
@@ -53,7 +51,7 @@ int	putptr(unsigned long long nb, t_format form, int *cnt)
 	int		i;
 
 	str = ulltoh(nb);
-	if (putsign_ptr(form, cnt) == -1 && free_str(str))
+	if (putsign_ptr(cnt) == -1 && free_str(str))
 		return (-1);
 	if (putzero_ptr(nb, form, cnt) == -1 && free_str(str))
 		return (-1);
