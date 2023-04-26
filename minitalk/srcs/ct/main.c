@@ -6,13 +6,14 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:32:32 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/26 19:48:14 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/26 20:53:14 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minitalk.h"
 
-int main()
+int	main(int ac, char **av)
 {
-    ft_printf("thisisct");
+	(void)ac;
+	kill(ft_atoi(av[1]), SIGUSR1);
 }
