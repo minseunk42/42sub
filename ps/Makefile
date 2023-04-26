@@ -35,8 +35,7 @@ bonus :
 	make BONUS=1 $(NAME)
 
 $(NAME) : $(PRINTF) $(F_OBJS)
-	cp $(PRINTF) $(NAME)
-	$(CC) $(CFLAGS) -I $(HEADER) -L $(PRINTF_DIR) -lftprintf -o $@ $^
+	$(CC) $(CFLAGS) $(F_OBJS) -I $(HEADER) -L $(PRINTF_DIR) -lftprintf -o $@ 
 
 $(PRINTF) :
 	make -C $(PRINTF_DIR) all
