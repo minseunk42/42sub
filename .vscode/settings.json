@@ -6,7 +6,8 @@
         "get_next_line.h": "c",
         "stdio.h": "c",
         "ft_printf.h": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "minitalk.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
