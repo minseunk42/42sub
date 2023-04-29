@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:39:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/26 09:31:17 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/04/26 15:42:19 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,7 @@ t_list	*ft_lstnew(void *content)
 	return (new);
 }
 
-
-
-
-
-int	main(int ac, char **av)
+~int	main(int ac, char **av)
 {
 	t_list *lst;
 

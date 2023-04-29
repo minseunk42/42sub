@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:32:32 by minseunk          #+#    #+#             */
-/*   Updated: 2023/04/27 20:56:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/04/29 13:32:58 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	check_pid(char *str, int *pid)
 int	main(int ac, char **av)
 {
 	int	svpid;
+	///
 
 	svpid = 0;
 	if (ac != 3 || check_pid(av[1], &svpid))
