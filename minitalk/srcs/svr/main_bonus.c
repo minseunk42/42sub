@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:32:28 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/02 08:32:30 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/01 21:22:26 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,10 @@ void	sig_hander(int sig, siginfo_t *info, void *context)
 	if (offset == 8)
 	{
 		if (!temp)
+		{
+			kill(info->si_pid, SIGUSR1);
 			g_flag = 0;
+		}
 		write(1, &temp, 1);
 		offset = 0;
 		temp = 0;
