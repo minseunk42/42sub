@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:32:32 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/04 14:43:56 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/05/20 15:52:26 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	send_sig(char c, int svpid)
 		return ;
 	while (--offset >= 0)
 	{
-		usleep(100);
+		usleep(10);
 		if (1 & (c >> offset))
 			kill(svpid, SIGUSR1);
 		else
