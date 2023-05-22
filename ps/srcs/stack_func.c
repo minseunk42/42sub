@@ -6,13 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:46:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/19 17:05:21 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/22 12:02:38 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-static t_node	*cr_node(int  value)
+static t_node	*cr_node(int value)
 {
 	t_node	*new;
 
@@ -24,12 +24,12 @@ static t_node	*cr_node(int  value)
 	return (new);
 }
 
-void push_head(t_stack *st, int value)
+void	push_head(t_stack *st, int value)
 {
 	t_node	*temp;
 
 	temp = cr_node(value);
-    if (!st->head)
+	if (!st->head)
 	{
 		st->head = temp;
 		st->head->next = (*st).tail;
@@ -42,12 +42,12 @@ void push_head(t_stack *st, int value)
 	}
 }
 
-void push_tail(t_stack *st, int value)
+void	push_tail(t_stack *st, int value)
 {
 	t_node	*temp;
 
 	temp = cr_node(value);
-    if (!st->tail)
+	if (!st->tail)
 	{
 		st->tail = temp;
 		if (!(st->head))

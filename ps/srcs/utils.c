@@ -6,16 +6,16 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:37:03 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/19 20:06:02 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/22 12:03:30 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-int puterr(void)
+int	puterr(void)
 {
-    write(2, "Error\n", 6);
-    return (-1);
+	write(2, "Error\n", 6);
+	return (-1);
 }
 
 long long	ft_atol(const char *str)
@@ -40,7 +40,7 @@ int	is_sorted(t_stack st_arr[])
 {
 	t_node	*temp;
 	int		i;
-	
+
 	temp = st_arr[SA].head;
 	i = 0;
 	if (!st_arr[SB].head)
