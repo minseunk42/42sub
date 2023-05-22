@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 19:32:32 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/20 15:52:26 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/21 19:22:49 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	send_sig(char c, int svpid)
 		return ;
 	while (--offset >= 0)
 	{
-		usleep(10);
+		usleep(100);
 		if (1 & (c >> offset))
 			kill(svpid, SIGUSR1);
 		else
@@ -79,5 +79,6 @@ int	main(int ac, char **av)
 	while (av[2][++i])
 		send_sig(av[2][i], svpid);
 	send_sig(0, svpid);
+	usleep(100);
 	return (0);
 }
