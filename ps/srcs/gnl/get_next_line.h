@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_func.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/12 17:18:21 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/23 15:22:53 by minseunk         ###   ########.fr       */
+/*   Created: 2022/11/17 23:46:53 by minseunk          #+#    #+#             */
+/*   Updated: 2023/05/23 14:31:08 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/pushswap.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	pa(t_stack st_arr[])
-{
-	if (!(st_arr[SB].head))
-		return (-1);
-	push_head(&st_arr[SA], pop_head(&st_arr[SB]));
-	return (0);
-}
+# include <unistd.h>
+# include <stdlib.h>
 
-int	pb(t_stack st_arr[])
-{
-	if (!(st_arr[SA].head))
-		return (-1);
-	push_head(&st_arr[SB], pop_head(&st_arr[SA]));
-	return (0);
-}
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_strchr(const char *str, int c);
+size_t	ft_strlen(const char *str);
+void	*ft_memmove(void *dest, void *src, size_t size);
+char	*get_next_line(int fd);
+
+#endif
