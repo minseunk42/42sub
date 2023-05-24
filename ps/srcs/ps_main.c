@@ -6,11 +6,22 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:05:51 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/24 13:50:42 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:34:49 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
+
+char	*opti(char *answer, t_stack st_arr[])
+{
+	t_stack *temp;
+
+	temp = (t_stack *)ft_calloc(sizeof(t_stack), 3);
+	ft_memcpy(temp, st_arr, 3 * sizeof(t_stack));
+	
+	free(temp);
+	return (answer);
+}
 
 int	main(int ac, char **av)
 {
@@ -25,10 +36,11 @@ int	main(int ac, char **av)
 	if (is_sorted(st_arr))
 		return (0);
 	answer = 0;
-	if (get_stsize(st_arr[SA]) < 6)
-		answer = hard_code(answer, st_arr);
+	if (st_arr[STA].size < 6)
+		answer = hard(answer, st_arr);
 //	else
 //		answer = algo(answer, st_arr);
+//	answer = opti(answer, st_arr);
 	ft_printf(answer);
 	free(answer);
 	return (0);

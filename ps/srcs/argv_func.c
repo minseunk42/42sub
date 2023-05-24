@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:54:24 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/23 15:26:39 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:35:39 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	set_sa(t_stack st_arr[], int arg)
 	int		val[2];
 	
 	i = 0;
-	temp = st_arr[SA].head;
+	temp = st_arr[STA].head;
 	while (temp)
 	{
 		if (temp->val[NUM] == arg)
@@ -32,7 +32,7 @@ int	set_sa(t_stack st_arr[], int arg)
 	}
 	val[NUM] = arg;
 	val[ORDER] = i;
-	push_tail(&(st_arr[SA]), val);
+	push_tail(&(st_arr[STA]), val);
 	return (0);
 }
 
@@ -85,8 +85,10 @@ int	proc_av(char **av, t_stack st_arr[])
 
 void	init(t_stack st_arr[])
 {
-	st_arr[SA].head = NULL;
-	st_arr[SA].tail = NULL;
-	st_arr[SB].head = NULL;
-	st_arr[SB].tail = NULL;
+	st_arr[STA].head = NULL;
+	st_arr[STA].tail = NULL;
+	st_arr[STA].size = 0;
+	st_arr[STB].head = NULL;
+	st_arr[STB].tail = NULL;
+	st_arr[STB].size = 0;
 }

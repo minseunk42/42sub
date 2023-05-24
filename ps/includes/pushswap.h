@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:39:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/23 21:26:07 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:40:20 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef struct s_stack
 {
 	struct s_node	*head;
 	struct s_node	*tail;
+	int				size;
 }	t_stack;
 
 void		init(t_stack st_arr[]);
@@ -62,15 +63,41 @@ char		*get_next_line(int fd);
 int 		puterr(void);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int 		get_stsize(t_stack st);
-char		*hard_code(char *answer, t_stack st_arr[]);
+char		*hard(char *answer, t_stack st_arr[]);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			proc_cmd(char *cmd, t_stack st_arr[]);
+void		*ft_memcpy(void *dest, const void *src, size_t size);
+void		*ft_calloc(size_t num, size_t size);
+char		*opti(char *answer, t_stack st_arr[]);
 
-# define SA 0
-# define SB 1
+# define STA 0
+# define STB 1
 # define NUM 0
 # define ORDER 1
 # define INTMAX 2147483647
 # define INTMIN -2147483648
+# define PA 0
+# define PB 1
+# define SA 2
+# define SB 3
+# define SS 4
+# define RA 5
+# define RB 6
+# define RR 7
+# define RRA 8
+# define RRB 9
+# define RRR 10
+# define CPA "pa\n"
+# define CPB "pb\n"
+# define CSA "sa\n"
+# define CSB "sb\n"
+# define CSS "ss\n"
+# define CRA "ra\n"
+# define CRB "rb\n"
+# define CRR "rr\n"
+# define CRRA "rra\n"
+# define CRRB "rrb\n"
+# define CRRR "srrr\n"
+
 
 #endif

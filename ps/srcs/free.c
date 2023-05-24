@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:25:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/23 14:10:22 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:35:34 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	clear_stack(t_stack *st)
 
 int	free_sta(t_stack st_arr[])
 {
-	clear_stack(&(st_arr[SA]));
-	clear_stack(&(st_arr[SB]));
+	clear_stack(&(st_arr[STA]));
+	clear_stack(&(st_arr[STB]));
 	return (1);
 }
 

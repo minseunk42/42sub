@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:37:03 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/24 17:10:44 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:35:12 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ int	is_sorted(t_stack st_arr[])
 	t_node	*temp;
 	int		i;
 
-	temp = st_arr[SA].head;
+	temp = st_arr[STA].head;
 	i = 0;
-	if (st_arr[SB].head)
+	if (st_arr[STB].head)
 		return (0);
 	while (temp)
 	{

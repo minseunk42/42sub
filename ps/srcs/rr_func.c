@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 18:53:13 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/23 16:44:09 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:35:22 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 int	rra(t_stack st_arr[])
 {
-	if (!st_arr[SA].head || !st_arr[SA].head->next)
+	if (!st_arr[STA].head || !st_arr[STA].head->next)
 		return (-1);
-	push_head(&(st_arr[SA]), pop_tail(&(st_arr[SA])));
+	push_head(&(st_arr[STA]), pop_tail(&(st_arr[STA])));
 	return (0);
 }
 
 int	rrb(t_stack st_arr[])
 {
-	if (!st_arr[SB].head || !st_arr[SB].head->next)
+	if (!st_arr[STB].head || !st_arr[STB].head->next)
 		return (-1);
-	push_head(&(st_arr[SB]), pop_tail(&(st_arr[SB])));
+	push_head(&(st_arr[STB]), pop_tail(&(st_arr[STB])));
 	return (0);
 }
 

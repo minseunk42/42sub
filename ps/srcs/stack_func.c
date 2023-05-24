@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:46:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/23 16:59:07 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 18:36:13 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	push_head(t_stack *st, int val[])
 		temp->next = st->head;
 		st->head = temp;
 	}
+	st->size += 1;
 }
 
 void	push_tail(t_stack *st, int val[])
@@ -65,6 +66,7 @@ void	push_tail(t_stack *st, int val[])
 		temp->prev = st->tail;
 		st->tail = temp;
 	}
+	st->size += 1;
 }
 
 int	*pop_head(t_stack *st)
@@ -77,6 +79,7 @@ int	*pop_head(t_stack *st)
 	temp = st->head->next;
 	free(st->head);
 	st->head = temp;
+	st->size -= 1;
 	return (&out[0]);
 }
 
@@ -91,5 +94,6 @@ int	*pop_tail(t_stack *st)
 	free(st->tail);
 	st->tail = temp;
 	st->tail->next = NULL;
+	st->size -= 1;
 	return (&out[0]);
 }
