@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:25:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/22 11:57:35 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:10:22 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,29 @@ int	free_sta(t_stack st_arr[])
 {
 	clear_stack(&(st_arr[SA]));
 	clear_stack(&(st_arr[SB]));
+	return (1);
+}
+
+int free_strs(char **strs)
+{
+	int	i;
+
+	i = -1;
+	while (strs[++i])
+	{
+		free(strs[i]);	
+	}
+	free(strs);
+	return (1);
+}
+
+int	free_all(char **strs, t_stack st_arr[], char *cmd)
+{
+	if (strs)
+		free_strs(strs);
+	if (st_arr)	
+		free_sta(st_arr);
+	if (cmd)
+		free(cmd);
 	return (1);
 }

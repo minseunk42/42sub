@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:37:03 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/22 12:03:30 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:40:38 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,25 @@ long long	ft_atol(const char *str)
 	return (sign * val);
 }
 
+int	has_spa(char *str)
+{
+	int	i;
+	int	flag;
+	
+	i = -1;
+	flag = 0;
+	while (str[++i])
+	{
+		if (str[i] == ' ')
+		{
+			flag = 1;
+			if (str[i + 1] == ' ')
+				return (-1);
+		}
+	}
+	return (flag);
+}
+
 int	is_sorted(t_stack st_arr[])
 {
 	t_node	*temp;
@@ -43,13 +62,13 @@ int	is_sorted(t_stack st_arr[])
 
 	temp = st_arr[SA].head;
 	i = 0;
-	if (!st_arr[SB].head)
-		return (-1);
+	if (st_arr[SB].head)
+		return (0);
 	while (temp)
 	{
-		if (i++ != temp->order)
-			return (-1);
+		if (i++ != temp->val[ORDER])
+			return (0);
 		temp = temp->next;
 	}
-	return (0);
+	return (1);
 }

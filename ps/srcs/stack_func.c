@@ -6,29 +6,30 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:46:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/22 12:02:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:59:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-static t_node	*cr_node(int value)
+static t_node	*cr_node(int val[])
 {
 	t_node	*new;
 
 	new = (t_node *)malloc(sizeof(t_node));
 	if (!new)
 		return (0);
-	new->value = value;
+	new->val[NUM] = val[NUM];
+	new->val[ORDER] = val[ORDER];
 	new->next = NULL;
 	return (new);
 }
 
-void	push_head(t_stack *st, int value)
+void	push_head(t_stack *st, int val[])
 {
 	t_node	*temp;
 
-	temp = cr_node(value);
+	temp = cr_node(val);
 	if (!st->head)
 	{
 		st->head = temp;
@@ -42,11 +43,11 @@ void	push_head(t_stack *st, int value)
 	}
 }
 
-void	push_tail(t_stack *st, int value)
+void	push_tail(t_stack *st, int val[])
 {
 	t_node	*temp;
 
-	temp = cr_node(value);
+	temp = cr_node(val);
 	if (!st->tail)
 	{
 		st->tail = temp;
@@ -66,27 +67,29 @@ void	push_tail(t_stack *st, int value)
 	}
 }
 
-int	pop_head(t_stack *st)
+int	*pop_head(t_stack *st)
 {
-	int		out;
-	t_node	*temp;
+	static int	out[2];
+	t_node		*temp;
 
-	out = st->head->value;
+	out[NUM] = st->head->val[NUM];
+	out[ORDER] = st->head->val[ORDER];
 	temp = st->head->next;
 	free(st->head);
 	st->head = temp;
-	return (out);
+	return (&out[0]);
 }
 
-int	pop_tail(t_stack *st)
+int	*pop_tail(t_stack *st)
 {
-	int		out;
-	t_node	*temp;
+	static int	out[2];
+	t_node		*temp;
 
-	out = st->tail->value;
+	out[NUM] = st->tail->val[NUM];
+	out[ORDER] = st->tail->val[ORDER];
 	temp = st->tail->prev;
 	free(st->tail);
 	st->tail = temp;
 	st->tail->next = NULL;
-	return (out);
+	return (&out[0]);
 }
