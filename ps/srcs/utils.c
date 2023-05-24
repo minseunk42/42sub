@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:37:03 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/23 15:40:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:10:44 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	has_spa(char *str)
 {
 	int	i;
 	int	flag;
-	
+
 	i = -1;
 	flag = 0;
 	while (str[++i])

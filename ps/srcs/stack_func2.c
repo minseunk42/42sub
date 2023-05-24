@@ -6,23 +6,23 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:55:56 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/23 21:25:24 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:14:21 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-int get_stsize(t_stack st)
+int	get_stsize(t_stack st)
 {
-    int i;
-    
-    i = 0;
-    while (st.head)
-    {
-        i++;
-        st.head = st.head->next;
-    }
-    return (i);
+	int	i;
+
+	i = 0;
+	while (st.head)
+	{
+		i++;
+		st.head = st.head->next;
+	}
+	return (i);
 }
 
 int	proc_cmd(char *cmd, t_stack st_arr[])
