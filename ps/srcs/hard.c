@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 20:06:21 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/24 17:18:05 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:09:24 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ char	*hard_four(t_stack st_arr[], int max)
 	proc_cmd("pb\n", st_arr);
 	temp = hard_three(st_arr, max);
 	out = ft_strjoin(out, temp);
-	free(temp);
+	if (temp)
+		free(temp);
 	out = ft_strjoin(out, "pa\n");
 	return (out);
 }
@@ -81,9 +82,9 @@ char	*hard_five(t_stack st_arr[], int max)
 	proc_cmd("pb\n", st_arr);
 	temp = hard_three(st_arr, max);
 	out = ft_strjoin(out, temp);
-	free(temp);
-	out = ft_strjoin(out, "pa\n");
-	out = ft_strjoin(out, "pa\n");
+	if (temp)
+		free(temp);
+	out = ft_strjoin(out, "pa\npa\n");
 	return (out);
 }
 

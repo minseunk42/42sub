@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:43:53 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/23 20:50:08 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:09:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	size;
 	char	*out;
 
+	if (!ft_strlen(s2))
+		return ((char *)s1);
 	size = ft_strlen(s1) + ft_strlen(s2);
 	out = (char *)malloc(sizeof(char) * size + sizeof(char));
 	if (!out)
