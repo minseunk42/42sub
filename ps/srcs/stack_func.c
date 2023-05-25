@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 16:46:51 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/24 18:36:13 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/25 22:30:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static t_node	*cr_node(int val[])
 	new->val[NUM] = val[NUM];
 	new->val[ORDER] = val[ORDER];
 	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 
@@ -30,15 +31,15 @@ void	push_head(t_stack *st, int val[])
 	t_node	*temp;
 
 	temp = cr_node(val);
-	if (!st->head)
+	if (!st->size)
 	{
 		st->head = temp;
-		st->head->next = (*st).tail;
+		st->tail = temp;
 	}
 	else
 	{
-		st->head->prev = temp;
 		temp->next = st->head;
+		st->head->prev = temp;
 		st->head = temp;
 	}
 	st->size += 1;
@@ -93,7 +94,7 @@ int	*pop_tail(t_stack *st)
 	temp = st->tail->prev;
 	free(st->tail);
 	st->tail = temp;
-	st->tail->next = NULL;
+	st->tail->next = 0;
 	st->size -= 1;
 	return (&out[0]);
 }

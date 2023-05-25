@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:39:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/24 19:40:20 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/25 18:48:19 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,13 @@ int 		get_stsize(t_stack st);
 char		*hard(char *answer, t_stack st_arr[]);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			proc_cmd(char *cmd, t_stack st_arr[]);
+int 		proc_cmds(char *cmds, t_stack st_arr[]);
 void		*ft_memcpy(void *dest, const void *src, size_t size);
 void		*ft_calloc(size_t num, size_t size);
+char		*opti(char *answer, t_stack st_arr[]);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
+char		*ratorra(int i, int j, char *answer, int rracnt);
+char		*opti_ra(char *answer, t_stack st_arr[]);
 char		*opti(char *answer, t_stack st_arr[]);
 
 # define STA 0

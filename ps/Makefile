@@ -8,7 +8,7 @@ PRINTF_DIR = ft_printf/
 GNL = .srcs/gnl/libftgnl.a
 GNL_DIR = srcs/gnl/
 HEADER = includes
-SRCS = srcs/ps_main.c srcs/hard.c srcs/argv_func.c srcs/utils.c srcs/stack_func.c srcs/stack_func2.c srcs/swap_func.c srcs/free.c srcs/push_func.c srcs/r_func.c srcs/rr_func.c 
+SRCS = srcs/ps_main.c srcs/hard.c srcs/opti.c srcs/argv_func.c srcs/utils.c srcs/stack_func.c srcs/stack_func2.c srcs/swap_func.c srcs/free.c srcs/push_func.c srcs/r_func.c srcs/rr_func.c 
 OBJS = $(SRCS:.c=.o)
 B_SRCS = srcs/ck_main.c srcs/argv_func.c srcs/utils.c srcs/stack_func.c srcs/stack_func2.c srcs/swap_func.c srcs/free.c srcs/push_func.c srcs/r_func.c srcs/rr_func.c
 B_OBJS = $(B_SRCS:.c=.o)
