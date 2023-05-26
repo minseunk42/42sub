@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 23:35:47 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/22 22:25:57 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:31:58 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*read_line(int fd, char *ba, char *buf)
 
 	while (!ft_strchr(ba, '\n'))
 	{
-		end = read(fd, buf, 1024);
+		end = read(fd, buf, 1);
 		if (!end)
 			break ;
 		if (end == -1)
@@ -53,7 +53,7 @@ char	*read_line(int fd, char *ba, char *buf)
 			ba[0] = 0;
 		}
 		ba = ft_strjoin(ba, buf);
-		if (end < 1024)
+		if (end < 1)
 			break ;
 	}
 	return (ba);
@@ -67,7 +67,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (0);
-	buf = (char *)malloc(1024 + 1);
+	buf = (char *)malloc(2);
 	if (!buf)
 		return (0);
 	ba = read_line(fd, ba, buf);

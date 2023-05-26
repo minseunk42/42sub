@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:05:51 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/25 23:47:51 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:55:51 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,16 @@ char	*atob(char *answer, t_stack st_arr[], int chunk)
 		}
 		else
 		{
-			answer = ft_strjoin(answer, CRA);
-			proc_cmd(CRA, st_arr);
+			if (i < st_arr[STA].size / 2 && i >= 0)
+			{
+				answer = ft_strjoin(answer, CRRA);
+				proc_cmd(CRRA, st_arr);
+			}
+			else
+			{
+				answer = ft_strjoin(answer, CRA);
+				proc_cmd(CRA, st_arr);
+			}
 		}
 	}
 	return (answer);
