@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:05:51 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/26 20:17:53 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/26 21:21:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ char	*atob(char *answer, t_stack st_arr[])
 	i = 0;
 	while (st_arr[STA].size)
 	{
-		chunk = (st_arr[STA].size / 100) * 8 + 7;
+		chunk = ((st_arr[STA].size * 100) / 1000) + 5;
 		if (st_arr[STA].head->val[ORDER] <= i)
 		{
 			i++;
@@ -99,6 +99,7 @@ char	*algo(char *answer, t_stack st_arr[])
 	answer = opti(answer, temp2);
 	answer = btoa(answer, temp);
 	free(temp);
+	free(temp2);
 	return (answer);
 }
 
