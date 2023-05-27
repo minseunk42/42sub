@@ -18,19 +18,19 @@ endif
 all : $(NAME)
 
 bonus :
-	make WITH_BONUS=1
+	@make WITH_BONUS=1
 
 $(NAME) : $(TOTAL_OBJS)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 .c.o :
-	$(CC) $(CFLAGS) -c -o $@ $< -I $(HEADER)
+	@$(CC) $(CFLAGS) -c -o $@ $< -I $(HEADER)
 
 clean :
-	$(RM) $(OBJS) $(OBJS_B)
+	@$(RM) $(OBJS) $(OBJS_B)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re : fclean all
 

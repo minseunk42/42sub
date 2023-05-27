@@ -17,31 +17,31 @@ else
 endif
 
 all :
-	make $(NAME)
+	@make $(NAME)
 
 clean :
-	make -C $(LIBFT_DIR) clean
-	$(RM) $(OBJS) $(B_OBJS)
+	@make -C $(LIBFT_DIR) clean
+	@$(RM) $(OBJS) $(B_OBJS)
 
 fclean : clean
-	make -C $(LIBFT_DIR) fclean
-	$(RM) $(NAME)
+	@make -C $(LIBFT_DIR) fclean
+	@$(RM) $(NAME)
 
 re :
-	make fclean
-	make all
+	@make fclean
+	@make all
 
 bonus :
-	make BONUS=1 $(NAME)
+	@make BONUS=1 $(NAME)
 
 $(NAME) : $(LIBFT) $(F_OBJS)
-	cp $(LIBFT) $(NAME)
-	$(AR) $@ $^
+	@cp $(LIBFT) $(NAME)
+	@$(AR) $@ $^
 
 $(LIBFT) :
-	make -C $(LIBFT_DIR) all
+	@make -C $(LIBFT_DIR) all
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 .PHONY : all clean fclean re bonus
