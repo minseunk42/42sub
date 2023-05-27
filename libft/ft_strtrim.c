@@ -6,13 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 19:46:17 by minseunk          #+#    #+#             */
-/*   Updated: 2022/11/12 19:47:33 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/27 23:40:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	is_set(char c, char const *set)
+static int	is_set(char c, char const *set)
 {
 	size_t	i;
 

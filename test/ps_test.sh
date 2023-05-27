@@ -4,7 +4,7 @@ INDEX=0
 ITER=100
 NUM_OVER=0
 MAX=$LIMIT
-ARG=`jot -r $CNT -2147483647 2147483647 | tr "\n" " "`
+ARG=`jot -r $CNT -21474836 21474836 | tr "\n" " "`
 NUM=`./ps/push_swap $ARG | wc -l`
  
 while [ $INDEX -lt $ITER ]
@@ -16,7 +16,7 @@ fi
 if [ $NUM -gt $MAX ]; then
 MAX=$NUM
 fi
-ARG=`jot -r $CNT -2147483647 2147483647 | tr "\n" " "`
+ARG=`jot -r $CNT -21474836 21474836 | tr "\n" " "`
 NUM=`./ps/push_swap $ARG | wc -l`
 INDEX=`expr $INDEX + 1`
 done

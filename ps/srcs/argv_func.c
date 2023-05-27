@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:54:24 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/27 21:00:05 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/28 00:22:02 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	set_sa(t_stack st_arr[], int arg)
 	val[NUM] = arg;
 	val[ORDER] = i;
 	push_tail(&(st_arr[STA]), val);
-	free(temp);
+	if (temp)
+		free(temp);
 	return (0);
 }
 
@@ -46,9 +47,11 @@ int	set_str(char *str, t_stack st_arr[])
 		return (-1);
 	while (str[++i])
 	{
-		if (!(ft_isdigit(str[i]) || str[i] == '-'))
+		if (!(ft_isdigit(str[i]) || str[i] == '-' || str[i] == '+'))
 			return (-1);
 		if (str[i] == '-' && !(ft_isdigit(str[i + 1])))
+			return (-1);
+		if (str[i] == '+' && !(ft_isdigit(str[i + 1])))
 			return (-1);
 	}
 	if (i == 0 || i > 11)
@@ -65,6 +68,7 @@ int	proc_av(char **av, t_stack st_arr[])
 	char	**temp;
 
 	i = 0;
+	temp = 0;
 	while (av[++i])
 	{
 		if (has_spa(av[i]))
@@ -76,12 +80,13 @@ int	proc_av(char **av, t_stack st_arr[])
 				if (set_str(temp[j], st_arr) && free_strs(temp)
 					&& free_sta(st_arr))
 					return (-1);
-				free_strs(temp);
 			}
-		}	
+		}
 		else if (set_str(av[i], st_arr) && free_sta(st_arr))
 			return (-1);
 	}
+	if (temp)
+		free_strs(temp);
 	return (0);
 }
 

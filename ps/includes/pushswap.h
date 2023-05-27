@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:39:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/27 20:58:50 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/27 21:27:48 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ratorra(int i, int j, char *answer, int rracnt);
 char		*opti_ra(char *answer, t_stack st_arr[]);
 char		*opti(char *answer, t_stack st_arr[]);
+char		*algo(char *answer, t_stack st_arr[]);
+char		*atob(char *answer, t_stack st_arr[]);
+char		*btoa(char *answer, t_stack st_arr[]);
+int			get_maxidx(t_stack st_arr[]);
 
 # define STA 0
 # define STB 1
@@ -81,17 +85,6 @@ char		*opti(char *answer, t_stack st_arr[]);
 # define ORDER 1
 # define INTMAX 2147483647
 # define INTMIN -2147483648
-# define PA 0
-# define PB 1
-# define SA 2
-# define SB 3
-# define SS 4
-# define RA 5
-# define RB 6
-# define RR 7
-# define RRA 8
-# define RRB 9
-# define RRR 10
 # define CPA "pa\n"
 # define CPB "pb\n"
 # define CSA "sa\n"
