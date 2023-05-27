@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 17:55:56 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/25 19:57:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:26:06 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,28 @@ int	proc_cmd(char *cmd, t_stack st_arr[])
 	else
 		return (-1);
 	return (0);
+}
+
+void	copy_st(t_stack from[], t_stack to[])
+{
+	t_node	*temp;
+	int		tempval[2];
+
+	init_st(to);
+	temp = from[STA].head;
+	while (temp)
+	{
+		tempval[NUM] = temp->val[NUM];
+		tempval[ORDER] = temp->val[ORDER];
+		push_tail(&to[STA], tempval);
+		temp = temp->next;
+	}
+	temp = from[STB].head;
+	while (temp)
+	{
+		tempval[NUM] = temp->val[NUM];
+		tempval[ORDER] = temp->val[ORDER];
+		push_tail(&to[STB], tempval);
+		temp = temp->next;
+	}
 }

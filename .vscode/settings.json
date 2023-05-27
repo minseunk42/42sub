@@ -8,7 +8,12 @@
         "ft_printf.h": "c",
         "unistd.h": "c",
         "minitalk.h": "c",
-        "pushswap.h": "c"
+        "pushswap.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "unordered_map": "c",
+        "vector": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

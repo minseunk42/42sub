@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:39:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/27 21:27:48 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:22:24 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_stack
 	int				size;
 }	t_stack;
 
-void		init(t_stack st_arr[]);
+void		init_st(t_stack st_arr[]);
 int			set_sa(t_stack st_arr[], int num);
 int			set_str(char *str, t_stack st_arr[]);
 int			proc_av(char **av, t_stack st_arr[]);
@@ -78,6 +78,7 @@ char		*algo(char *answer, t_stack st_arr[]);
 char		*atob(char *answer, t_stack st_arr[]);
 char		*btoa(char *answer, t_stack st_arr[]);
 int			get_maxidx(t_stack st_arr[]);
+void		copy_st(t_stack from[], t_stack to[]);
 
 # define STA 0
 # define STB 1

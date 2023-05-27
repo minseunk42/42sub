@@ -5,7 +5,7 @@ ITER=100
 NUM_OVER=0
 MAX=$LIMIT
 ARG=`jot -r $CNT -21474836 21474836 | tr "\n" " "`
-NUM=`./ps/push_swap $ARG | wc -l`
+NUM=`../ps/push_swap $ARG | wc -l`
  
 while [ $INDEX -lt $ITER ]
 do
@@ -17,7 +17,7 @@ if [ $NUM -gt $MAX ]; then
 MAX=$NUM
 fi
 ARG=`jot -r $CNT -21474836 21474836 | tr "\n" " "`
-NUM=`./ps/push_swap $ARG | wc -l`
+NUM=`../ps/push_swap $ARG | wc -l`
 INDEX=`expr $INDEX + 1`
 done
 echo "$NUM_OVER overred operations for $ITER times"

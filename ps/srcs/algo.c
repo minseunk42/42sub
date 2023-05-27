@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 21:18:57 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/27 21:22:57 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:23:59 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*btoa(char *answer, t_stack st_arr[])
 	{
 		if (st_arr[STB].size / 2 > get_maxidx(st_arr))
 		{
-			while (st_arr[STB].head->val[ORDER] != st_arr[STB].size -1)
+			while (st_arr[STB].head->val[ORDER] != st_arr[STB].size - 1)
 			{
 				answer = ft_strjoin(answer, CRB);
 				proc_cmd(CRB, st_arr);
@@ -41,7 +41,7 @@ char	*btoa(char *answer, t_stack st_arr[])
 		}
 		else
 		{
-			while (st_arr[STB].head->val[ORDER] != st_arr[STB].size -1)
+			while (st_arr[STB].head->val[ORDER] != st_arr[STB].size - 1)
 			{
 				answer = ft_strjoin(answer, CRRB);
 				proc_cmd(CRRB, st_arr);
@@ -82,17 +82,15 @@ char	*atob(char *answer, t_stack st_arr[])
 
 char	*algo(char *answer, t_stack st_arr[])
 {
-	t_stack	*temp;
-	t_stack	*temp2;
+	t_stack	temp[2];
+	t_stack	temp2[2];
 
-	temp = (t_stack *)ft_calloc(sizeof(t_stack), 3);
-	ft_memcpy(temp, st_arr, 3 * sizeof(t_stack));
-	temp2 = (t_stack *)ft_calloc(sizeof(t_stack), 3);
-	ft_memcpy(temp2, st_arr, 3 * sizeof(t_stack));
+	copy_st(st_arr, temp);
+	copy_st(st_arr, temp2);
 	answer = atob(answer, temp);
 	answer = opti(answer, temp2);
 	answer = btoa(answer, temp);
-	free(temp);
-	free(temp2);
+	free_sta(temp);
+	free_sta(temp2);
 	return (answer);
 }

@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:54:24 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/28 00:22:02 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/28 06:12:34 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ int	set_sa(t_stack st_arr[], int arg)
 	val[NUM] = arg;
 	val[ORDER] = i;
 	push_tail(&(st_arr[STA]), val);
-	if (temp)
-		free(temp);
+	free(temp);
 	return (0);
 }
 
@@ -90,7 +89,7 @@ int	proc_av(char **av, t_stack st_arr[])
 	return (0);
 }
 
-void	init(t_stack st_arr[])
+void	init_st(t_stack st_arr[])
 {
 	st_arr[STA].head = NULL;
 	st_arr[STA].tail = NULL;
