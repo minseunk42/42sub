@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 20:06:21 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/25 18:55:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:57:01 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,13 @@ char	*hard_five(t_stack st_arr[], int max)
 
 char	*hard(char *answer, t_stack st_arr[])
 {
-	t_stack *temp;
+	t_stack	*temp;
+	t_stack	*temp2;
 
 	temp = (t_stack *)ft_calloc(sizeof(t_stack), 3);
 	ft_memcpy(temp, st_arr, 3 * sizeof(t_stack));
+	temp2 = (t_stack *)ft_calloc(sizeof(t_stack), 3);
+	ft_memcpy(temp2, st_arr, 3 * sizeof(t_stack));
 	if (get_stsize(st_arr[STA]) == 2)
 		answer = ft_strjoin(answer, "sa\n");
 	if (get_stsize(st_arr[STA]) == 3)
@@ -102,6 +105,8 @@ char	*hard(char *answer, t_stack st_arr[])
 		answer = hard_four(temp, 3);
 	if (get_stsize(st_arr[STA]) == 5)
 		answer = hard_five(temp, 4);
+	answer = opti(answer, temp2);
 	free(temp);
+	free(temp2);
 	return (answer);
 }

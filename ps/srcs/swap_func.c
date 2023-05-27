@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 17:27:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/24 19:35:15 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:55:48 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	sa(t_stack st_arr[])
 {
-	int temp[2];
+	int	temp[2];
 
 	if (!st_arr[STA].head || !st_arr[STA].head->next)
 		return (-1);
@@ -29,7 +29,7 @@ int	sa(t_stack st_arr[])
 
 int	sb(t_stack st_arr[])
 {
-	int temp[2];
+	int	temp[2];
 
 	if (!st_arr[STB].head || !st_arr[STB].head->next)
 		return (-1);

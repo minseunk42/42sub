@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:39:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/25 18:48:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/27 20:58:50 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,25 +48,25 @@ int			is_sorted(t_stack st_arr[]);
 char		**ft_split(char const *s, char c);
 int			free_strs(char **strs);
 int			has_spa(char *str);
-int 		sa(t_stack st_arr[]);
-int 		sb(t_stack st_arr[]);
-int 		ss(t_stack st_arr[]);
-int 		pa(t_stack st_arr[]);
-int 		pb(t_stack st_arr[]);
-int 		ra(t_stack st_arr[]);
-int 		rb(t_stack st_arr[]);
-int 		rr(t_stack st_arr[]);
-int 		rra(t_stack st_arr[]);
-int 		rrb(t_stack st_arr[]);
-int 		rrr(t_stack st_arr[]);
+int			sa(t_stack st_arr[]);
+int			sb(t_stack st_arr[]);
+int			ss(t_stack st_arr[]);
+int			pa(t_stack st_arr[]);
+int			pb(t_stack st_arr[]);
+int			ra(t_stack st_arr[]);
+int			rb(t_stack st_arr[]);
+int			rr(t_stack st_arr[]);
+int			rra(t_stack st_arr[]);
+int			rrb(t_stack st_arr[]);
+int			rrr(t_stack st_arr[]);
 char		*get_next_line(int fd);
-int 		puterr(void);
+int			puterr(void);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-int 		get_stsize(t_stack st);
+int			get_stsize(t_stack st);
 char		*hard(char *answer, t_stack st_arr[]);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			proc_cmd(char *cmd, t_stack st_arr[]);
-int 		proc_cmds(char *cmds, t_stack st_arr[]);
+int			proc_cmds(char *cmds, t_stack st_arr[]);
 void		*ft_memcpy(void *dest, const void *src, size_t size);
 void		*ft_calloc(size_t num, size_t size);
 char		*opti(char *answer, t_stack st_arr[]);
@@ -103,6 +103,5 @@ char		*opti(char *answer, t_stack st_arr[]);
 # define CRRA "rra\n"
 # define CRRB "rrb\n"
 # define CRRR "srrr\n"
-
 
 #endif
