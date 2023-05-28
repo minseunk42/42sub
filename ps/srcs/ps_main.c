@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:05:51 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/28 06:27:02 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/29 01:26:25 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,16 @@ int	main(int ac, char **av)
 	if (ac < 2)
 		return (-1);
 	init_st(st_arr);
-	if (proc_av(av, st_arr) && puterr())
-		return (-1);
+	if (proc_av(av, st_arr))
+		return (puterr());
 	if (is_sorted(st_arr))
-		return (0);
+		return (EXIT_FAILURE);
 	answer = 0;
 	if (st_arr[STA].size < 6)
 		answer = hard(answer, st_arr);
 	else
 		answer = algo(answer, st_arr);
 	ft_printf(answer);
-	free(answer);
-	free_sta(st_arr);
-	return (0);
+	free_all(0, st_arr, answer);
+	return (EXIT_SUCCESS);
 }

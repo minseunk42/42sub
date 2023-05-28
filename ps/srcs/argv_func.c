@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:54:24 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/28 06:12:34 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/29 01:32:24 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	set_sa(t_stack st_arr[], int arg)
 	while (temp)
 	{
 		if (temp->val[NUM] == arg)
-			return (-1);
+			return (EXIT_FAILURE);
 		if (temp->val[NUM] > arg)
 			temp->val[ORDER] += 1;
 		else
@@ -34,7 +34,7 @@ int	set_sa(t_stack st_arr[], int arg)
 	val[ORDER] = i;
 	push_tail(&(st_arr[STA]), val);
 	free(temp);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 int	set_str(char *str, t_stack st_arr[])
@@ -76,17 +76,16 @@ int	proc_av(char **av, t_stack st_arr[])
 			j = -1;
 			while (temp[++j])
 			{
-				if (set_str(temp[j], st_arr) && free_strs(temp)
-					&& free_sta(st_arr))
-					return (-1);
+				if (set_str(temp[j], st_arr))
+					return (free_all(temp, st_arr, 0));
 			}
 		}
-		else if (set_str(av[i], st_arr) && free_sta(st_arr))
-			return (-1);
+		else if (set_str(av[i], st_arr))
+			return (free_all(temp, st_arr, 0));
 	}
 	if (temp)
 		free_strs(temp);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 void	init_st(t_stack st_arr[])

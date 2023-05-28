@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 18:09:22 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/27 20:53:35 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/29 01:37:47 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ char	*opti_ra(char *answer, t_stack st_arr[])
 
 char	*opti(char *answer, t_stack st_arr[])
 {
-	t_stack	*temp;
+	t_stack	temp[2];
 
-	temp = (t_stack *)ft_calloc(sizeof(t_stack), 3);
-	ft_memcpy(temp, st_arr, 3 * sizeof(t_stack));
+	copy_st(st_arr, temp);
 	answer = opti_ra(answer, temp);
-	free(temp);
+	free_sta(temp);
 	return (answer);
 }

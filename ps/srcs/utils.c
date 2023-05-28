@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 15:37:03 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/05/28 06:10:00 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/29 01:26:56 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	puterr(void)
 {
 	write(2, "Error\n", 6);
-	return (-1);
+	return (EXIT_FAILURE);
 }
 
 long long	ft_atol(const char *str)

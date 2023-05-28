@@ -5,13 +5,19 @@ CFLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 PRINTF = ./ft_printf/libftprintf.a
 PRINTF_DIR = ft_printf/
-GNL = .srcs/gnl/libftgnl.a
-GNL_DIR = srcs/gnl/
+GNL = ./gnl/libftgnl.a
+GNL_DIR = gnl/
 HEADER = includes
 SRCS = srcs/ps_main.c srcs/hard.c srcs/algo.c srcs/opti.c srcs/argv_func.c srcs/utils.c srcs/stack_func.c srcs/stack_func2.c srcs/swap_func.c srcs/free.c srcs/push_func.c srcs/r_func.c srcs/rr_func.c 
 OBJS = $(SRCS:.c=.o)
 B_SRCS = srcs/ck_main.c srcs/argv_func.c srcs/utils.c srcs/stack_func.c srcs/stack_func2.c srcs/swap_func.c srcs/free.c srcs/push_func.c srcs/r_func.c srcs/rr_func.c
 B_OBJS = $(B_SRCS:.c=.o)
+
+ifdef WITH_BONUS
+	TOTAL_OBJS = $(OBJS) $(B_OBJS)
+else
+	TOTAL_OBJS = $(OBJS)
+endif
 
 all :
 	make $(NAME)
@@ -32,7 +38,7 @@ re :
 	make all
 
 bonus :
-	make $(BNAME)
+	make WITH_BONUS=1 $(BNAME)
 
 $(NAME) : $(PRINTF) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -I $(HEADER) -L $(PRINTF_DIR) -lftprintf -o $@ 

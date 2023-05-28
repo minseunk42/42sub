@@ -7,22 +7,22 @@ SRCS = get_next_line.c get_next_line_utils.c
 OBJS = $(SRCS:.c=.o)
 
 all :
-	make $(NAME)
+	@make $(NAME)
 
 clean :
-	$(RM) $(OBJS)
+	@$(RM) $(OBJS)
 
 fclean : clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 
 re :
-	make fclean
-	make all
+	@make fclean
+	@make all
 
 $(NAME) : $(OBJS)
-	$(AR) $@ $^
+	@$(AR) $@ $^
 
 %.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 .PHONY : all clean fclean re bonus
