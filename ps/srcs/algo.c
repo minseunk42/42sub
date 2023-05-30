@@ -6,13 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 21:18:57 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/29 01:37:51 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/30 08:59:29 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pushswap.h"
 
-int	get_maxidx(t_stack st_arr[])
+int	is_close_top(t_stack st_arr[])
 {
 	t_node	*temp;
 	int		i;
@@ -23,15 +23,17 @@ int	get_maxidx(t_stack st_arr[])
 	{
 		temp = temp->next;
 		i++;
+		if (i > st_arr[STB].size / 2)
+			return (0);
 	}
-	return (i);
+	return (1);
 }
 
 char	*btoa(char *answer, t_stack st_arr[])
 {
 	while (st_arr[STB].size)
 	{
-		if (st_arr[STB].size / 2 > get_maxidx(st_arr))
+		if (is_close_top(st_arr))
 		{
 			while (st_arr[STB].head->val[ORDER] != st_arr[STB].size - 1)
 			{
