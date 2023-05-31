@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/25 20:39:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/29 01:28:42 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/31 20:17:09 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int			rrr(t_stack st_arr[]);
 char		*get_next_line(int fd);
 int			puterr(void);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
-int			get_stsize(t_stack st);
 char		*hard(char *answer, t_stack st_arr[]);
 char		*ft_strjoin(char const *s1, char const *s2);
 int			proc_cmd(char *cmd, t_stack st_arr[]);
