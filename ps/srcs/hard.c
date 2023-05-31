@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 20:06:21 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/29 01:46:48 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:17:15 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ char	*hard(char *answer, t_stack st_arr[])
 
 	copy_st(st_arr, temp);
 	copy_st(st_arr, temp2);
-	if (get_stsize(st_arr[STA]) == 2)
+	if (st_arr[STA].size == 2)
 		answer = ft_strjoin(answer, "sa\n");
-	if (get_stsize(st_arr[STA]) == 3)
+	if (st_arr[STA].size == 3)
 		answer = hard_three(temp, 2);
-	if (get_stsize(st_arr[STA]) == 4)
+	if (st_arr[STA].size == 4)
 		answer = hard_four(temp, 3);
-	if (get_stsize(st_arr[STA]) == 5)
+	if (st_arr[STA].size == 5)
 		answer = hard_five(temp, 4);
 	answer = opti(answer, temp2);
 	free_sta(temp);
