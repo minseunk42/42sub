@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/27 21:18:57 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/30 08:59:29 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:56:30 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*atob(char *answer, t_stack st_arr[])
 	i = 0;
 	while (st_arr[STA].size)
 	{
-		chunk = ((st_arr[STA].size * 100) / 1000) + 5;
+		chunk = (st_arr[STA].size / 10) + 5;
 		if (st_arr[STA].head->val[ORDER] <= i && ++i)
 		{
 			answer = ft_strjoin(answer, CPB);

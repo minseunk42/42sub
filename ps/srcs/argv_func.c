@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:54:24 by minseunk          #+#    #+#             */
-/*   Updated: 2023/05/29 01:32:24 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/14 18:57:02 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	set_sa(t_stack st_arr[], int arg)
 	while (temp)
 	{
 		if (temp->val[NUM] == arg)
-			return (EXIT_FAILURE);
+			return (-1);
 		if (temp->val[NUM] > arg)
 			temp->val[ORDER] += 1;
 		else
@@ -55,7 +55,7 @@ int	set_str(char *str, t_stack st_arr[])
 	}
 	if (i == 0 || i > 11)
 		return (-1);
-	if (set_sa(st_arr, ft_atol(str)) == -1)
+	if (set_sa(st_arr, ft_atol(str)))
 		return (-1);
 	return (0);
 }
