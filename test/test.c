@@ -9,7 +9,6 @@ void at()
 
 int	fc(void *param)
 {
-	printf("%phi",param);
 	exit(0);
 	return (0);
 }
@@ -51,7 +50,7 @@ void	draw_line(void	*mlx_ptr, void	*win_ptr, int xf, int yf, int xt, int yt)
 		p = (2 * (yt - yf)) - (xt - xf);
 	while (xf != xt && yf != yt)
 	{
-		mlx_pixel_put(mlx_ptr, win_ptr, xf, yf, 0xffff);
+		mlx_pixel_put(mlx_ptr, win_ptr, xf, yf, 0x0f00ff);
 		if (g)
 		{
 			if (p > 0)
