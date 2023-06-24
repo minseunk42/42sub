@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/24 13:27:06 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 06:26:03 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ size_t		ft_strlen(const char *str);
 int			map_init(t_fdf *fdf, char *file);
 char		**ft_split(char const *s, char c);
 int			ft_atoi(const char *str);
+int			draw_map(t_fdf *fdf);
 
 # define X 0
 # define Y 1
 # define Z 2
+# define ST 0
+# define ED 1
 
 #endif

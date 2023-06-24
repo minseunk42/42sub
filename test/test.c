@@ -1,4 +1,4 @@
-#include "includes/fdf.h"
+#include "../fdf/includes/fdf.h"
 
 void at()
 {
@@ -40,8 +40,8 @@ void	draw_coord(t_fdf fdf)
 		}
 	}
 }
-/*
-void	draw_line(t_fdf fdf, int *dot, int *dot2)
+
+void	draw_line(void *mlx_ptr, void *win_ptr, int xf, int yf, int xt, int yt)
 {
 	int p;
 	int g;
@@ -81,7 +81,7 @@ void	draw_line(t_fdf fdf, int *dot, int *dot2)
 		}
 	}
 }
-*/
+/*
 int	is_fdf_file(char *file)
 {
 	int	i;
@@ -97,7 +97,7 @@ int	is_fdf_file(char *file)
 		return (-1);
 	return (0);
 }
-
+*/
 int	map_init(t_fdf *fdf, char *file)
 {
 	int		fd;
@@ -111,8 +111,8 @@ int	map_init(t_fdf *fdf, char *file)
 
 int	init(t_fdf *fdf, char *file)
 {
-	if (is_fdf_file(file))
-		return (-1);
+	//if (is_fdf_file(file))
+	//	return (-1);
 	if (map_init(fdf, file))
 		return (-1);
 	fdf->mlx_ptr = mlx_init();
@@ -129,8 +129,8 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (init(&fdf, av[1]))
 		return (EXIT_FAILURE);
-	draw_coord(fdf);
-	//draw_line(fdf.mlx_ptr, fdf.win_ptr, atoi(av[1]),atoi(av[2]), atoi(av[3]), atoi(av[4]));
+//	draw_coord(fdf);
+	draw_line(fdf.mlx_ptr, fdf.win_ptr, atoi(av[1]),atoi(av[2]), atoi(av[3]), atoi(av[4]));
 	mlx_hook(fdf.win_ptr, 17, 0, fc, &fdf);
 	mlx_loop(fdf.mlx_ptr);
 	return (0);

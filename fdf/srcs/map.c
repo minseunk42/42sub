@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:48 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 03:42:15 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 03:44:03 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	get_col(char *file)
 	if (temp)
 		temp2 = ft_split(temp, ' ');
 	else
-		return (-1);
+		return (0);
 	out = -1;
 	while (temp2[++out])
 		free(temp2[out]);

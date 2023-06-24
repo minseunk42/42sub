@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 03:37:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 06:55:31 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,23 @@ int	init(t_fdf *fdf, char *file)
 	return (0);
 }
 
+void	mul2(t_fdf *fdf)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < fdf->row)
+	{
+		j = -1;
+		while (++j < fdf->col)
+		{
+			fdf->map[i][j][X] *= 70;
+			fdf->map[i][j][Y] *= 70;
+		}
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_fdf	fdf;
@@ -48,6 +65,8 @@ int	main(int ac, char **av)
 	if (init(&fdf, av[1]))
 		return (EXIT_FAILURE);
 	//mlx_hook(fdf.win_ptr, 17, 0, fc, &fdf);
-	//mlx_loop(fdf.mlx_ptr);
+	mul2(&fdf);
+	draw_map(&fdf);
+	mlx_loop(fdf.mlx_ptr);
 	return (0);
 }

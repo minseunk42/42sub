@@ -7,7 +7,7 @@ LIBFT_DIR = libft/
 GNL = ./gnl/libftgnl.a
 GNL_DIR = gnl/
 HEADER = includes
-SRCS = srcs/main.c srcs/map.c
+SRCS = srcs/main.c srcs/map.c srcs/draw.c
 OBJS = $(SRCS:.c=.o)
 MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGl -framework AppKit
 
