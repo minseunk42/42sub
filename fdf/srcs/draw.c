@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 03:59:37 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 12:42:10 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:39:50 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	draw_nega(t_fdf *fdf, int x[2], int y[2])
 	p = 0;
 	while (x[ST] != x[ED] && y[ST] != y[ED])
 	{
+		if (x[ST] > COLPIX  || y[ST] > ROWPIX)
+			break ;
 		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
 		if ((y[ED] - y[ST]) / (x[ED] - x[ST]))
 		{
@@ -44,6 +46,8 @@ void	draw_posi(t_fdf *fdf, int x[2], int y[2])
 	p = 0;
 	while (x[ST] != x[ED] && y[ST] != y[ED])
 	{
+		if (x[ST] > COLPIX  || y[ST] > ROWPIX)
+			break ;
 		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
 		if ((y[ED] - y[ST]) / (x[ED] - x[ST]))
 		{
@@ -68,6 +72,8 @@ void	draw_otho(t_fdf *fdf, int x[2], int y[2])
 	{
 		while (y[ST] != y[ED])
 		{
+			if (x[ST] > COLPIX  || y[ST] > ROWPIX)
+				break ;
 			mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
 			if (y[ST] < y[ED])
 				y[ST]++;
@@ -79,6 +85,8 @@ void	draw_otho(t_fdf *fdf, int x[2], int y[2])
 	{
 		while (x[ST] != x[ED])
 		{
+			if (x[ST] > COLPIX  || y[ST] > ROWPIX)
+				break ;
 			mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
 			x[ST]++;
 		}

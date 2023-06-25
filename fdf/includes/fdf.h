@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 14:59:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 17:43:02 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ typedef struct s_fdf
 	void	*win_ptr;
 	int		col;
 	int		row;
+	int		zmax;
+	int		mulxy;
+	int		mulz;
 	int		(**map)[3];
 }	t_fdf;
 
