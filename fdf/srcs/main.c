@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 06:55:31 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 09:58:20 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	init(t_fdf *fdf, char *file)
 	return (0);
 }
 
-void	mul2(t_fdf *fdf)
+void	mul(t_fdf *fdf)
 {
 	int	i;
 	int	j;
@@ -50,8 +50,29 @@ void	mul2(t_fdf *fdf)
 		j = -1;
 		while (++j < fdf->col)
 		{
-			fdf->map[i][j][X] *= 70;
-			fdf->map[i][j][Y] *= 70;
+			fdf->map[i][j][X] *= 30;
+			fdf->map[i][j][Y] *= 30;
+		}
+	}
+}
+
+void	rot(t_fdf *fdf)
+{
+	int	i;
+	int	j;
+	int	x;
+	int	y; 
+
+	i = -1;
+	while (++i < fdf->row)
+	{
+		j = -1;
+		while (++j < fdf->col)
+		{
+			x = fdf->map[i][j][X];
+			y = fdf->map[i][j][Y];
+			fdf->map[i][j][X] = cos(3.14 / 6) * x - sin(3.14 / 6) * y + 300;
+			fdf->map[i][j][Y] = sin(3.14 / 6) * x + cos(3.14 / 6) * y + 100;
 		}
 	}
 }
@@ -65,7 +86,8 @@ int	main(int ac, char **av)
 	if (init(&fdf, av[1]))
 		return (EXIT_FAILURE);
 	//mlx_hook(fdf.win_ptr, 17, 0, fc, &fdf);
-	mul2(&fdf);
+	mul(&fdf);
+	rot(&fdf);
 	draw_map(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	return (0);
