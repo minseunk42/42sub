@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 12:40:24 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:02:43 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,17 @@ int	init(t_fdf *fdf, char *file)
 	if (map_init(fdf, file))
 		return (-1);
 	fdf->mlx_ptr = mlx_init();
-	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, 1920, 1080, "fdf");
+	fdf->win_ptr = mlx_new_window(fdf->mlx_ptr, COLPIX, ROWPIX, "fdf");
 	return (0);
+}
+
+void	fp(void *param)
+{
+	t_fdf *fdf;
+
+	fdf = param;
+	free_map(fdf);
+	exit(0);
 }
 
 int	main(int ac, char **av)
@@ -47,7 +56,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (init(&fdf, av[1]))
 		return (EXIT_FAILURE);
-//	mlx_hook(fdf.win_ptr, 17, 0, fp, &fdf);
+	mlx_hook(fdf.win_ptr, 17, 0, fp, &fdf);
 	weit(&fdf);
 	roty(&fdf);
 	rotx(&fdf);

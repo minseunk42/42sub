@@ -1,48 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   modi.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 12:39:01 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 15:15:12 by minseunk         ###   ########.fr       */
+/*   Created: 2023/06/25 14:46:15 by minseunk          #+#    #+#             */
+/*   Updated: 2023/06/25 15:02:39 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	weit(t_fdf *fdf)
+void free_map(t_fdf *fdf)
 {
-	int	i;
-	int	j;
+    int i;
 
-	i = -1;
-	while (++i < fdf->row)
-	{
-		j = -1;
-		while (++j < fdf->col)
-		{
-			fdf->map[i][j][X] *= 20;
-			fdf->map[i][j][Y] *= 20;
-			fdf->map[i][j][Z] *= 20;
-		}
-	}
+    i = -1;
+    while (++i < fdf->row)
+        free(fdf->map[i]);
+    free(fdf->map);        
 }
 
-void	bias(t_fdf *fdf)
+int	free_strs(char **strs)
 {
 	int	i;
-	int	j;
 
+	if (!strs)
+		return (-1);
 	i = -1;
-	while (++i < fdf->row)
-	{
-		j = -1;
-		while (++j < fdf->col)
-		{
-			fdf->map[i][j][X] += 500;
-			fdf->map[i][j][Y] += 500;
-		}
-	}
+	while (strs[++i])
+		free(strs[i])
+	free(strs);
+	return (-1);
 }

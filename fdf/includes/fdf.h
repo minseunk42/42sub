@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 12:41:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 14:59:19 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_fdf
 }	t_fdf;
 
 char		*get_next_line(int fd);
+int			free_strs(char **strs);
 size_t		ft_strlen(const char *str);
 int			map_init(t_fdf *fdf, char *file);
 char		**ft_split(char const *s, char c);
@@ -49,6 +50,8 @@ void		bias(t_fdf *fdf);
 # define ST 0
 # define ED 1
 # define PI 3.14
+# define COLPIX 1920
+# define ROWPIX 1080
 # define WHITE 0xffffff
 
 #endif

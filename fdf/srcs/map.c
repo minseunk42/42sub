@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:48 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 03:44:03 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:06:51 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	set_val(t_fdf *fdf, char *str, int row)
 	while (temp[col])
 		col++;
 	if (col != fdf->col)
-		return (-1);
+		return (free_strs(temp));
 	col = -1;
 	while (++col < fdf->col)
 	{
@@ -74,10 +74,7 @@ static int	set_val(t_fdf *fdf, char *str, int row)
 		fdf->map[row][col][Y] = col;
 		fdf->map[row][col][Z] = ft_atoi(temp[col]);
 	}
-	col = -1;
-	while (temp[++col])
-		free(temp[col]);
-	free(temp);
+	free_strs(temp);
 	return (0);
 }
 
@@ -95,13 +92,14 @@ int	map_init(t_fdf *fdf, char *file)
 	i = -1;
 	while (++i < fdf->row)
 		fdf->map[i] = (int (*)[3])malloc(sizeof(int [3]) * fdf->col);
-	i = -1;
 	fd = open(file, O_RDONLY);
+	i = -1;
 	while (++i < fdf->row)
 	{
 		temp = get_next_line(fd);
 		if (set_val(fdf, temp, i))
 			return (-1);
+		free(temp);
 	}
 	close(fd);
 	return (0);
