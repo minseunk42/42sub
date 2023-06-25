@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 03:59:37 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 10:31:28 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 12:42:10 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_nega(t_fdf *fdf, int x[2], int y[2])
 	p = 0;
 	while (x[ST] != x[ED] && y[ST] != y[ED])
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], 0xffffff);
+		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
 		if ((y[ED] - y[ST]) / (x[ED] - x[ST]))
 		{
 			if (p > 0 && ++x[ST] && --y[ST])
@@ -44,7 +44,7 @@ void	draw_posi(t_fdf *fdf, int x[2], int y[2])
 	p = 0;
 	while (x[ST] != x[ED] && y[ST] != y[ED])
 	{
-		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], 0xffffff);
+		mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
 		if ((y[ED] - y[ST]) / (x[ED] - x[ST]))
 		{
 			if (p > 0 && ++x[ST] && ++y[ST])
@@ -62,7 +62,30 @@ void	draw_posi(t_fdf *fdf, int x[2], int y[2])
 	}
 }
 
-static int	draw_line(t_fdf *fdf, int *dot1, int *dot2)
+void	draw_otho(t_fdf *fdf, int x[2], int y[2])
+{
+	if (x[ST] == x[ED])
+	{
+		while (y[ST] != y[ED])
+		{
+			mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
+			if (y[ST] < y[ED])
+				y[ST]++;
+			else
+				y[ST]--;
+		}
+	}
+	else
+	{
+		while (x[ST] != x[ED])
+		{
+			mlx_pixel_put(fdf->mlx_ptr, fdf->win_ptr, y[ST], x[ST], WHITE);
+			x[ST]++;
+		}
+	}
+}
+
+static void	draw_line(t_fdf *fdf, int *dot1, int *dot2)
 {
 	int	x[2];
 	int	y[2];
@@ -81,18 +104,18 @@ static int	draw_line(t_fdf *fdf, int *dot1, int *dot2)
 		x[ED] = dot1[X];
 		y[ED] = dot1[Y];
 	}
-	if (y[ED] > y[ST])
+	if (x[ST] == x[ED] || y[ST] == y[ED])
+		draw_otho(fdf, x, y);
+	else if (y[ED] > y[ST])
 		draw_posi(fdf, x, y);
 	else
 		draw_nega(fdf, x, y);
-	return (0);
 }
 
-int	draw_map(t_fdf *fdf)
+void	draw_map(t_fdf *fdf)
 {
 	int	i;
 	int	j;
-	int	flag;
 
 	i = -1;
 	while (++i < fdf->row - 1)
@@ -100,17 +123,12 @@ int	draw_map(t_fdf *fdf)
 		j = -1;
 		while (++j < fdf->col - 1)
 		{
-			flag = draw_line(fdf, fdf->map[i][j], fdf->map[i + 1][j]);
-			flag = draw_line(fdf, fdf->map[i][j], fdf->map[i][j + 1]);
+			draw_line(fdf, fdf->map[i][j], fdf->map[i + 1][j]);
+			draw_line(fdf, fdf->map[i][j], fdf->map[i][j + 1]);
 		}
-		flag = draw_line(fdf, fdf->map[i][j], fdf->map[i + 1][j]);
-		if (flag)
-			return (-1);
+		draw_line(fdf, fdf->map[i][j], fdf->map[i + 1][j]);
 	}
 	j = -1;
 	while (++j < fdf->col - 1)
-		flag = draw_line(fdf, fdf->map[i][j], fdf->map[i][j + 1]);
-	if (flag)
-		return (-1);
-	return (0);
+		draw_line(fdf, fdf->map[i][j], fdf->map[i][j + 1]);
 }
