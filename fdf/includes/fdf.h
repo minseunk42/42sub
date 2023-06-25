@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 17:43:02 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 18:53:52 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@ void		bias(t_fdf *fdf);
 # define PI 3.14
 # define COLPIX 1920
 # define ROWPIX 1080
+# define ESC 53
+# define EVT_EXIT 17
+# define EVT_KEYE 2
 # define WHITE 0xffffff
 
 #endif

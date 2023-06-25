@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 15:21:27 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/25 18:53:49 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,20 @@ int	init(t_fdf *fdf, char *file)
 	return (0);
 }
 
-void	fp(void *param)
+void	fin(void *param)
 {
 	t_fdf *fdf;
 
 	fdf = param;
 	free_map(fdf);
+	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
 	exit(0);
+}
+
+void	key_handler(int keycode, void *param)
+{
+	if (keycode == ESC)
+		fin(param);
 }
 
 int	main(int ac, char **av)
@@ -56,7 +63,8 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (init(&fdf, av[1]))
 		return (EXIT_FAILURE);
-	mlx_hook(fdf.win_ptr, 17, 0, fp, &fdf);
+	mlx_hook(fdf.win_ptr, EVT_KEYE, 0, key_handler, &fdf);
+	mlx_hook(fdf.win_ptr, EVT_EXIT, 0, fin, &fdf);
 	weit(&fdf);
 	roty(&fdf);
 	rotx(&fdf);
