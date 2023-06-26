@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:05:51 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/24 01:41:53 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:29:11 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	main(int ac, char **av)
 	init_st(st_arr);
 	if (proc_av(av, st_arr))
 		return (puterr());
-	if (is_sorted(st_arr))
-		return (EXIT_SUCCESS);
 	cmd = get_next_line(0);
 	while (cmd)
 	{
