@@ -6,14 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 18:53:52 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:39:45 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include <stdio.h>
 # include <mlx.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -35,6 +34,7 @@ typedef struct s_fdf
 }	t_fdf;
 
 char		*get_next_line(int fd);
+void		free_map(t_fdf *fdf);
 int			free_strs(char **strs);
 size_t		ft_strlen(const char *str);
 int			map_init(t_fdf *fdf, char *file);

@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 18:53:49 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:23:50 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,22 @@ int	init(t_fdf *fdf, char *file)
 	return (0);
 }
 
-void	fin(void *param)
+int	fin(void *param)
 {
-	t_fdf *fdf;
+	t_fdf	*fdf;
 
 	fdf = param;
 	free_map(fdf);
 	mlx_destroy_window(fdf->mlx_ptr, fdf->win_ptr);
 	exit(0);
+	return (0);
 }
 
-void	key_handler(int keycode, void *param)
+int	key_handler(int keycode, void *param)
 {
 	if (keycode == ESC)
 		fin(param);
+	return (0);
 }
 
 int	main(int ac, char **av)

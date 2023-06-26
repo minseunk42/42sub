@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:39:01 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 17:59:55 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:22:28 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	set_mul(t_fdf *fdf)
 {
 	if (fdf->col > fdf->row)
 	{
-		fdf->mulxy = COLPIX / 2 / fdf->col;
-		fdf->mulz = fdf->mulxy * fdf->zmax / fdf->col;
+		fdf->mulxy = COLPIX / fdf->col / 2;
+		fdf->mulz = fdf->mulxy / 2;
 	}
 	else
 	{
-		fdf->mulxy = ROWPIX / 2 / fdf->row;
-		fdf->mulz = fdf->mulxy * fdf->zmax / fdf->row;
+		fdf->mulxy = ROWPIX / fdf->row / 2;
+		fdf->mulz = fdf->mulxy / 2;
 	}
-	if (!fdf->mulxy)
-		fdf->mulxy = 1;
+	if (fdf->mulxy < 2)
+		fdf->mulxy = 2;
 	if (!fdf->mulz)
 		fdf->mulz = 1;
 }
