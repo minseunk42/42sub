@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 16:25:19 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/14 18:58:11 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:26:53 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	free_strs(char **strs)
 {
 	int	i;
 
+	if (!strs)
+		return (-1);
 	i = -1;
 	while (strs[++i])
 		free(strs[i]);

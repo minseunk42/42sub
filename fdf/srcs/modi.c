@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:39:01 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/26 15:22:28 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/26 18:40:22 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	set_mul(t_fdf *fdf)
 
 void	weit(t_fdf *fdf)
 {
+	
 	int	i;
 	int	j;
 

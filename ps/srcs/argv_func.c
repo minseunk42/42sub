@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:54:24 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/14 18:57:02 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:28:52 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,11 @@ int	set_str(char *str, t_stack st_arr[])
 	i = -1;
 	if (ft_atol(str) > INTMAX || ft_atol(str) < INTMIN)
 		return (-1);
+	if (!str)
+		return (-1);
 	while (str[++i])
 	{
-		if (!(ft_isdigit(str[i]) || str[i] == '-' || str[i] == '+'))
+		if (!(ft_isdigit(str[i]) || str[0] == '-' || str[0] == '+'))
 			return (-1);
 		if (str[i] == '-' && !(ft_isdigit(str[i + 1])))
 			return (-1);
@@ -83,8 +85,8 @@ int	proc_av(char **av, t_stack st_arr[])
 		else if (set_str(av[i], st_arr))
 			return (free_all(temp, st_arr, 0));
 	}
-	if (temp)
-		free_strs(temp);
+	if ((temp && !temp[0]) || free_strs(temp) != -1)
+		return (free_all(0, st_arr, 0));
 	return (EXIT_SUCCESS);
 }
 
