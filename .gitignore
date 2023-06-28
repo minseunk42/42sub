@@ -1,1 +1,9 @@
 *.fdf
+*.a
+test/
+
+server
+client
+push_swap
+checker
+fdf
