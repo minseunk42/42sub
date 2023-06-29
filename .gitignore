@@ -1,5 +1,7 @@
 *.fdf
 *.a
+*.o
+*.out
 server
 client
 push_swap

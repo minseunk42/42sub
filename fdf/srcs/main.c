@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/26 15:23:50 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:09:06 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,5 @@ int	main(int ac, char **av)
 	bias(&fdf);
 	draw_map(&fdf);
 	mlx_loop(fdf.mlx_ptr);
-	return (0);
+	return (EXIT_SUCCESS);
 }

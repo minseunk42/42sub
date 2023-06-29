@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:39:01 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/26 18:40:22 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:07:47 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	set_mul(t_fdf *fdf)
 
 void	weit(t_fdf *fdf)
 {
-	
 	int	i;
 	int	j;
 
@@ -61,8 +60,8 @@ void	bias(t_fdf *fdf)
 		j = -1;
 		while (++j < fdf->col)
 		{
-			fdf->map[i][j][X] += (COLPIX - (fdf->col * fdf->mulxy)) / 2;
-			fdf->map[i][j][Y] += (ROWPIX - (fdf->row * fdf->mulxy)) / 2;
+			fdf->map[i][j][X] += (COLPIX - (fdf->col * fdf->mulxy)) / 1.5;
+			fdf->map[i][j][Y] += (ROWPIX - (fdf->row * fdf->mulxy)) / 1.5;
 		}
 	}
 }
