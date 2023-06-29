@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rot.c                                              :+:      :+:    :+:   */
+/*   rota.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 12:33:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/25 12:39:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:21:55 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	rotz(t_fdf *fdf)
+static void	rotz(t_fdf *fdf)
 {
 	int	i;
 	int	j;
@@ -27,13 +27,13 @@ void	rotz(t_fdf *fdf)
 		{
 			x = fdf->map[i][j][X];
 			y = fdf->map[i][j][Y];
-			fdf->map[i][j][X] = cos(-PI / 6) * x + sin(-PI / 6) * y;
-			fdf->map[i][j][Y] = cos(-PI / 6) * y - sin(-PI / 6) * x;
+			fdf->map[i][j][X] = cos(fdf->ang[Z]) * x + sin(fdf->ang[Z]) * y;
+			fdf->map[i][j][Y] = cos(fdf->ang[Z]) * y - sin(fdf->ang[Z]) * x;
 		}
 	}
 }
 
-void	roty(t_fdf *fdf)
+static void	roty(t_fdf *fdf)
 {
 	int	i;
 	int	j;
@@ -48,13 +48,13 @@ void	roty(t_fdf *fdf)
 		{
 			x = fdf->map[i][j][X];
 			z = fdf->map[i][j][Z];
-			fdf->map[i][j][X] = cos(PI / 4) * x - sin(PI / 4) * z;
-			fdf->map[i][j][Z] = sin(PI / 4) * x + cos(PI / 4) * z;
+			fdf->map[i][j][X] = cos(fdf->ang[Y]) * x - sin(fdf->ang[Y]) * z;
+			fdf->map[i][j][Z] = sin(fdf->ang[Y]) * x + cos(fdf->ang[Y]) * z;
 		}
 	}
 }
 
-void	rotx(t_fdf *fdf)
+static void	rotx(t_fdf *fdf)
 {
 	int	i;
 	int	j;
@@ -69,8 +69,18 @@ void	rotx(t_fdf *fdf)
 		{
 			y = fdf->map[i][j][Y];
 			z = fdf->map[i][j][Z];
-			fdf->map[i][j][Y] = cos(PI / 4) * y + sin(PI / 4) * z;
-			fdf->map[i][j][Z] = cos(PI / 4) * z - sin(PI / 4) * y;
+			fdf->map[i][j][Y] = cos(fdf->ang[X]) * y + sin(fdf->ang[X]) * z;
+			fdf->map[i][j][Z] = cos(fdf->ang[X]) * z - sin(fdf->ang[X]) * y;
 		}
 	}
+}
+
+void	rota(t_fdf *fdf)
+{
+	fdf->ang[X] = PI / 4;
+	fdf->ang[Y] = PI / 4;
+	fdf->ang[Z] = -PI / 6;
+	roty(fdf);
+	rotx(fdf);
+	rotz(fdf);
 }

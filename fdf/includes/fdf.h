@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/26 13:39:45 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:43:39 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@ typedef struct s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		(**map)[3];
 	int		col;
 	int		row;
 	int		zmax;
 	int		mulxy;
 	int		mulz;
-	int		(**map)[3];
+	int		pmx;
+	int		pmy;
+	double	ang[3];
 }	t_fdf;
 
 char		*get_next_line(int fd);
@@ -41,11 +44,10 @@ int			map_init(t_fdf *fdf, char *file);
 char		**ft_split(char const *s, char c);
 int			ft_atoi(const char *str);
 void		draw_map(t_fdf *fdf);
-void		rotx(t_fdf *fdf);
-void		roty(t_fdf *fdf);
-void		rotz(t_fdf *fdf);
+void		rota(t_fdf *fdf);
 void		weit(t_fdf *fdf);
 void		bias(t_fdf *fdf);
+int			init(t_fdf *fdf, char *file);
 
 # define X 0
 # define Y 1
@@ -59,5 +61,8 @@ void		bias(t_fdf *fdf);
 # define EVT_EXIT 17
 # define EVT_KEYE 2
 # define WHITE 0xffffff
-
+# define KA 0
+# define KS 1
+# define KD 2
+# define KW 13
 #endif

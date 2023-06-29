@@ -21,7 +21,8 @@
         "cstdio": "c",
         "algorithm": "c",
         "fdf.h": "c",
-        "math.h": "c"
+        "math.h": "c",
+        "mlx.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
