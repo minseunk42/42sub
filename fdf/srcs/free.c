@@ -6,20 +6,23 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 14:46:15 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/26 13:39:30 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:35:46 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	free_map(t_fdf *fdf)
+int	free_map(t_fdf *fdf)
 {
 	int	i;
 
+	if (!fdf->map)
+		return (1);
 	i = -1;
 	while (++i < fdf->row)
 		free(fdf->map[i]);
 	free(fdf->map);
+	return (1);
 }
 
 int	free_strs(char **strs)

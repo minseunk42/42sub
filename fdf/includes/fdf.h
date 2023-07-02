@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/29 19:15:34 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:33:43 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_fdf
 }	t_fdf;
 
 char		*get_next_line(int fd);
-void		free_map(t_fdf *fdf);
+int			free_map(t_fdf *fdf);
 int			free_strs(char **strs);
 size_t		ft_strlen(const char *str);
 int			map_init(t_fdf *fdf, char *file);

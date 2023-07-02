@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:48 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/26 14:03:34 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:44:15 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ static int	set_val(t_fdf *fdf, char *str, int row)
 	while (temp[col])
 		col++;
 	if (col != fdf->col)
-		return (free_strs(temp));
+		return (free(str), free_strs(temp));
 	col = -1;
 	zmax = 0;
 	while (++col < fdf->col)
@@ -102,7 +102,7 @@ int	map_init(t_fdf *fdf, char *file)
 	{
 		temp = get_next_line(fd);
 		if (set_val(fdf, temp, i))
-			return (-1);
+			return (free_map(fdf));
 		free(temp);
 	}
 	close(fd);

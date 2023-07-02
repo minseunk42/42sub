@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/06/29 18:54:13 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/02 11:44:47 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	main(int ac, char **av)
 {
 	t_fdf	fdf;
 
-	if (ac < 2)
+	if (ac != 2)
 		return (EXIT_FAILURE);
 	if (init(&fdf, av[1]))
 		return (EXIT_FAILURE);
@@ -45,5 +45,6 @@ int	main(int ac, char **av)
 	bias(&fdf);
 	draw_map(&fdf);
 	mlx_loop(fdf.mlx_ptr);
+	free_map(&fdf);
 	return (EXIT_SUCCESS);
 }
