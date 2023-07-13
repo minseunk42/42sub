@@ -3,6 +3,10 @@
         "string.h": "c",
         "command.h": "c",
         "istream": "c",
-        "string": "c"
+        "string": "c",
+        "__config": "c",
+        "ios": "c",
+        "__node_handle": "c",
+        "execute.h": "c"
     }
 }
