@@ -35,11 +35,11 @@
 
 /**
  *
-	<command line>	::= 	<job> ';' <command line>
-						|	<job> ';'
-						| 	<job> '&' <command line>
-						|	<job> '&'
-							<job>
+	<command line>	::= 	<job> '&&' <command line>
+						|	<job> '&&'
+						|	<job> '||' <command line>
+                        |   <job> '||'
+                        |   '()
 
 	<job>			::=		<command> '|' <job>
 						|	<command>

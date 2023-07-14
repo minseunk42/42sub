@@ -22,7 +22,8 @@
         "algorithm": "c",
         "fdf.h": "c",
         "math.h": "c",
-        "mlx.h": "c"
+        "mlx.h": "c",
+        "__node_handle": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
