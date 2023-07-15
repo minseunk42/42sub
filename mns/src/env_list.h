@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:26:33 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/12 16:10:59 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/14 16:41:06 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ t_env_list	*env_new_list(void);
 int			env_print_list(const t_env_list *list);
 void		env_unset(t_env_list *list, const char *key);
 int			env_export(t_env_list *list, char *str);
+char		*env_get_value_or_null(t_env_list *list, const char *key);
 
 #endif /* ENV_LIST_H */

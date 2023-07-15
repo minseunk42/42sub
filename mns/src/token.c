@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/13 19:53:01 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:44:49 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,19 @@ void	add_token(t_token **lst, t_token *new)
 		get_last_token(*lst)->next = new;
 }
 
-t_token	*create_token(t_type type, char *data)
+t_token	*create_token(t_ttype ttype, t_qtype qtype, char *data)
 {
 	t_token	*new;
 
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (0);
-	new->type = type;
-	new->data = ft_strdup(data);
+	new->ttype = ttype;
+	new->qtype = qtype;
+	if (data[0])
+		new->data = ft_strdup(data);
+	else
+		new->data = ft_strdup("(null)");
 	new->next = 0;
 	return (new);
 }

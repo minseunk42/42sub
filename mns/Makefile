@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
+#    By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 19:33:42 by gylim             #+#    #+#              #
-#    Updated: 2023/07/13 19:24:30 by minseunk         ###   ########.fr        #
+#    Updated: 2023/07/14 17:17:20 by gylim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,10 @@ SRC_FILES_MAND = main.c \
 				 env_list.c \
 				 env_list2.c \
 				 env_list3.c \
+				 expander.c \
+				 expander2.c \
+				 expander3.c \
+				 expander4.c \
 				 setup.c \
 				 lexer.c \
 				 token.c \

@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:33:06 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/12 16:26:40 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/14 16:27:08 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ int	env_export(t_env_list *list, char *str)
 		cur = cur->next;
 	}
 	return (env_add_rear_node_to_list(list, env_new_node(key, value)));
+}
+
+char	*env_get_value_or_null(t_env_list *list, const char *key)
+{
+	size_t		len;
+	t_env_node	*cur;
+
+	len = ft_strlen(key);
+	cur = list->front;
+	while (cur != NULL)
+	{
+		if (!ft_strncmp(key, cur->key, len) && len == ft_strlen(cur->key))
+			return (ft_strdup(cur->value));
+		cur = cur->next;
+	}
+	return (NULL);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:42:18 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/13 19:57:25 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:42:22 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <termios.h>
 #include <unistd.h>
 #include "env_list.h"
+#include "expander.h"
 #include "lexer.h"
 #include "libft.h"
 #include "minishell.h"
@@ -58,11 +59,14 @@ static int	is_exit(const char *input)
 int	main(int argc, char *argv[])
 {
 	char			*input;
-	struct termios	old_termios;
 	t_token			*tokens;
-
+	t_env_list		*env_list;
+	struct termios	old_termios;
 
 	if (initial_setup(argc, argv, &old_termios) == -1)
+		return (EXIT_FAILURE);
+	env_list = env_new_list();
+	if (env_list == NULL)
 		return (EXIT_FAILURE);
 	while (1)
 	{
@@ -75,11 +79,13 @@ int	main(int argc, char *argv[])
 		}
 		if (*input)
 			add_history(input);
-		lexer(input, &tokens);
+		if (lexer(input, &tokens))
+			return (printf("exit...\n"));
+		expander(env_list, tokens);
 		/* lexer list print - for debug */
 		while (tokens)
 		{
-			printf("data = %s, type = %d\n", tokens->data, tokens->type);
+			printf("data = %s, ttype = %d, qtype = %d\n", tokens->data, tokens->ttype, tokens->qtype);
 			tokens = tokens->next;
 		}
 		/* lexer list print - for debug */

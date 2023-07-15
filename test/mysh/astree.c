@@ -28,11 +28,8 @@ void ASTreeNodeDelete(ASTreeNode* node)
 {
     if (node == NULL)
         return;
-
     if (node->type & NODE_DATA)
         free(node->szData);
-
-
     ASTreeNodeDelete(node->left);
     ASTreeNodeDelete(node->right);
     free(node);
