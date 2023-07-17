@@ -26,7 +26,7 @@ t_astree	*cmdline(void)
 
 	save = g_curtoks;
 	node = cmdline1();
-	if (!node)
+	if (node)
 		return (node);
 	return (0);
 }

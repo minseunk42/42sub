@@ -42,15 +42,15 @@ t_astree	*rdlist(void)
 
 	save = g_curtoks;
 	node = rdlist1();
-	if (!node)
+	if (node)
 		return (node);
 	save = g_curtoks;
 	node = rdlist2();
-	if (!node)
+	if (node)
 		return (node);
 	save = g_curtoks;
 	node = rdlist3();
-	if (!node)
+	if (node)
 		return (node);
 	return (0);
 }

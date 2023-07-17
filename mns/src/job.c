@@ -52,11 +52,11 @@ t_astree	*job(void)
 
 	save = g_curtoks;
 	node = job1();
-	if (!node)
+	if (node)
 		return (node);
 	save = g_curtoks;
 	node = job2();
-	if (!node)
+	if (node)
 		return (node);
 	return (0);
 }
