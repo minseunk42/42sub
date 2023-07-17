@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   simplecmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 16:27:26 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/17 19:07:29 by minseunk         ###   ########.fr       */
+/*   Created: 2023/07/17 17:26:51 by minseunk          #+#    #+#             */
+/*   Updated: 2023/07/17 19:30:57 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parser.h"
 
-int	ms_check_set(char c, const char *set)
+t_token	*g_curtoks;
+
+t_astree	*simplecmd(void)
 {
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
+	return (simplecmd1());
 }
 
-int get_argc(char **argv)
+t_astree	*simplecmd1(void)
 {
-	int	argc;
+	t_astree	*tltnode;
+	t_astree	*result;
+	char		*cmd;
 
-	argc = 0;
-	while (argv[argc] != 0)
-		argc++;
-	return (argc);
+	if (!is_term(T_TYPE_GENERAL, &cmd))
+		return (0);
+	tltnode = tokenlist();
+	result = malloc(sizeof(*result));
+	create_node(result, AT_TYPE_DATA, cmd);
+	add_tree(result, 0, tltnode);
+	return (result);
 }

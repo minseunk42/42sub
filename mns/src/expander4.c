@@ -6,19 +6,17 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:21:12 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/14 17:16:34 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:55:39 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "env_list.h"
+#include "expander.h"
 #include "lexer.h"
 #include "libft.h"
 
-char	*get_word(char **str);
-int		get_word_cnt(const char *str);
-
-static char **expand_split(char *str)
+static char	**expand_split(char *str)
 {
 	int		i;
 	int		word_cnt;
@@ -49,7 +47,29 @@ static void	expand_env(t_env_list *list, char **words, int idx)
 	words[idx] = expanded;
 }
 
-char	*expand_double_quote(t_env_list *list, t_token *tok)
+char	*concat_words(char **words)
+{
+	int		i;
+	char	*ret;
+
+	i = 0;
+	ret = ft_strdup(words[i++]);
+	while (words[i] != NULL)
+		append(&ret, words[i++]); /* error handler 추가  */
+	return (ret);
+}
+
+void	destroy_words(char **words)
+{
+	int	i;
+
+	i = 0;
+	while (words[i] != NULL)
+		free(words[i++]);
+	free(words);
+}
+
+char	*expand(t_env_list *list, t_token *tok)
 {
 	int		i;
 	char	*expanded;
@@ -61,16 +81,14 @@ char	*expand_double_quote(t_env_list *list, t_token *tok)
 	{
 		if (words[i][0] == '$' && words[i][1] != '\0')
 		{
-			expand_env(list, words, i);
+			if (words[i][1] == '?')
+				expand_exit_status(words, i, 0);
+			else
+				expand_env(list, words, i);
 		}
 		i++;
 	}
-	expanded = ft_strdup(words[0]);
-	i = 1;
-	while (words[i] != NULL)
-	{
-		append(&expanded, words[i]);
-		i++;
-	}
+	expanded = concat_words(words);
+	destroy_words(words);
 	return (expanded);
 }

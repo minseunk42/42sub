@@ -6,12 +6,17 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:26:33 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/14 16:41:06 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/14 18:37:51 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_LIST_H
 # define ENV_LIST_H
+
+# ifndef ENV_TYPE
+#  define ENV_TYPE
+typedef struct s_env_list	t_env_list;
+# endif
 
 typedef struct s_env_node
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/14 18:44:49 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/15 17:04:32 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,23 @@ t_token	*create_token(t_ttype ttype, t_qtype qtype, char *data)
 	if (data[0])
 		new->data = ft_strdup(data);
 	else
-		new->data = ft_strdup("(null)");
+		new->data = ft_strdup("");
 	new->next = 0;
 	return (new);
+}
+
+void	destroy_token_list(t_token *list)
+{
+	t_token	*cur;
+	t_token	*next;
+
+	cur = list;
+	while (cur != NULL)
+	{
+		next = cur->next;
+		if (cur->data != NULL)
+			free(cur->data);
+		free(cur);
+		cur = next;
+	}
 }

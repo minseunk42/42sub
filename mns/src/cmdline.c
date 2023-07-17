@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   cmdline.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 16:27:26 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/17 19:07:29 by minseunk         ###   ########.fr       */
+/*   Created: 2023/07/17 16:12:34 by minseunk          #+#    #+#             */
+/*   Updated: 2023/07/17 19:34:05 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "parser.h"
 
-int	ms_check_set(char c, const char *set)
+t_token	*g_curtoks;
+
+t_astree	*cmdline1(void)
 {
-	while (*set)
-	{
-		if (c == *set)
-			return (1);
-		set++;
-	}
-	return (0);
+	return (job());
 }
 
-int get_argc(char **argv)
+t_astree	*cmdline(void)
 {
-	int	argc;
+	t_token		*save;
+	t_astree	*node;
 
-	argc = 0;
-	while (argv[argc] != 0)
-		argc++;
-	return (argc);
+	save = g_curtoks;
+	node = cmdline1();
+	if (!node)
+		return (node);
+	return (0);
 }

@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:44:49 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/14 18:41:51 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/14 19:54:56 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
-# define TOKEN_TYPE
 
 # ifndef TOKEN_TYPE
 #  define TOKEN_TYPE
@@ -50,5 +49,6 @@ void	add_token(t_token **lst, t_token *new);
 t_token *create_token(t_ttype ttype, t_qtype qtype, char *data);
 t_token	*get_last_token(t_token *lst);
 int		lexer(char *str, t_token **tokens);
+void	destroy_token_list(t_token *list);
 
 #endif /* LEXER_H */

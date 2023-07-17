@@ -6,22 +6,29 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:17:00 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/14 17:13:02 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:55:39 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include "expander.h"
 #include "minishell.h"
 
-static void dollarsign_counter(const char *str, int *i, int *cnt, int *is_env)
+static void	dollarsign_counter(const char *str, int *i, int *cnt, int *is_env)
 {
 	*is_env = 1;
 	++*cnt;
-	while (!ms_check_set(str[*i], WHITESPACE) && str[*i] != '\0')
+	++*i;
+	if (str[*i] == '$')
+	{
+		++*i;
+		return ;
+	}
+	while (str[*i] != '\0' && !ms_check_set(str[*i], EXPANDER_CHAR_SET))
 		++*i;
 }
 
-static void general_counter(int *i, int *cnt, int *is_env)
+static void	general_counter(int *i, int *cnt, int *is_env)
 {
 	if (*i == 0 || *is_env == 1)
 		++*cnt;
@@ -30,7 +37,7 @@ static void general_counter(int *i, int *cnt, int *is_env)
 	++*i;
 }
 
-int get_word_cnt(const char *str)
+int	get_word_cnt(const char *str)
 {
 	int	i;
 	int	cnt;

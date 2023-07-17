@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:44:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/14 18:43:13 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/17 15:38:43 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ int	mk_qttok(char *str, t_token **tokens, int *i)
 	while (++(*i) && str[len] && str[len] != end)
 		len++;
 	if (!str[len])
-		return (-1);
-	temp = (char *)malloc(sizeof(char) * (len));
+		return (-1);	
+	temp = (char *)malloc(len * sizeof(char));
 	if (len == 1)
 		len = 0;
 	else
-		ft_memcpy(temp, str + 1, len - 1);
-	temp[len] = 0;
+		ft_memmove(temp, str + 1, (len - 1) * sizeof(char));
+	temp[len - (len != 0)] = '\0';
 	if (end == '\'')
 		add_token(tokens, create_token(T_TYPE_GENERAL, TQ_TYPE_SQUOTE, temp));
 	else

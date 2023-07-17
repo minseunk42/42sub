@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 15:33:06 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/14 16:27:08 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/15 18:19:50 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	is_valid_id(char *str)
 	return (!ms_check_set(str[i + 1], WHITESPACE));
 }
 
-/* quotes handling is not implemented yet. */
 int	env_export(t_env_list *list, char *str)
 {
 	size_t		len;
@@ -67,6 +66,7 @@ int	env_export(t_env_list *list, char *str)
 
 char	*env_get_value_or_null(t_env_list *list, const char *key)
 {
+	char		*ret;
 	size_t		len;
 	t_env_node	*cur;
 
@@ -75,7 +75,12 @@ char	*env_get_value_or_null(t_env_list *list, const char *key)
 	while (cur != NULL)
 	{
 		if (!ft_strncmp(key, cur->key, len) && len == ft_strlen(cur->key))
-			return (ft_strdup(cur->value));
+		{
+			ret = ft_strdup(cur->value);
+			if (ret == NULL)
+				; // error
+			return (ret);
+		}
 		cur = cur->next;
 	}
 	return (NULL);

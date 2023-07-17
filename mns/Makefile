@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+         #
+#    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 19:33:42 by gylim             #+#    #+#              #
-#    Updated: 2023/07/14 17:17:20 by gylim            ###   ########.fr        #
+#    Updated: 2023/07/17 19:17:14 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,21 @@ SRC_FILES_MAND = main.c \
 				 expander2.c \
 				 expander3.c \
 				 expander4.c \
+				 expander5.c \
 				 setup.c \
 				 lexer.c \
 				 token.c \
-				 utils.c
+				 utils.c \
+				 parser.c \
+				 cmdline.c \
+				 job.c \
+				 cmd.c \
+				 rdlist.c \
+				 redirection.c \
+				 simplecmd.c \
+				 tokenlist.c  \
+				 tree.c
+
 SRC_FILES_BONUS = 
 SRC_MAND = $(addprefix $(SRC_DIR)/, $(SRC_FILES_MAND))
 SRC_BONUS = $(addprefix $(SRC_DIR)/, $(SRC_FILES_BONUS))

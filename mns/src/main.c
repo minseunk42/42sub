@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:42:18 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/14 18:42:22 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/17 19:34:09 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include "expander.h"
 #include "lexer.h"
 #include "libft.h"
+#include "tree.h"
+#include "parser.h"
 #include "minishell.h"
 #include "readline/history.h"
 #include "readline/readline.h"
@@ -56,12 +58,22 @@ static int	is_exit(const char *input)
 	return (FALSE);
 }
 
+void printast(t_astree		*ast)
+{
+	if (ast)
+		return ;
+	printf("%s\n",ast->data);
+	printast(ast->left);
+	printast(ast->right);
+}
+
 int	main(int argc, char *argv[])
 {
 	char			*input;
 	t_token			*tokens;
 	t_env_list		*env_list;
 	struct termios	old_termios;
+	t_astree		*ast;
 
 	if (initial_setup(argc, argv, &old_termios) == -1)
 		return (EXIT_FAILURE);
@@ -79,17 +91,22 @@ int	main(int argc, char *argv[])
 		}
 		if (*input)
 			add_history(input);
-		if (lexer(input, &tokens))
+		if (lexer(input, &tokens) == -1)
 			return (printf("exit...\n"));
 		expander(env_list, tokens);
 		/* lexer list print - for debug */
 		while (tokens)
 		{
-			printf("data = %s, ttype = %d, qtype = %d\n", tokens->data, tokens->ttype, tokens->qtype);
+			//printf("data = %s, ttype = %d, qtype = %d\n", tokens->data, tokens->ttype, tokens->qtype);
 			tokens = tokens->next;
 		}
 		/* lexer list print - for debug */
 		free(input);
+		parser(tokens, &ast);
+		printast(ast);
+		destroy_token_list(tokens);
+		tokens = NULL;
+		input = NULL;
 	}
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &old_termios) == -1)
 		return (EXIT_FAILURE);
