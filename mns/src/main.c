@@ -58,9 +58,9 @@ static int	is_exit(const char *input)
 	return (FALSE);
 }
 
-void printast(t_astree		*ast)
+void printast(t_astree *ast)
 {
-	if (ast)
+	if (!ast)
 		return ;
 	printf("%s\n",ast->data);
 	printast(ast->left);
@@ -95,11 +95,11 @@ int	main(int argc, char *argv[])
 			return (printf("exit...\n"));
 		expander(env_list, tokens);
 		/* lexer list print - for debug */
-		while (tokens)
+		/*while (tokens)
 		{
 			//printf("data = %s, ttype = %d, qtype = %d\n", tokens->data, tokens->ttype, tokens->qtype);
 			tokens = tokens->next;
-		}
+		}*/
 		/* lexer list print - for debug */
 		free(input);
 		parser(tokens, &ast);

@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-t_token	*g_curtoks;
+extern t_token	*g_curtoks;
 
 t_astree	*cmd(void)
 {
@@ -23,7 +23,7 @@ t_astree	*cmd(void)
 	node = cmd1();
 	if (node)
 		return (node);
-	save = g_curtoks;
+	g_curtoks = save;
 	node = cmd2();
 	if (node)
 		return (node);

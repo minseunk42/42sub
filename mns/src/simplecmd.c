@@ -12,7 +12,7 @@
 
 #include "parser.h"
 
-t_token	*g_curtoks;
+extern t_token	*g_curtoks;
 
 t_astree	*simplecmd(void)
 {

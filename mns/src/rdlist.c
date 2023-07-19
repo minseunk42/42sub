@@ -44,11 +44,11 @@ t_astree	*rdlist(void)
 	node = rdlist1();
 	if (node)
 		return (node);
-	save = g_curtoks;
+	g_curtoks = save;
 	node = rdlist2();
 	if (node)
 		return (node);
-	save = g_curtoks;
+	g_curtoks = save;
 	node = rdlist3();
 	if (node)
 		return (node);

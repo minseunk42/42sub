@@ -38,6 +38,9 @@
 **/
 
 #include "parser.h"
+#include "libft.h"
+
+t_token	*g_curtoks;
 
 int	is_term(int type, char **buf)
 {
@@ -45,6 +48,7 @@ int	is_term(int type, char **buf)
 		return (0);
 	if ((int)g_curtoks->ttype == type)
 	{
+		printf("!!%s!!",g_curtoks->data);
 		if (buf)
 		{
 			*buf = (char *)malloc(ft_strlen(g_curtoks->data) + 1);
@@ -59,8 +63,9 @@ int	is_term(int type, char **buf)
 
 int	parser(t_token *tokens, t_astree **atree)
 {
-	if (tokens)
+	if (!tokens)
 		return (-1);
+	g_curtoks = tokens;
 	*atree = cmdline();
 	if (g_curtoks != 0 && g_curtoks->ttype != 0)
 	{

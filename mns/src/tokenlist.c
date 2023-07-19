@@ -43,9 +43,9 @@ t_astree	*tokenlist(void)
 	node = tokenlist1();
 	if (node)
 		return (node);
-	save = g_curtoks;
+	g_curtoks = save;
 	node = tokenlist2();
-	if (node)
+	if (!node)
 		return (node);
 	return (0);
 }

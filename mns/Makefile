@@ -62,6 +62,7 @@ endif
 LIB_DIR = libft
 LIBFT = -L./$(LIB_DIR) -lft
 LIB = $(LIBFT) $(CPPFLAGS) $(LDFLAGS) -lreadline
+
 all: $(NAME)
 
 #bonus:
@@ -77,7 +78,7 @@ $(OBJ_DIR):
 
 $(NAME): $(OBJ)
 	make -C $(LIB_DIR) all
-	$(CC) $(CFLAGS) $(LIB) -o $@ $^
+	$(CC) $(CFLAGS) $^ $(LIB) -o $@
 
 clean:
 	make -C $(LIB_DIR) clean
