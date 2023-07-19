@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:18:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/17 19:24:20 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:37:52 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ t_astree	*cmd2(void)
 	if (!scmdnode)
 		return (0);
 	rdnode = rdlist();
-	if (!rdnode)
-		return (0);
 	add_tree(scmdnode, 0, rdnode);
 	return (scmdnode);
 }

@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include "readline/history.h"
 #include "readline/readline.h"
-/*
+
 static void	handler(int signum)
 {
 	if (signum == SIGINT)
@@ -46,7 +46,7 @@ static int	set_signal(void)
 		return (-1);
 	return (0);
 }
-*/
+
 static int	set_termios(void)
 {
 	struct termios	new;
@@ -74,7 +74,7 @@ int	initial_setup(int argc, char *argv[], struct termios *old)
 		exit(EXIT_FAILURE); /* print error msg */
 	if (set_termios() == -1)
 		exit(EXIT_FAILURE);
-//	if (set_signal() == -1)
-//		return (-1);
+	if (set_signal() == -1)
+		return (-1);
 	return (0);
 }

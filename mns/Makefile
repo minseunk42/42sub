@@ -6,7 +6,7 @@
 #    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 19:33:42 by gylim             #+#    #+#              #
-#    Updated: 2023/07/17 19:17:14 by minseunk         ###   ########.fr        #
+#    Updated: 2023/07/19 18:44:09 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_FILES_MAND = main.c \
 				 token.c \
 				 utils.c \
 				 parser.c \
+				 parser_utils.c \
 				 cmdline.c \
 				 job.c \
 				 cmd.c \
@@ -62,7 +63,6 @@ endif
 LIB_DIR = libft
 LIBFT = -L./$(LIB_DIR) -lft
 LIB = $(LIBFT) $(CPPFLAGS) $(LDFLAGS) -lreadline
-
 all: $(NAME)
 
 #bonus:
@@ -78,7 +78,7 @@ $(OBJ_DIR):
 
 $(NAME): $(OBJ)
 	make -C $(LIB_DIR) all
-	$(CC) $(CFLAGS) $^ $(LIB) -o $@
+	$(CC) $(CFLAGS) $(LIB) -o $@ $^
 
 clean:
 	make -C $(LIB_DIR) clean

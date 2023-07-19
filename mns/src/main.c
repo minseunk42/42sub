@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:42:18 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/17 19:34:09 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/19 18:35:53 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 #include "minishell.h"
 #include "readline/history.h"
 #include "readline/readline.h"
+
+t_gdata	g_data;
 
 static int	check_set(char c, const char *set)
 {
@@ -58,7 +60,7 @@ static int	is_exit(const char *input)
 	return (FALSE);
 }
 
-void printast(t_astree *ast)
+void printast(t_astree		*ast)
 {
 	if (!ast)
 		return ;

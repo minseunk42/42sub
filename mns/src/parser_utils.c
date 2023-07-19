@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 16:27:26 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/19 18:36:00 by minseunk         ###   ########.fr       */
+/*   Created: 2023/07/19 18:43:21 by minseunk          #+#    #+#             */
+/*   Updated: 2023/07/19 19:11:49 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "parser.h"
 #include "libft.h"
-#include "minishell.h"
 
-int	ms_check_set(char c, const char *set)
+extern t_token	*g_curtoks;
+
+int	is_term(int type, char **buf)
 {
-	while (*set)
+	if (!g_curtoks)
+		return (0);
+	if ((int)g_curtoks->ttype == type)
 	{
-		if (c == *set)
-			return (1);
-		set++;
+		if (buf)
+		{
+			*buf = (char *)malloc(ft_strlen(g_curtoks->data) + 1);
+			*buf = ft_strdup(g_curtoks->data);
+		}
+		g_curtoks = g_curtoks->next;
+		return (1);
 	}
+	g_curtoks = g_curtoks->next;
 	return (0);
-}
-
-int get_argc(char **argv)
-{
-	int	argc;
-
-	argc = 0;
-	while (argv[argc] != 0)
-		argc++;
-	return (argc);
 }

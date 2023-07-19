@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:14:44 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/17 19:31:14 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:17:34 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 extern t_token	*g_curtoks;
 
-t_astree	*job1(void)
+t_astree	*job2(void)
 {
 	return (cmd());
 }
 
-t_astree	*job2(void)
+t_astree	*job1(void)
 {
 	t_astree	*cmdnode;
 	t_astree	*jobnode;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:41:22 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/16 17:29:56 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/19 18:37:35 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 
 # define DEFAULT_PROMPT ("minishell$ ")
 # define WHITESPACE ("\b\t\n\v\f\r ")
+
+typedef struct s_global_data
+{
+	struct s_env_list	*env_list;
+	long long			last_exit_status;
+}	t_gdata;
 
 /* setup */
 int	initial_setup(int argc, char *argv[], struct termios *old);

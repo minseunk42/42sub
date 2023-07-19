@@ -6,13 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:33:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/17 19:24:34 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:09:09 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_token	*g_curtoks;
+extern t_token	*g_curtoks;
 
 t_astree	*tokenlist1(void)
 {
@@ -45,7 +45,7 @@ t_astree	*tokenlist(void)
 		return (node);
 	g_curtoks = save;
 	node = tokenlist2();
-	if (!node)
+	if (node)
 		return (node);
 	return (0);
 }

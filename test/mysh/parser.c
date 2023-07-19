@@ -276,10 +276,10 @@ ASTreeNode* CMD()
 
     ASTreeNode* node;
 
-    if ((curtok = save, node = CMD1()) != NULL)
+    if ((curtok = save, node = CMD2()) != NULL)
         return node;
 
-    if ((curtok = save, node = CMD2()) != NULL)
+    if ((curtok = save, node = CMD1()) != NULL)
         return node;
 
     if ((curtok = save, node = CMD3()) != NULL)
@@ -383,10 +383,7 @@ ASTreeNode* TOKENLIST()
 
     if ((curtok = save, node = TOKENLIST1()) != NULL)
         return node;
-
-    if ((curtok = save, node = TOKENLIST2()) != NULL)
-        return node;
-
+    curtok = save;
     return NULL;
 }
 

@@ -77,8 +77,8 @@ char	*env_get_value_or_null(t_env_list *list, const char *key)
 		if (!ft_strncmp(key, cur->key, len) && len == ft_strlen(cur->key))
 		{
 			ret = ft_strdup(cur->value);
-			//if (ret == NULL)
-				//; // error
+			if (ret == NULL)
+				; // error
 			return (ret);
 		}
 		cur = cur->next;

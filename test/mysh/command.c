@@ -223,10 +223,8 @@ void execute_command_internal(CommandInternal* cmdinternal)
         struct sigaction act;
         act.sa_flags = 0;
         act.sa_handler = zombie_process_handler;
-        sigfillset( & (act.sa_mask) ); // to block all
 
-        if (sigaction(SIGCHLD, &act, NULL) != 0)
-            perror("sigaction");
+
     }
 
     return;

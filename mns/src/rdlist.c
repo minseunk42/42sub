@@ -6,13 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:49:50 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/17 19:24:27 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/19 19:37:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_token	*g_curtoks;
+extern t_token	*g_curtoks;
 
 t_astree	*rdlist1(void)
 {
