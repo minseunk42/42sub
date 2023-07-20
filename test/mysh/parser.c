@@ -276,9 +276,6 @@ ASTreeNode* CMD()
 
     ASTreeNode* node;
 
-    if ((curtok = save, node = CMD2()) != NULL)
-        return node;
-
     if ((curtok = save, node = CMD1()) != NULL)
         return node;
 
@@ -292,56 +289,43 @@ ASTreeNode* CMD1()
 {
     ASTreeNode* simplecmdNode;
     ASTreeNode* result;
+    tok_t* temp = curtok;
 
     if ((simplecmdNode = SIMPLECMD()) == NULL)
         return NULL;
-
-    if (!term(CHAR_LESSER, NULL)) {
-		ASTreeNodeDelete(simplecmdNode);
-		return NULL;
-	}
-	
-	char* filename;
-	if (!term(TOKEN, &filename)) {
-		free(filename);
-        ASTreeNodeDelete(simplecmdNode);
-        return NULL;
+    if(term(CHAR_GREATER, NULL))
+    {
+   	    char* filename;
+	    if (!term(TOKEN, &filename)) {
+	    	free(filename);
+            ASTreeNodeDelete(simplecmdNode);
+            return NULL;
+        }
+        result = malloc(sizeof(*result));
+        ASTreeNodeSetType(result, NODE_REDIRECT_OUT);
+        ASTreeNodeSetData(result, filename);
+        ASTreeAttachBinaryBranch(result, NULL, simplecmdNode);
+        return result;
     }
+    curtok = temp;
+    if (term(CHAR_LESSER, NULL)) 
+    {
+   	    char* filename;
+	    if (!term(TOKEN, &filename)) {
+	    	free(filename);
+            ASTreeNodeDelete(simplecmdNode);
+            return NULL;
+        }
 
-    result = malloc(sizeof(*result));
-    ASTreeNodeSetType(result, NODE_REDIRECT_IN);
-    ASTreeNodeSetData(result, filename);
-    ASTreeAttachBinaryBranch(result, NULL, simplecmdNode);
+        result = malloc(sizeof(*result));
+        ASTreeNodeSetType(result, NODE_REDIRECT_IN);
+        ASTreeNodeSetData(result, filename);
+        ASTreeAttachBinaryBranch(result, NULL, simplecmdNode);
 
-    return result;
-}
-
-ASTreeNode* CMD2()
-{
-    ASTreeNode* simplecmdNode;
-    ASTreeNode* result;
-
-    if ((simplecmdNode = SIMPLECMD()) == NULL)
-        return NULL;
-
-	if (!term(CHAR_GREATER, NULL)) {
-		ASTreeNodeDelete(simplecmdNode);
-		return NULL;
-	}
-	
-	char* filename;
-	if (!term(TOKEN, &filename)) {
-		free(filename);
-		ASTreeNodeDelete(simplecmdNode);
-		return NULL;
-	}
-
-    result = malloc(sizeof(*result));
-    ASTreeNodeSetType(result, NODE_REDIRECT_OUT);
-    ASTreeNodeSetData(result, filename);
-	ASTreeAttachBinaryBranch(result, NULL, simplecmdNode);
-
-    return result;
+        return result;
+    }
+	ASTreeNodeDelete(simplecmdNode);
+	return NULL;
 }
 
 ASTreeNode* CMD3()
