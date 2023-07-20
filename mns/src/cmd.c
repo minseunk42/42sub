@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 16:18:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/19 19:37:52 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:14:25 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_astree	*cmd(void)
 	return (0);
 }
 
-t_astree	*cmd1(void)
+t_astree	*cmd2(void)
 {
 	return (simplecmd());
 }
 
-t_astree	*cmd2(void)
+t_astree	*cmd1(void)
 {
 	t_astree	*rdnode;
 	t_astree	*scmdnode;
@@ -44,6 +44,8 @@ t_astree	*cmd2(void)
 	if (!scmdnode)
 		return (0);
 	rdnode = rdlist();
-	add_tree(scmdnode, 0, rdnode);
-	return (scmdnode);
+	if (!rdnode)
+		return (0);
+	add_tree(rdnode, 0, scmdnode);
+	return (rdnode);
 }

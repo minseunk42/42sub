@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:33:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/19 19:09:09 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/20 19:37:53 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ extern t_token	*g_curtoks;
 
 t_astree	*tokenlist1(void)
 {
-	t_astree	*tltnode;
+	t_astree	*tlnode;
 	t_astree	*result;
 	char		*arg;
 
 	if (!is_term(T_TYPE_GENERAL, &arg))
 		return (0);
-	tltnode = tokenlist();
+	tlnode = tokenlist();
 	result = malloc(sizeof(*result));
 	create_node(result, AT_TYPE_DATA, arg);
-	add_tree(result, 0, tltnode);
+	add_tree(result, 0, tlnode);
 	return (result);
 }
 
@@ -44,8 +44,5 @@ t_astree	*tokenlist(void)
 	if (node)
 		return (node);
 	g_curtoks = save;
-	node = tokenlist2();
-	if (node)
-		return (node);
 	return (0);
 }
