@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:28 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/20 19:54:07 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/21 18:26:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 						|	<command>
 
 	<command>		::=		<rdlist> <simple command> <rdlist>
-							<simple command> <rdlist>	
+							<simple command> <rdlist>
 							<rdlist> <simple command>
 						|	<simple command>
 
@@ -53,7 +53,6 @@ int	is_term(int type, char **buf)
 		{
 			*buf = (char *)malloc(ft_strlen(g_curtoks->data) + 1);
 			*buf = ft_strdup(g_curtoks->data);
-			printf("type = %d, %s!!\n",type, *buf);
 		}
 		g_curtoks = g_curtoks->next;
 		return (1);
@@ -64,14 +63,15 @@ int	is_term(int type, char **buf)
 
 int	parser(t_token *tokens, t_astree **atree)
 {
+	t_token	*head_temp;
+
 	if (!tokens)
 		return (-1);
+	head_temp = tokens;
 	g_curtoks = tokens;
 	*atree = cmdline();
 	if (g_curtoks != 0 && g_curtoks->ttype != 0)
-	{
-		printf("Syntax Error near: %s\n", g_curtoks->data);
 		return (-1);
-	}
+	destroy_token_list(head_temp);
 	return (0);
 }

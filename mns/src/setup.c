@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:19:55 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/15 20:15:09 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/21 15:15:37 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,12 @@
 #include "readline/history.h"
 #include "readline/readline.h"
 
-static void	handler(int signum)
-{
-	if (signum == SIGINT)
-	{
-		write(STDOUT_FILENO, "\n", 1);
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-	else if (signum == SIGQUIT)
-	{
-		rl_on_new_line();
-		rl_redisplay();
-	}
-}
-
 static int	set_signal(void)
 {
 	struct sigaction	sa;
 
 	sigfillset(&sa.sa_mask);
-	sa.__sigaction_u.__sa_handler = handler;
+
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
 		return (-1);
 	if (sigaction(SIGINT, &sa, NULL) == -1)

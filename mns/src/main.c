@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:42:18 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/20 18:56:10 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/21 17:36:13 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include "libft.h"
 #include "tree.h"
 #include "parser.h"
+#include "free.h"
 #include "minishell.h"
 #include "readline/history.h"
 #include "readline/readline.h"
@@ -94,19 +95,11 @@ int	main(int argc, char *argv[])
 		if (*input)
 			add_history(input);
 		if (lexer(input, &tokens) == -1)
-			return (printf("exit...\n"));
+			return (free_all(input, tokens, 0, "Quote Error"));
 		expander(env_list, tokens);
-		/* lexer list print - for debug */
-		/*while (tokens)
-		{
-			//printf("data = %s, ttype = %d, qtype = %d\n", tokens->data, tokens->ttype, tokens->qtype);
-			tokens = tokens->next;
-		}*/
-		/* lexer list print - for debug */
-		free(input);
-		parser(tokens, &ast);
+		if (parser(tokens, &ast))
+			return (free_all(input, tokens, ast, "Syntax Error"));
 		printast(ast);
-		destroy_token_list(tokens);
 		tokens = NULL;
 		input = NULL;
 	}

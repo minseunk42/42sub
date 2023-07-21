@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 17:33:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/20 19:37:53 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:14:53 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_astree	*tokenlist1(void)
 
 	if (!is_term(T_TYPE_GENERAL, &arg))
 		return (0);
-	tlnode = tokenlist();
 	result = malloc(sizeof(*result));
 	create_node(result, AT_TYPE_DATA, arg);
+	tlnode = tokenlist();
 	add_tree(result, 0, tlnode);
 	return (result);
 }

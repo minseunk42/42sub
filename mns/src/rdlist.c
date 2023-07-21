@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/17 18:49:50 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/20 20:16:48 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:50:47 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_astree	*redirection(void)
 		return (0);
 	result = malloc(sizeof(*result));
 	create_node(result, (AT_TYPE_DATA | type), path);
-	add_tree(result, 0, 0);
 	return (result);
 }
 
@@ -47,7 +46,18 @@ t_astree	*rdlist1(void)
 	if (!rdnode)
 		return (0);
 	rdlnode = rdlist();
-	add_tree(rdnode, 0, rdlnode);
+	add_tree(rdnode, rdlnode, 0);
+	return (rdnode);
+}
+
+t_astree	*rdlist2(t_astree	*rdnode)
+{
+	t_astree	*rdlnode;
+
+	if (!(rdnode))
+		return (0);
+	rdlnode = rdlist();
+	add_tree(rdnode, rdnode->left, rdlnode);
 	return (rdnode);
 }
 

@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:47 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/19 18:44:29 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/21 15:45:44 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,15 @@ t_astree	*job2(void);
 t_astree	*cmd(void);
 t_astree	*cmd1(void);
 t_astree	*cmd2(void);
+t_astree	*cmd3(void);
+t_astree	*cmd4(void);
 t_astree	*simplecmd(void);
 t_astree	*simplecmd1(void);
 t_astree	*tokenlist(void);
 t_astree	*tokenlist1(void);
 t_astree	*rdlist(void);
 t_astree	*rdlist1(void);
-t_astree	*rdlist2(void);
-t_astree	*rdlist3(void);
+t_astree	*rdlist2(t_astree	*rdnode);
 t_astree	*redirection(void);
 t_astree	*redirection1(void);
 
