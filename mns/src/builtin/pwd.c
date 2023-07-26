@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:12:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 16:09:36 by gylim            ###   ########.fr       */
+/*   Created: 2023/07/26 14:54:14 by gylim             #+#    #+#             */
+/*   Updated: 2023/07/26 14:54:31 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include "builtin.h"
+#include "minishell.h"
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg)
+int	ft_pwd(char **argv)
 {
-	if (str)
-		free(str);
-	if (tokens != NULL)
-		destroy_token_list(tokens);
-	if (ast != NULL)
-		delete_tree(ast);
-	printf("%s", errmsg);
-	return (EXIT_FAILURE);
+	char	*cwd;
+
+	(void)argv;
+	cwd = getcwd(NULL, 0);
+	if (cwd == NULL)
+	{
+		perror("minishell: pwd");
+		return (EXIT_FAILURE);
+	}
+	printf("%s\n", cwd);
+	free(cwd);
+	return (EXIT_SUCCESS);
 }

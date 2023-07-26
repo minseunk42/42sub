@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   cmdline.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:12:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 16:09:36 by gylim            ###   ########.fr       */
+/*   Created: 2023/07/17 16:12:34 by minseunk          #+#    #+#             */
+/*   Updated: 2023/07/26 18:59:41 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include "parser.h"
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg)
+t_astree	*cmdline1(void)
 {
-	if (str)
-		free(str);
-	if (tokens != NULL)
-		destroy_token_list(tokens);
-	if (ast != NULL)
-		delete_tree(ast);
-	printf("%s", errmsg);
-	return (EXIT_FAILURE);
+	return (job());
+}
+
+t_astree	*cmdline(void)
+{
+	t_astree	*node;
+
+	node = cmdline1();
+	if (node)
+		return (node);
+	return (0);
 }

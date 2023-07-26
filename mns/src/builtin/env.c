@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:12:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 16:09:36 by gylim            ###   ########.fr       */
+/*   Created: 2023/07/26 14:49:40 by gylim             #+#    #+#             */
+/*   Updated: 2023/07/26 14:49:57 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include "builtin.h"
+#include "env_list.h"
+#include "libft.h"
+#include "minishell.h"
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg)
+int	ft_env(char **argv)
 {
-	if (str)
-		free(str);
-	if (tokens != NULL)
-		destroy_token_list(tokens);
-	if (ast != NULL)
-		delete_tree(ast);
-	printf("%s", errmsg);
-	return (EXIT_FAILURE);
+	int				argc;
+	extern t_gdata	g_data;
+
+	argc = get_argc(argv);
+	if (argc != 1)
+	{
+		ft_printf(2, "minishell: env: too may arguments\n");
+		return (EXIT_FAILURE);
+	}
+	env_print_list(g_data.env_list);
+	return (EXIT_SUCCESS);
 }

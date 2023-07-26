@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:12:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 16:09:36 by gylim            ###   ########.fr       */
+/*   Created: 2023/07/26 15:14:35 by gylim             #+#    #+#             */
+/*   Updated: 2023/07/26 18:38:58 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include "executor.h"
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg)
+void	destroy_cmd(t_cmd *cmd)
 {
-	if (str)
-		free(str);
-	if (tokens != NULL)
-		destroy_token_list(tokens);
-	if (ast != NULL)
-		delete_tree(ast);
-	printf("%s", errmsg);
-	return (EXIT_FAILURE);
+	if (cmd->path != NULL)
+		free(cmd->path);
+	if (cmd->argv != NULL)
+		free(cmd->argv);
+	cmd->envp = NULL;
+}
+
+void	init_cmd(t_cmd *cmd)
+{
+	cmd->path = NULL;
+	cmd->argv = NULL;
+	cmd->envp = NULL;
+	cmd->in = STDIN_FILENO;
+	cmd->out = STDOUT_FILENO;
+	cmd->builtin = -1;
 }

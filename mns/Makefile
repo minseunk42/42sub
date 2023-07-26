@@ -6,82 +6,86 @@
 #    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 19:33:42 by gylim             #+#    #+#              #
-#    Updated: 2023/07/21 17:37:24 by minseunk         ###   ########.fr        #
+#    Updated: 2023/07/26 18:58:47 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC 	   = 		cc
+CFLAGS = 		-Wall -Wextra -Werror -g3 -fsanitize=address
+HEADER = 		-I./header
 
-SRC_DIR = src
-SRC_FILES_MAND = main.c \
-				 env_list.c \
-				 env_list2.c \
-				 env_list3.c \
-				 expander.c \
-				 expander2.c \
-				 expander3.c \
-				 expander4.c \
-				 expander5.c \
-				 setup.c \
-				 lexer.c \
-				 token.c \
-				 utils.c \
-				 parser.c \
-				 cmdline.c \
-				 job.c \
-				 cmd.c \
-				 rdlist.c \
-				 simplecmd.c \
-				 tokenlist.c  \
-				 tree.c	\
-				 free.c
+SRC_DIR   = 	src
+SRC_FILES = 	builtin/cd.c \
+				builtin/cd_utils.c \
+				builtin/echo.c \
+				builtin/env.c \
+				builtin/exit.c \
+				builtin/export.c \
+				builtin/pwd.c \
+				builtin/unset.c \
+				builtin/builtins.c \
+				env/env_list.c \
+				env/env_list2.c \
+				env/env_list3.c \
+				executor/builtin.c \
+				executor/cmd.c \
+				executor/cmd_run.c \
+				executor/cmd_set.c \
+				executor/envp.c \
+				executor/executor.c \
+				executor/job.c \
+				executor/path.c \
+				executor/pipeline.c \
+				executor/rd.c \
+				executor/rd_set.c \
+				executor/simplecmd.c \
+				executor/status.c \
+				executor/types.c \
+				executor/types_rd.c \
+				expander/expander.c \
+				expander/expander2.c \
+				expander/expander3.c \
+				expander/expander4.c \
+				expander/expander5.c \
+				heredoc/heredoc.c \
+				heredoc/heredoc2.c \
+				heredoc/heredoc3.c \
+				lexer/lexer.c \
+				lexer/token.c \
+				parser/parser.c \
+				parser/cmdline.c \
+				parser/job.c \
+				parser/cmd.c \
+				parser/rdlist.c \
+				parser/simplecmd.c \
+				parser/tokenlist.c  \
+				parser/tree.c	\
+				free.c \
+				main.c \
+				setup.c \
+				utils.c
 
-SRC_FILES_BONUS = 
-SRC_MAND = $(addprefix $(SRC_DIR)/, $(SRC_FILES_MAND))
-SRC_BONUS = $(addprefix $(SRC_DIR)/, $(SRC_FILES_BONUS))
-ifdef BONUS_FLAG
-	SRC = $(SRC_BONUS)
-else
-	SRC = $(SRC_MAND)
-endif
-
-OBJ_DIR = obj
-OBJ_FILES_MAND = $(SRC_FILES_MAND:.c=.o)
-OBJ_FILES_BONUS = $(SRC_FILES_BONUS:.c=.o)
-OBJ_MAND = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES_MAND))
-OBJ_BONUS = $(addprefix $(OBJ_DIR)/, $(OBJ_FILES_BONUS))
-ifdef BONUS_FLAG
-	OBJ = $(OBJ_BONUS)
-else
-	OBJ = $(OBJ_MAND)
-endif
+SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJ = $(SRC:.c=.o)
 
 LIB_DIR = libft
 LIBFT = -L./$(LIB_DIR) -lft
 LIB = $(LIBFT) $(CPPFLAGS) $(LDFLAGS) -lreadline
 all: $(NAME)
 
-#bonus:
-#make BONUS_FLAG=1 all
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(CC) $(CFLAGS) -c $(CPPFLAGS) -o $@ $<
-
-$(OBJ): | $(OBJ_DIR)
-
-$(OBJ_DIR):
-	mkdir $(OBJ_DIR)
+%.o: %.c
+	$(CC) $(CFLAGS) $(HEADER) -c $(CPPFLAGS) -o $@ $<
 
 $(NAME): $(OBJ)
 	make -C $(LIB_DIR) all
-	gcc $(CFLAGS) $(LIB) -o $@ $^
+	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^
 
 clean:
 	make -C $(LIB_DIR) clean
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ)
+	rm -rf ./temp/*
 
 fclean:
 	make clean

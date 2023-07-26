@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   simplecmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:12:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 16:09:36 by gylim            ###   ########.fr       */
+/*   Created: 2023/07/26 15:18:41 by gylim             #+#    #+#             */
+/*   Updated: 2023/07/26 19:02:41 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include <stdlib.h>
+#include "executor.h"
+#include "minishell.h"
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg)
+int	execute_simplecmd(const t_astree *tree, int in, int out, int is_subshell)
 {
-	if (str)
-		free(str);
-	if (tokens != NULL)
-		destroy_token_list(tokens);
-	if (ast != NULL)
-		delete_tree(ast);
-	printf("%s", errmsg);
-	return (EXIT_FAILURE);
+	t_cmd			cmd;
+
+	if (tree == NULL)
+		return (0);
+	init_cmd(&cmd);
+	if (in != -1)
+		cmd.in = in;
+	if (out != -1)
+		cmd.out = out;
+	set_cmd(&cmd, tree, tree);
+	run_cmd(&cmd, is_subshell);
+	destroy_cmd(&cmd);
+	return (0);
 }

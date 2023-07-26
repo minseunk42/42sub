@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 15:19:55 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/21 15:15:37 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:33:58 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,26 @@
 #include <stdlib.h>
 #include <termios.h>
 #include <unistd.h>
+#include "env_list.h"
+#include "minishell.h"
 #include "readline/history.h"
 #include "readline/readline.h"
+
+static void	shell_setup_handler(int signum)
+{
+	(void)signum;
+	write(STDOUT_FILENO, "\n", 1);
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+}
 
 static int	set_signal(void)
 {
 	struct sigaction	sa;
 
 	sigfillset(&sa.sa_mask);
-
+	sa.__sigaction_u.__sa_handler = shell_setup_handler;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
 		return (-1);
 	if (sigaction(SIGINT, &sa, NULL) == -1)
@@ -43,22 +54,39 @@ static int	set_termios(void)
 	return (0);
 }
 
-/*
- * 1. check argc
- * 2. save current terminal attribute.
- * 3. set_termios: turn off echo.
- * 4. set_signal: ignore SIGQUIT(ctrl-\), display a new prompt for SIGINT(ctrl-C).
- */
-int	initial_setup(int argc, char *argv[], struct termios *old)
+static int	shell_init(struct termios *old)
 {
-	(void)argv;
-	if (argc != 1)
-		exit(EXIT_SUCCESS); /* argument number error: print usage */
-	if (tcgetattr(STDIN_FILENO, old) == -1)
-		exit(EXIT_FAILURE); /* print error msg */
-	if (set_termios() == -1)
-		exit(EXIT_FAILURE);
+	extern t_gdata	g_data;
+
 	if (set_signal() == -1)
 		return (-1);
+	if (tcgetattr(STDIN_FILENO, old) == -1)
+	{
+		perror("minishell");
+		exit(EXIT_FAILURE);
+	}
+	if (set_termios() == -1)
+	{
+		perror("minishell");
+		return (-1);
+	}
+	g_data.env_list = env_new_list();
+	if (g_data.env_list == NULL)
+	{
+		perror("minishell");
+		return (-1);
+	}
+	g_data.last_exit_status = 0;
+	g_data.internal_envp = NULL;
 	return (0);
+}
+
+void	shell_setup(struct termios *old)
+{
+	if (shell_init(old) == -1)
+	{
+		if (tcsetattr(STDIN_FILENO, TCSANOW, old) == -1)
+			perror("minishell");
+		exit(EXIT_FAILURE);
+	}
 }

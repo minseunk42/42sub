@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:12:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 16:09:36 by gylim            ###   ########.fr       */
+/*   Created: 2023/07/20 18:48:32 by gylim             #+#    #+#             */
+/*   Updated: 2023/07/26 17:16:36 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include <stdlib.h>
+#include "executor.h"
+#include "minishell.h"
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg)
+int	executor(t_astree *tree)
 {
-	if (str)
-		free(str);
-	if (tokens != NULL)
-		destroy_token_list(tokens);
-	if (ast != NULL)
-		delete_tree(ast);
-	printf("%s", errmsg);
-	return (EXIT_FAILURE);
+	if (tree == NULL)
+		return (-1);
+	if (heredoc(tree) == -1)
+		return (-1);
+	if (set_envp() == -1)
+		return (-1);
+	if (execute_job(tree) == -1)
+		return (-1);
+	destroy_envp();
+	return (0);
 }
