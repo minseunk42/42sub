@@ -80,7 +80,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(LIB_DIR) all
-	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^
+	$(CC) $^ $(CFLAGS) $(HEADER) $(LIB) -o $@
 
 clean:
 	make -C $(LIB_DIR) clean

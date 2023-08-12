@@ -19,7 +19,7 @@
 #include "minishell.h"
 #include "readline/history.h"
 #include "readline/readline.h"
-
+/*
 static void	shell_setup_handler(int signum)
 {
 	(void)signum;
@@ -28,13 +28,13 @@ static void	shell_setup_handler(int signum)
 	rl_replace_line("", 0);
 	rl_redisplay();
 }
-
+*/
 static int	set_signal(void)
 {
 	struct sigaction	sa;
 
 	sigfillset(&sa.sa_mask);
-	sa.__sigaction_u.__sa_handler = shell_setup_handler;
+//	sa.__sigaction_u.__sa_handler = shell_setup_handler;
 	if (signal(SIGQUIT, SIG_IGN) == SIG_ERR)
 		return (-1);
 	if (sigaction(SIGINT, &sa, NULL) == -1)

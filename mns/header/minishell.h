@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include <termios.h>
+# include <sys/wait.h>
 
 # define DEFAULT_PROMPT ("minishell$ ")
 # define WHITESPACE ("\b\t\n\v\f\r ")
