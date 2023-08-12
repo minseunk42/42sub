@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:25:13 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 19:02:41 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/26 20:27:16 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static char	*get_envp_string(t_env_node *node)
 
 void	destroy_envp(void)
 {
-	int				i;
-	char			**internal_envp;
+	int		i;
+	char	**internal_envp;
 
 	internal_envp = g_data.internal_envp;
 	i = 0;
@@ -74,9 +74,9 @@ void	destroy_envp(void)
 
 int	set_envp(void)
 {
-	t_env_node		*node;
-	int				i;
-	int				size;
+	t_env_node	*node;
+	int			i;
+	int			size;
 
 	size = g_data.env_list->size;
 	g_data.internal_envp = (char **)malloc(sizeof(char *) * (size + 1));

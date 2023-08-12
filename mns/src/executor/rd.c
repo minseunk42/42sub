@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:17:31 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 19:02:41 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/26 20:27:16 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 int	execute_rd(const t_astree *tree, int in, int out, int is_subshell)
 {
-	t_cmd			cmd;
+	t_cmd	cmd;
 
 	if (tree == NULL)
 		return (0);

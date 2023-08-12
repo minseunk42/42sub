@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:15:52 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 19:02:41 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/26 20:27:16 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ static char	*get_command_path(const char *path_env, const char *command)
 
 char	*get_path(const t_astree *tree)
 {
-	char			*path_value;
-	char			*ret;
-	char			*command;
+	char	*path_value;
+	char	*ret;
+	char	*command;
 
 	command = tree->data;
 	if (builtin_check(command) != -1)

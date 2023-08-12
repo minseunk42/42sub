@@ -6,12 +6,11 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 18:09:09 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 19:00:18 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:52:43 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "tree.h"
-#include "libft.h"
+#include "parser.h"
 
 int	add_tree(t_astree *root, t_astree *left, t_astree *right)
 {

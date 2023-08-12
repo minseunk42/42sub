@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 19:05:43 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 18:36:52 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/28 19:06:22 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,9 @@ int	env_add_rear_node_to_list(t_env_list *list, t_env_node *node)
 /*
  * return value: env_list on success, NULL on failure.
  */
-t_env_list	*env_new_list(void)
+t_env_list	*env_new_list(char **envp)
 {
 	int					i;
-	extern char			**environ;
 	t_env_node			*new_node;
 	t_env_list			*new_list;
 
@@ -93,9 +92,9 @@ t_env_list	*env_new_list(void)
 	new_list->front = NULL;
 	new_list->size = 0;
 	i = 0;
-	while (environ[i] != NULL)
+	while (envp[i] != NULL)
 	{
-		new_node = env_new_node_str(environ[i]);
+		new_node = env_new_node_str(envp[i]);
 		if (new_node == NULL)
 		{
 			env_destroy_list(new_list);

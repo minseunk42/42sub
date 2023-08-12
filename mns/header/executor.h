@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 16:29:11 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 18:01:23 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/28 18:54:16 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct s_cmd
 }	t_cmd;
 
 /* builtin */
-int		execute_builtin(const t_cmd *cmd, int is_subshell);
+void	execute_builtin(const t_cmd *cmd, int is_subshell);
 
 /* cmd */
 void	destroy_cmd(t_cmd *cmd);
@@ -56,6 +56,7 @@ int		executor(t_astree *tree);
 int		execute_job(const t_astree *tree);
 
 /* pipeline */
+void	close_all_pipes(void);
 int		execute_pipeline(const t_astree *tree, int in, int out);
 
 /* redirections */
@@ -71,8 +72,9 @@ int		set_rd_recursive(t_astree *tree, t_cmd *cmd);
 int		execute_simplecmd(t_ctree *tree, int in, int out, int is_subshell);
 
 /* status */
-int		ft_wifexited(int stat);
 int		ft_wexitstatus(int stat);
+int		ft_wifexited(int stat);
+int		ft_wtermsig(int stat);
 
 /* types */
 int		compare_tree_type(int type1, t_atype type2);
@@ -83,5 +85,8 @@ int		is_stdin(const t_astree *tree);
 int		is_stdout(const t_astree *tree);
 int		is_stdin_heredoc(const t_astree *tree);
 int		is_stdout_append(const t_astree *tree);
+
+/* wait */
+void	wait_loop(void);
 
 #endif /* EXECUTOR_H */

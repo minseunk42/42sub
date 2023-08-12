@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 15:21:12 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 18:58:27 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/26 20:27:16 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ void	destroy_words(char **words)
 
 char	*expand(t_env_list *list, t_token *tok)
 {
-	int				i;
-	char			*expanded;
-	char			**words;
+	int		i;
+	char	*expanded;
+	char	**words;
 
 	words = expand_split(tok->data);
 	i = 0;

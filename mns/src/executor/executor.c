@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 18:48:32 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 17:16:36 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/28 19:01:19 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	executor(t_astree *tree)
 		return (-1);
 	if (execute_job(tree) == -1)
 		return (-1);
+	wait_loop();
 	destroy_envp();
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/01 15:41:22 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 18:57:59 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/28 20:30:47 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 # define MINISHELL_H
 
 # include <termios.h>
-# include <sys/wait.h>
 
 # define DEFAULT_PROMPT ("minishell$ ")
 # define WHITESPACE ("\b\t\n\v\f\r ")
+# define PIPE_MAX (256)
 
 typedef struct s_global_data
 {
@@ -27,12 +27,15 @@ typedef struct s_global_data
 	int					heredoc_idx;
 	int					heredoc_cnt;
 	char				**internal_envp;
+	int					pipes[PIPE_MAX][2];
+	int					pipe_idx;
+	pid_t				last_pid;
 }	t_gdata;
 
 extern t_gdata	g_data;
 
 /* setup */
-void	shell_setup(struct termios *old);
+void	shell_setup(struct termios *old, char **envp);
 
 /* utils */
 void	destroy_arr(char **arr);

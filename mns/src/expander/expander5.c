@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 16:39:40 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 15:44:45 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/26 19:49:56 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	expand_exit_status(char **words, int idx, int exit_status)
 	i = 1;
 	while (tmp[i] != NULL)
 	{
-		if (!append(&expanded, tmp[i++]))
+		if (!append(&expanded, tmp[i]))
 			return (expand_exit_status_error2(tmp, expanded));
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:15:06 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 15:24:53 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/28 19:45:34 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	execute_job(const t_astree *tree)
 {
 	if (tree == NULL)
 		return (0);
+	g_data.pipe_idx = 0;
+	g_data.last_pid = 0;
 	if (is_pipeline(tree))
 	{
 		if (execute_pipeline(tree, -1, -1) == -1)
@@ -36,5 +38,6 @@ int	execute_job(const t_astree *tree)
 	}
 	else
 		return (-1);
+	close_all_pipes();
 	return (0);
 }

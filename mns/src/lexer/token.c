@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 19:20:11 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 18:21:51 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/27 17:53:26 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "libft.h"
 
 t_token	*get_last_token(t_token *lst)
 {

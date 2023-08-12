@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:37:42 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 19:02:41 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/26 20:27:16 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int	count_arg(const t_astree *tree)
 
 static char	**get_argv(const t_astree *tree)
 {
-	int			i;
-	int			argc;
-	char		**argv;
+	int		i;
+	int		argc;
+	char	**argv;
 
 	argc = count_arg(tree);
 	argv = (char **)malloc(sizeof(char *) * (argc + 1));

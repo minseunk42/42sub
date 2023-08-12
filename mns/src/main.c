@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:42:18 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 18:32:35 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/28 19:38:38 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "env_list.h"
 #include "executor.h"
 #include "expander.h"
-#include "free.h"
 #include "lexer.h"
 #include "parser.h"
 #include "libft.h"
@@ -94,11 +93,13 @@ static void	loop(void)
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv, char **envp)
 {
 	struct termios	old_termios;
 
-	shell_setup(&old_termios);
+	(void)argc;
+	(void)argv;
+	shell_setup(&old_termios, envp);
 	loop();
 	if (tcsetattr(STDIN_FILENO, TCSANOW, &old_termios) == -1)
 		return (EXIT_FAILURE);

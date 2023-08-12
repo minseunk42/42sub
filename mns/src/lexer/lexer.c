@@ -6,12 +6,11 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:44:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 19:31:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:53:29 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lexer.h"
-#include "libft.h"
 
 void	mk_sptok(char *str, t_token **tokens, int *i)
 {

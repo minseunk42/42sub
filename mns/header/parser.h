@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:47 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 18:58:40 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:55:51 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "tree.h"
 # include "lexer.h"
 # include "libft.h"
-# include "tree.h"
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>

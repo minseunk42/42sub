@@ -6,7 +6,7 @@
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/05 20:26:33 by gylim             #+#    #+#             */
-/*   Updated: 2023/07/26 17:09:41 by gylim            ###   ########.fr       */
+/*   Updated: 2023/07/28 19:06:48 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char		*env_split_key(const char *str);
 char		*env_split_value(const char *str);
 t_env_node	*env_new_node_str(const char *str);
 int			env_add_rear_node_to_list(t_env_list *list, t_env_node *node);
-t_env_list	*env_new_list(void);
+t_env_list	*env_new_list(char **envp);
 int			env_print_list(const t_env_list *list);
 void		env_unset(t_env_list *list, const char *key);
 int			env_export(t_env_list *list, char *str);

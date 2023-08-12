@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.h                                             :+:      :+:    :+:   */
+/*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:13:06 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/21 17:25:19 by minseunk         ###   ########.fr       */
+/*   Created: 2023/07/28 18:06:13 by gylim             #+#    #+#             */
+/*   Updated: 2023/07/28 18:07:31 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FREE_H
-# define FREE_H
+#include <unistd.h>
+#include "executor.h"
+#include "minishell.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include "lexer.h"
-# include "tree.h"
+void	close_all_pipes(void)
+{
+	int	i;
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg);
-
-#endif
+	i = 0;
+	while (i < g_data.pipe_idx)
+	{
+		close(g_data.pipes[i][READ]);
+		close(g_data.pipes[i][WRITE]);
+		i++;
+	}
+}

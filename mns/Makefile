@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
+#    By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/29 19:33:42 by gylim             #+#    #+#              #
-#    Updated: 2023/07/26 18:58:47 by minseunk         ###   ########.fr        #
+#    Updated: 2023/08/01 15:01:03 by gylim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 
 CC 	   = 		cc
-CFLAGS = 		-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS = 		-Wall -Wextra -Werror
 HEADER = 		-I./header
 
 SRC_DIR   = 	src
@@ -37,6 +37,7 @@ SRC_FILES = 	builtin/cd.c \
 				executor/executor.c \
 				executor/job.c \
 				executor/path.c \
+				executor/pipe.c \
 				executor/pipeline.c \
 				executor/rd.c \
 				executor/rd_set.c \
@@ -44,6 +45,7 @@ SRC_FILES = 	builtin/cd.c \
 				executor/status.c \
 				executor/types.c \
 				executor/types_rd.c \
+				executor/wait.c \
 				expander/expander.c \
 				expander/expander2.c \
 				expander/expander3.c \
@@ -62,7 +64,6 @@ SRC_FILES = 	builtin/cd.c \
 				parser/simplecmd.c \
 				parser/tokenlist.c  \
 				parser/tree.c	\
-				free.c \
 				main.c \
 				setup.c \
 				utils.c
@@ -80,7 +81,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	make -C $(LIB_DIR) all
-	$(CC) $^ $(CFLAGS) $(HEADER) $(LIB) -o $@
+	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^
 
 clean:
 	make -C $(LIB_DIR) clean

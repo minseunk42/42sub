@@ -6,12 +6,14 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/11 19:44:49 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/23 13:09:08 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:53:55 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LEXER_H
 # define LEXER_H
+
+# include "libft.h"
 
 # ifndef TOKEN_TYPE
 #  define TOKEN_TYPE

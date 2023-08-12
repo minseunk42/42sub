@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   wait.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gylim <gylim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/21 17:12:23 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 16:09:36 by gylim            ###   ########.fr       */
+/*   Created: 2023/07/28 14:34:10 by gylim             #+#    #+#             */
+/*   Updated: 2023/07/28 18:55:42 by gylim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "free.h"
+#include <sys/wait.h>
+#include <unistd.h>
+#include "executor.h"
+#include "minishell.h"
 
-int	free_all(char *str, t_token *tokens, t_astree *ast, char *errmsg)
+void	wait_loop(void)
 {
-	if (str)
-		free(str);
-	if (tokens != NULL)
-		destroy_token_list(tokens);
-	if (ast != NULL)
-		delete_tree(ast);
-	printf("%s", errmsg);
-	return (EXIT_FAILURE);
+	pid_t	id;
+	int		stat;
+
+	while (1)
+	{
+		id = wait(&stat);
+		if (id == -1)
+			break ;
+		if (id == g_data.last_pid)
+		{
+			if (ft_wifexited(stat))
+				g_data.last_exit_status = ft_wexitstatus(stat);
+			else
+				g_data.last_exit_status = 128 + ft_wtermsig(stat);
+		}
+	}
 }

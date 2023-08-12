@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 19:14:28 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/26 18:59:56 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:52:16 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@
 	<token list>	::=		<token> <token list>
 						|	(EMPTY)
 **/
-
-#include "libft.h"
 
 int	is_term(int type, char **buf)
 {
