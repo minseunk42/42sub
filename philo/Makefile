@@ -6,7 +6,7 @@
 #    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 15:20:03 by minseunk          #+#    #+#              #
-#    Updated: 2023/08/24 15:20:48 by minseunk         ###   ########.fr        #
+#    Updated: 2023/08/24 16:57:56 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = 		-Wall -Wextra -Werror
 HEADER = 		-I./header
 
 SRC_DIR   = 	srcs
-SRC_FILES = 	
+SRC_FILES = 	test.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:.c=.o)
