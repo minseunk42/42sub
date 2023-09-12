@@ -14,16 +14,17 @@
 
 int	init(t_arg *arg, int ac, char **av)
 {
-	if (atoi(av[1]) < 0 || atoi(av[2]) < 0 || \
-		atoi(av[3]) < 0 || atoi(av[4]) < 0)
+	if (atoi(av[1]) <= 0 || atoi(av[2]) <= 0 || \
+		atoi(av[3]) <= 0 || atoi(av[4]) <= 0)
 		return (-1);
-	if (ac == 6 && atoi(av[5]) < 0)
+	if (ac == 6 && atoi(av[5]) <= 0)
 		return (-1);
 	gettimeofday(&(arg->it), NULL);
 	arg->nplo = atoi(av[1]);
 	arg->teat = atoi(av[2]);
 	arg->tdie = atoi(av[3]);
 	arg->tslp = atoi(av[4]);
+	arg->meat = -1;
 	if (ac == 6)
 		arg->meat = atoi(av[5]);
 	return (0);
@@ -38,7 +39,5 @@ int	main(int ac, char **av)
 		return (-1);
 	if (init(&arg, ac, av))
 		return (-1);
-	printf("%d", get_time(arg));
-	usleep(3000);
-	printf("%d", get_time(arg));
+	printf("%d", arg.meat);
 }
