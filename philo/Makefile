@@ -6,7 +6,7 @@
 #    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 15:20:03 by minseunk          #+#    #+#              #
-#    Updated: 2023/08/24 16:57:56 by minseunk         ###   ########.fr        #
+#    Updated: 2023/09/12 20:18:29 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ CFLAGS = 		-Wall -Wextra -Werror
 HEADER = 		-I./header
 
 SRC_DIR   = 	srcs
-SRC_FILES = 	test.c
+SRC_FILES = 	main.c
+				util.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:.c=.o)
@@ -31,13 +32,11 @@ $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^
 
 clean:
-	make -C $(LIB_DIR) clean
 	rm -rf $(OBJ)
 	rm -rf ./temp/*
 
 fclean:
 	make clean
-	make -C $(LIB_DIR) fclean
 	rm -f $(NAME)
 
 re: 
