@@ -16,7 +16,6 @@ checker
 fdf
 *.fdf
 .DS_Store
-philo
 
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
