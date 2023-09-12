@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:57:16 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/12 20:33:22 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/12 20:49:57 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_arg
 	int				meat;
 }	t_arg;
 
+int	get_time(t_arg arg);
 int	atoi(const char *str);
 
 #endif
