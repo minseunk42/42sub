@@ -3,22 +3,23 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
+#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 15:20:03 by minseunk          #+#    #+#              #
-#    Updated: 2023/09/12 20:51:23 by minseunk         ###   ########.fr        #
+#    Updated: 2023/09/17 22:05:32 by ubuntu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC 	   = 		cc
-CFLAGS = 		-Wall -Wextra -Werror
+CFLAGS = 		-Wall -Wextra -Werror -lpthread
 HEADER = 		-I./header
 
 SRC_DIR   = 	srcs
 SRC_FILES = 	main.c \
-				util.c
+				util.c \
+				philo.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(SRC:.c=.o)

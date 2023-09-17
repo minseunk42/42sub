@@ -3,21 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:18:41 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/12 20:53:30 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/17 21:57:19 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_isdigit(int c)
-{
-	return ('0' <= c && c <= '9');
-}
-
-int	atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	val;
 	int	sign;
@@ -30,15 +25,22 @@ int	atoi(const char *str)
 		i++;
 	if (str[i] == '+' || ((str[i] == '-') && ++i && sign-- && sign--))
 		i++;
-	while (ft_isdigit(str[i]))
+	while ('0' <= str[i] && str[i] <= '9')
 		val = 10 * val + (str[i++] - '0');
 	return (sign * val);
 }
 
-int	get_time(t_arg arg)
+int	free_arg(t_arg *arg)
+{
+	free(arg->fork);
+	pthread_mutex_destroy(&(arg->mutex));
+	return (-1);
+}
+
+int	get_usec(void)
 {
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);
-	return ((now.tv_usec - arg.it.tv_usec) / 1000);
+	return (now.tv_usec);
 }

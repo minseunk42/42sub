@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:57:16 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/12 20:49:57 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/17 21:55:49 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,26 @@
 # include <sys/time.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <string.h>
+# include <pthread.h>
 
 typedef struct s_arg
 {
-	struct timeval	it;
-	int				nplo;
-	int				teat;
-	int				tdie;
-	int				tslp;
-	int				meat;
+	pthread_mutex_t	mutex;
+	unsigned long	itime;
+	int				nofpl;
+	int				tteat;
+	int				ttdie;
+	int				ttslp;
+	int				edeat;
+	int				*fork;
+	int				*phid;
 }	t_arg;
 
-int	get_time(t_arg arg);
-int	atoi(const char *str);
+int	get_usec(void);
+int	ft_atoi(const char *str);
+int	free_arg(t_arg *arg);
+int	philo(t_arg *arg);
 
 #endif
