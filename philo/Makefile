@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
+#    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 15:20:03 by minseunk          #+#    #+#              #
-#    Updated: 2023/09/17 22:05:32 by ubuntu           ###   ########.fr        #
+#    Updated: 2023/09/18 08:29:12 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
 CC 	   = 		cc
-CFLAGS = 		-Wall -Wextra -Werror -lpthread
+CFLAGS = 		-Wall -Wextra -Werror
 HEADER = 		-I./header
 
 SRC_DIR   = 	srcs
@@ -27,10 +27,10 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(HEADER) -c $(CPPFLAGS) -o $@ $<
+	$(CC) $(CFLAGS) $(HEADER) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^
+	$(CC) $(CFLAGS) $(HEADER) -lpthread $(LIB) -o $@ $^
 
 clean:
 	rm -rf $(OBJ)

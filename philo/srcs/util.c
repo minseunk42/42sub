@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:18:41 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/17 21:57:19 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/18 08:40:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,13 @@ int	ft_atoi(const char *str)
 
 int	free_arg(t_arg *arg)
 {
-	free(arg->fork);
+	if (arg->fork)
+		free(arg->fork);
 	pthread_mutex_destroy(&(arg->mutex));
 	return (-1);
 }
 
-int	get_usec(void)
+unsigned long	get_usec(void)
 {
 	struct timeval	now;
 
