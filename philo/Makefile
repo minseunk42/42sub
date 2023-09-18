@@ -6,7 +6,7 @@
 #    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 15:20:03 by minseunk          #+#    #+#              #
-#    Updated: 2023/09/18 08:29:12 by minseunk         ###   ########.fr        #
+#    Updated: 2023/09/18 10:03:45 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) $(HEADER) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(HEADER) -lpthread $(LIB) -o $@ $^
+	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^ -lpthread
 
 clean:
 	rm -rf $(OBJ)
