@@ -16,6 +16,7 @@ checker
 fdf
 *.fdf
 .DS_Store
+Makefile
 
 # Created by git when using merge tools for conflicts
 *.BACKUP.*
