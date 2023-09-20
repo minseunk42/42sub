@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:57:16 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/18 09:05:34 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/19 20:18:59 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_arg
 	int				ttdie;
 	int				ttslp;
 	int				mxeat;
+	int				isfin;
 	int				*fork;
 }	t_arg;
 
@@ -37,12 +38,15 @@ typedef struct s_philo
 	pthread_t		thread;
 	unsigned long	ltteat;
 	int				philon;
-	t_arg			arg;
+	t_arg			*arg;
 }	t_philo;
 
 unsigned long	get_usec(void);
 int				ft_atoi(const char *str);
 int				free_arg(t_arg *arg);
 int				philo(t_arg *arg);
+int				take_lfork(t_philo *philo);
+int				take_rfork(t_philo *philo);
+void			backfork(t_philo *philo);
 
 #endif

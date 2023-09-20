@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:18:41 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/18 08:40:07 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/20 14:18:29 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ unsigned long	get_usec(void)
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);
-	return (now.tv_usec);
+	return (now.tv_sec * 1000000 + now.tv_usec);
 }

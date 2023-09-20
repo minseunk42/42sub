@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:36:33 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/18 09:05:00 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/19 19:24:48 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init(t_arg *arg, int ac, char **av)
 		return (-1);
 	if (ac == 6 && ft_atoi(av[5]) <= 0)
 		return (-1);
+	arg->isfin = 0;
 	arg->itime = get_usec();
 	arg->nofpl = ft_atoi(av[1]);
 	arg->tteat = ft_atoi(av[2]);
