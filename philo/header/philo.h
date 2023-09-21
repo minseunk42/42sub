@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:57:16 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/21 20:59:57 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/22 08:30:55 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,7 @@ int				is_fin(t_philo *philo);
 int				backfork(t_philo *philo);
 int				spend_time(t_philo *philo, int val);
 
-# define EAT "%lu %d is eating\n" , (get_usec() - philo->arg->itime) / 1000,\
-			 philo->philon + 1
-# define SLP "%lu %d is sleeping\n" , (get_usec() - philo->arg->itime) / 1000,\
-			 philo->philon + 1
-# define THK "%lu %d is thinking\n" , (get_usec() - philo->arg->itime) / 1000,\
-			 philo->philon + 1
+# define EAT "%lu %d is eating\n"
+# define SLP "%lu %d is sleeping\n"
+# define THK "%lu %d is thinking\n"
 #endif

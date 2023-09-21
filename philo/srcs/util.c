@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:18:41 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/21 20:55:04 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/22 08:26:43 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,12 @@ int	spend_time(t_philo *philo, int val)
 	struct timeval	now;
 
 	gettimeofday(&now, NULL);
-	while ((int)(get_usec() - (now.tv_sec * 1000000 + now.tv_usec)) <= val * 1000)
+	while ((int)(get_usec() - \
+	(now.tv_sec * 1000000 + now.tv_usec)) <= val * 1000)
 	{
 		usleep(10);
 		if (is_fin(philo))
-				return (-1);
+			return (-1);
 	}
 	return (0);
 }

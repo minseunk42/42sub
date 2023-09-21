@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:38:06 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/21 20:40:07 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/22 08:41:19 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	est(t_philo *philo)
+void	eat(t_philo *philo)
 {
-	if (philo->philon % 2 == 0 && usleep(10))
+	if (philo->philon % 2 == 0)
 	{
 		if (take_lfork(philo) || take_rfork(philo))
 			return ;
@@ -24,19 +24,41 @@ void	est(t_philo *philo)
 		if (take_rfork(philo) || take_lfork(philo))
 			return ;
 	}
-	printf(EAT);
-	if (spend_time(philo , philo->arg->tteat))
+	pthread_mutex_lock(&(philo->arg->mutex));
+	if (!philo->arg->isfin)
+	{
+		printf(EAT, (get_usec() - philo->arg->itime) / 1000, \
+		philo->philon + 1);
+	}
+	pthread_mutex_unlock(&(philo->arg->mutex));
+	if (spend_time(philo, philo->arg->tteat))
 		return ;
 	philo->eatcnt += 1;
 	philo->ltteat = get_usec();
-	if (is_fin(philo))
+}
+
+void	slp(t_philo *philo)
+{	
+	pthread_mutex_lock(&(philo->arg->mutex));
+	if (!philo->arg->isfin)
+	{
+		printf(SLP, (get_usec() - philo->arg->itime) / 1000, \
+		philo->philon + 1);
+	}
+	pthread_mutex_unlock(&(philo->arg->mutex));
+	if (spend_time(philo, philo->arg->ttslp - backfork(philo)))
 		return ;
-	printf(SLP);
-	if (spend_time(philo , philo->arg->ttslp - backfork(philo)))
-		return ;
-	if (is_fin(philo))
-		return ;
-	printf(THK);
+}
+
+void	thk(t_philo *philo)
+{
+	pthread_mutex_lock(&(philo->arg->mutex));
+	if (!philo->arg->isfin)
+	{
+		printf(THK, (get_usec() - philo->arg->itime) / 1000, \
+		philo->philon + 1);
+	}
+	pthread_mutex_unlock(&(philo->arg->mutex));
 }
 
 void	*routine(void *param)
@@ -48,7 +70,13 @@ void	*routine(void *param)
 	{
 		if (is_fin(philo))
 			break ;
-		est(philo);
+		eat(philo);
+		if (is_fin(philo))
+			break ;
+		slp(philo);
+		if (is_fin(philo))
+			break ;
+		thk(philo);
 	}
 	return (0);
 }

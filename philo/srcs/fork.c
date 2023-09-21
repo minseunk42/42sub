@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fork.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:50:16 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/21 21:00:09 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/22 08:33:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,15 @@ int	is_fin(t_philo *philo)
 	{
 		pthread_mutex_lock(&(philo->arg->mutex));
 		printf("%lu %d died\n" \
-			 , (get_usec() - philo->arg->itime) / 1000, philo->philon);
-		philo->arg->isfin = 1;		
+			, (get_usec() - philo->arg->itime) / 1000, philo->philon + 1);
+		philo->arg->isfin = 1;
 		pthread_mutex_unlock(&(philo->arg->mutex));
 		return (-1);
 	}
 	if (philo->eatcnt == philo->arg->mxeat)
 	{
 		pthread_mutex_lock(&(philo->arg->mutex));
-		philo->arg->isfin = 1;		
+		philo->arg->isfin = 1;
 		pthread_mutex_unlock(&(philo->arg->mutex));
 		return (-1);
 	}
@@ -53,8 +53,8 @@ int	take_rfork(t_philo *philo)
 		if (!(philo->arg->fork[fnum]))
 		{
 			printf("%lu %d has taken a fork\n" \
-			 , (get_usec() - philo->arg->itime) / 1000,\
-				 philo->philon);
+			, (get_usec() - philo->arg->itime) / 1000, \
+			philo->philon + 1);
 			philo->arg->fork[fnum] = 1;
 			break ;
 		}
@@ -75,8 +75,8 @@ int	take_lfork(t_philo *philo)
 		if (!(philo->arg->fork[philo->philon]))
 		{
 			printf("%lu %d has taken a fork\n" \
-			 , (get_usec() - philo->arg->itime) / 1000,\
-				 philo->philon);
+			, (get_usec() - philo->arg->itime) / 1000, \
+			philo->philon + 1);
 			philo->arg->fork[philo->philon] = 1;
 			break ;
 		}
