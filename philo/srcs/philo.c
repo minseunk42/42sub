@@ -6,48 +6,37 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:38:06 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/20 13:27:22 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/21 20:40:07 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	eat(t_philo *philo)
+void	est(t_philo *philo)
 {
-	if (philo->philon % 2 == 0)
+	if (philo->philon % 2 == 0 && usleep(10))
 	{
-		if (take_lfork(philo))
-			return ;
-		if (take_rfork(philo))
+		if (take_lfork(philo) || take_rfork(philo))
 			return ;
 	}
 	else
 	{
-		if (take_rfork(philo))
-			return ;
-		if (take_lfork(philo))
+		if (take_rfork(philo) || take_lfork(philo))
 			return ;
 	}
-	if (philo->arg->isfin)
-			return ;
+	printf(EAT);
+	if (spend_time(philo , philo->arg->tteat))
+		return ;
+	philo->eatcnt += 1;
 	philo->ltteat = get_usec();
-	printf("%lu %d is eating\n" , (get_usec() - philo->arg->itime) / 1000,\
-			 philo->philon);
-	usleep(500000);
-	backfork(philo);
-}
-
-void	sleep_think(t_philo *philo)
-{
-	if (philo->arg->isfin)
-			return ;
-	printf("%lu %d is sleeping\n" , (get_usec() - philo->arg->itime) / 1000,\
-			 philo->philon);
-	usleep(100000);
-	if (philo->arg->isfin)
-			return ;
-	printf("%lu %d is thinking\n" , (get_usec() - philo->arg->itime) / 1000,\
-			 philo->philon);
+	if (is_fin(philo))
+		return ;
+	printf(SLP);
+	if (spend_time(philo , philo->arg->ttslp - backfork(philo)))
+		return ;
+	if (is_fin(philo))
+		return ;
+	printf(THK);
 }
 
 void	*routine(void *param)
@@ -57,10 +46,9 @@ void	*routine(void *param)
 	philo = (t_philo *)param;
 	while (1)
 	{
-		if (philo->arg->isfin)
+		if (is_fin(philo))
 			break ;
-		eat(philo);
-		sleep_think(philo);		
+		est(philo);
 	}
 	return (0);
 }
@@ -84,6 +72,7 @@ int	philo(t_arg *arg)
 		pss[i].philon = i;
 		pss[i].arg = arg;
 		pss[i].ltteat = arg->itime;
+		pss[i].eatcnt = 0;
 		pthread_create(&ths[i], 0, routine, &pss[i]);
 	}
 	i = -1;

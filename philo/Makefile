@@ -6,7 +6,7 @@
 #    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 15:20:03 by minseunk          #+#    #+#              #
-#    Updated: 2023/09/20 13:20:32 by ubuntu           ###   ########.fr        #
+#    Updated: 2023/09/20 14:38:16 by ubuntu           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) $(HEADER) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^ -lpthread
+	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^ -lpthread -g
 
 clean:
 	rm -rf $(OBJ)

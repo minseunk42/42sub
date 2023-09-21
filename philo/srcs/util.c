@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:18:41 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/20 14:18:29 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/21 20:55:04 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,13 @@ int	ft_atoi(const char *str)
 
 int	free_arg(t_arg *arg)
 {
+	int	i;
+
 	if (arg->fork)
 		free(arg->fork);
+	i = -1;
+	while (++i < arg->nofpl)
+		pthread_mutex_destroy(&(arg->fmtx[i]));
 	pthread_mutex_destroy(&(arg->mutex));
 	return (-1);
 }
@@ -44,4 +49,18 @@ unsigned long	get_usec(void)
 
 	gettimeofday(&now, NULL);
 	return (now.tv_sec * 1000000 + now.tv_usec);
+}
+
+int	spend_time(t_philo *philo, int val)
+{
+	struct timeval	now;
+
+	gettimeofday(&now, NULL);
+	while ((int)(get_usec() - (now.tv_sec * 1000000 + now.tv_usec)) <= val * 1000)
+	{
+		usleep(10);
+		if (is_fin(philo))
+				return (-1);
+	}
+	return (0);
 }

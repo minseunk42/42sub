@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:57:16 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/19 20:18:59 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/09/21 20:59:57 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 
 typedef struct s_arg
 {
+	pthread_mutex_t	*fmtx;
 	pthread_mutex_t	mutex;
 	unsigned long	itime;
 	int				nofpl;
@@ -38,6 +39,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	unsigned long	ltteat;
 	int				philon;
+	int				eatcnt;
 	t_arg			*arg;
 }	t_philo;
 
@@ -47,6 +49,14 @@ int				free_arg(t_arg *arg);
 int				philo(t_arg *arg);
 int				take_lfork(t_philo *philo);
 int				take_rfork(t_philo *philo);
-void			backfork(t_philo *philo);
+int				is_fin(t_philo *philo);
+int				backfork(t_philo *philo);
+int				spend_time(t_philo *philo, int val);
 
+# define EAT "%lu %d is eating\n" , (get_usec() - philo->arg->itime) / 1000,\
+			 philo->philon + 1
+# define SLP "%lu %d is sleeping\n" , (get_usec() - philo->arg->itime) / 1000,\
+			 philo->philon + 1
+# define THK "%lu %d is thinking\n" , (get_usec() - philo->arg->itime) / 1000,\
+			 philo->philon + 1
 #endif
