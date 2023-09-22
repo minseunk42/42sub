@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:38:06 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/22 09:37:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 10:03:39 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	eat(t_philo *philo)
 {
+	if (!philo->philon || philo->philon == 1)
+		usleep(100);
 	if (philo->philon % 2 == 0)
 	{
 		if (take_lfork(philo) || take_rfork(philo))

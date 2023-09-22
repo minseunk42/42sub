@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:50:16 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/22 09:25:44 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:40:59 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	take_rfork(t_philo *philo)
 			break ;
 		}
 		pthread_mutex_unlock(&(philo->arg->fmtx[fnum]));
-		usleep(5);
+		usleep(10);
 	}
 	pthread_mutex_unlock(&(philo->arg->fmtx[fnum]));
 	return (0);
@@ -76,7 +76,7 @@ int	take_lfork(t_philo *philo)
 			break ;
 		}
 		pthread_mutex_unlock(&(philo->arg->fmtx[philo->philon]));
-		usleep(5);
+		usleep(10);
 	}
 	pthread_mutex_unlock(&(philo->arg->fmtx[philo->philon]));
 	return (0);
