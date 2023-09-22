@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:38:06 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/22 08:41:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 08:53:12 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,7 @@ void	eat(t_philo *philo)
 		if (take_rfork(philo) || take_lfork(philo))
 			return ;
 	}
-	pthread_mutex_lock(&(philo->arg->mutex));
-	if (!philo->arg->isfin)
-	{
-		printf(EAT, (get_usec() - philo->arg->itime) / 1000, \
-		philo->philon + 1);
-	}
-	pthread_mutex_unlock(&(philo->arg->mutex));
+	print_action(EAT, philo);
 	if (spend_time(philo, philo->arg->tteat))
 		return ;
 	philo->eatcnt += 1;
@@ -39,26 +33,14 @@ void	eat(t_philo *philo)
 
 void	slp(t_philo *philo)
 {	
-	pthread_mutex_lock(&(philo->arg->mutex));
-	if (!philo->arg->isfin)
-	{
-		printf(SLP, (get_usec() - philo->arg->itime) / 1000, \
-		philo->philon + 1);
-	}
-	pthread_mutex_unlock(&(philo->arg->mutex));
+	print_action(SLP, philo);
 	if (spend_time(philo, philo->arg->ttslp - backfork(philo)))
 		return ;
 }
 
 void	thk(t_philo *philo)
 {
-	pthread_mutex_lock(&(philo->arg->mutex));
-	if (!philo->arg->isfin)
-	{
-		printf(THK, (get_usec() - philo->arg->itime) / 1000, \
-		philo->philon + 1);
-	}
-	pthread_mutex_unlock(&(philo->arg->mutex));
+	print_action(THK, philo);
 }
 
 void	*routine(void *param)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+         #
+#    By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/24 15:20:03 by minseunk          #+#    #+#              #
-#    Updated: 2023/09/20 14:38:16 by ubuntu           ###   ########.fr        #
+#    Updated: 2023/09/22 09:02:13 by minseunk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ all: $(NAME)
 	$(CC) $(CFLAGS) $(HEADER) -c -o $@ $<
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^ -lpthread -g
+	$(CC) $(CFLAGS) $(HEADER) $(LIB) -o $@ $^ -lpthread -fsanitize=thread -g 
 
 clean:
 	rm -rf $(OBJ)

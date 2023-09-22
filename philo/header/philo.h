@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 19:57:16 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/22 08:30:55 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 08:52:23 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,11 @@ int				take_rfork(t_philo *philo);
 int				is_fin(t_philo *philo);
 int				backfork(t_philo *philo);
 int				spend_time(t_philo *philo, int val);
+void			print_action(char *str, t_philo *philo);
 
 # define EAT "%lu %d is eating\n"
 # define SLP "%lu %d is sleeping\n"
 # define THK "%lu %d is thinking\n"
+# define TKF "%lu %d has taken a fork\n"
+# define DED "%lu %d died\n"
 #endif

@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:50:16 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/22 08:33:07 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:01:18 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,8 @@ int	is_fin(t_philo *philo)
 	pthread_mutex_unlock(&(philo->arg->mutex));
 	if ((int)((get_usec() - philo->ltteat) / 1000) > philo->arg->ttdie)
 	{
-		pthread_mutex_lock(&(philo->arg->mutex));
-		printf("%lu %d died\n" \
-			, (get_usec() - philo->arg->itime) / 1000, philo->philon + 1);
+		print_action(DED, philo);
 		philo->arg->isfin = 1;
-		pthread_mutex_unlock(&(philo->arg->mutex));
 		return (-1);
 	}
 	if (philo->eatcnt == philo->arg->mxeat)
@@ -52,14 +49,12 @@ int	take_rfork(t_philo *philo)
 		pthread_mutex_lock(&(philo->arg->fmtx[fnum]));
 		if (!(philo->arg->fork[fnum]))
 		{
-			printf("%lu %d has taken a fork\n" \
-			, (get_usec() - philo->arg->itime) / 1000, \
-			philo->philon + 1);
+			print_action(TKF, philo);
 			philo->arg->fork[fnum] = 1;
 			break ;
 		}
 		pthread_mutex_unlock(&(philo->arg->fmtx[fnum]));
-		usleep(2);
+		usleep(5);
 	}
 	pthread_mutex_unlock(&(philo->arg->fmtx[fnum]));
 	return (0);
@@ -74,14 +69,12 @@ int	take_lfork(t_philo *philo)
 		pthread_mutex_lock(&(philo->arg->fmtx[philo->philon]));
 		if (!(philo->arg->fork[philo->philon]))
 		{
-			printf("%lu %d has taken a fork\n" \
-			, (get_usec() - philo->arg->itime) / 1000, \
-			philo->philon + 1);
+			print_action(TKF, philo);
 			philo->arg->fork[philo->philon] = 1;
 			break ;
 		}
 		pthread_mutex_unlock(&(philo->arg->fmtx[philo->philon]));
-		usleep(2);
+		usleep(5);
 	}
 	pthread_mutex_unlock(&(philo->arg->fmtx[philo->philon]));
 	return (0);

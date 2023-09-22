@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:18:41 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/22 08:26:43 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 08:54:38 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,13 @@ int	spend_time(t_philo *philo, int val)
 			return (-1);
 	}
 	return (0);
+}
+
+void	print_action(char *str, t_philo *philo)
+{
+	pthread_mutex_lock(&(philo->arg->mutex));
+	if (!philo->arg->isfin)
+		printf(str, (get_usec() - philo->arg->itime) / 1000, \
+		philo->philon + 1);
+	pthread_mutex_unlock(&(philo->arg->mutex));
 }
