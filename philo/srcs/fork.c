@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:50:16 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/22 09:01:18 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:25:44 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	is_fin(t_philo *philo)
 	if ((int)((get_usec() - philo->ltteat) / 1000) > philo->arg->ttdie)
 	{
 		print_action(DED, philo);
+		pthread_mutex_lock(&(philo->arg->mutex));
 		philo->arg->isfin = 1;
+		pthread_mutex_unlock(&(philo->arg->mutex));
 		return (-1);
 	}
 	if (philo->eatcnt == philo->arg->mxeat)

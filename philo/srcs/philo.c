@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/17 21:38:06 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/09/22 08:53:12 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 09:37:38 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	eat(t_philo *philo)
 			return ;
 	}
 	print_action(EAT, philo);
+	philo->ltteat = get_usec();
 	if (spend_time(philo, philo->arg->tteat))
 		return ;
 	philo->eatcnt += 1;
@@ -85,8 +86,9 @@ int	philo(t_arg *arg)
 		pss[i].eatcnt = 0;
 		pthread_create(&ths[i], 0, routine, &pss[i]);
 	}
-	i = -1;
-	while (++i < arg->nofpl)
+	while (i-- > 0)
 		pthread_join(ths[i], 0);
+	free(ths);
+	free(pss);
 	return (0);
 }
