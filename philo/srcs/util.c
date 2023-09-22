@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:18:41 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/22 09:36:16 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:17:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ int	free_arg(t_arg *arg)
 {
 	int	i;
 
-	if (arg->fork)
+	if (!arg->fork)
 		free(arg->fork);
 	i = -1;
 	while (++i < arg->nofpl)
 		pthread_mutex_destroy(&(arg->fmtx[i]));
 	pthread_mutex_destroy(&(arg->mutex));
-	if (arg->fmtx)
+	if (!arg->fmtx)
 		free(arg->fmtx);
 	return (-1);
 }
