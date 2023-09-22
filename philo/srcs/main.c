@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/12 20:36:33 by minseunk          #+#    #+#             */
-/*   Updated: 2023/09/22 09:39:32 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/09/22 15:41:29 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	m_init(t_arg *arg)
 {
 	int	i;
 
+	arg->fmtx = 0;
 	arg->fmtx = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * \
 	arg->nofpl);
 	if (!arg->fmtx)
@@ -30,6 +31,7 @@ int	m_init(t_arg *arg)
 
 int	init(t_arg *arg, int ac, char **av)
 {
+	arg->fork = 0;
 	if (ft_atoi(av[1]) <= 0 || ft_atoi(av[2]) <= 0 || \
 		ft_atoi(av[3]) <= 0 || ft_atoi(av[4]) <= 0)
 		return (-1);
