@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 01:11:10 by minseunk          #+#    #+#             */
-/*   Updated: 2023/07/02 11:33:43 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/11 09:19:41 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_fdf
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	void	*img_ptr;
 	int		(**map)[3];
 	int		col;
 	int		row;
@@ -33,6 +34,10 @@ typedef struct s_fdf
 	int		mulz;
 	int		pmx;
 	int		pmy;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 	double	ang[3];
 }	t_fdf;
 
@@ -48,6 +53,7 @@ void		rota(t_fdf *fdf);
 void		weit(t_fdf *fdf);
 void		bias(t_fdf *fdf);
 int			init(t_fdf *fdf, char *file);
+void		my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
 
 # define X 0
 # define Y 1
