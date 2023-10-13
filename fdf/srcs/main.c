@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/11 09:40:18 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/14 01:24:23 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	set_data(t_fdf *fdf)
 	fdf->ang[Z] = -PI / 6;
 	if (fdf->col > fdf->row)
 	{
-		fdf->mulxy = COLPIX / fdf->col / 3;
+		fdf->mulxy = COLPIX / fdf->col;
 		fdf->pmx = (COLPIX - (fdf->col * fdf->mulxy)) / 3;
 		fdf->pmy = (COLPIX - (fdf->col * fdf->mulxy)) / 3;
 	}
 	else
 	{
-		fdf->mulxy = ROWPIX / fdf->row / 3;
+		fdf->mulxy = ROWPIX / fdf->row;
 		fdf->pmx = (COLPIX - (fdf->col * fdf->mulxy)) / 3;
 		fdf->pmy = (COLPIX - (fdf->col * fdf->mulxy)) / 3;
 	}
@@ -52,9 +52,9 @@ void	set_data(t_fdf *fdf)
 	else
 		fdf->mulz = fdf->mulxy / 2;
 	if (fdf->mulxy < 2)
-		fdf->mulxy = 2;
+		fdf->mulxy = 4;
 	if (!fdf->mulz)
-		fdf->mulz = 1;
+		fdf->mulz = 4;
 }
 
 int	init(t_fdf *fdf, char *file)
@@ -68,6 +68,11 @@ int	init(t_fdf *fdf, char *file)
 	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, COLPIX, ROWPIX);
 	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &(fdf->bits_per_pixel) \
 	, &fdf->line_length, &fdf->endian);
+	fdf->objx = 200;
+	fdf->objy = 200;
+	fdf->obja = 0;
+	fdf->objdx = cos(fdf->obja) * 5;
+	fdf->objdy = sin(fdf->obja) * 5;
 	set_data(fdf);
 	return (0);
 }
@@ -83,6 +88,39 @@ int	fin(void *param)
 	return (0);
 }
 
+void	draw_obj(t_fdf *fdf)
+{
+	int x;
+	int	xtemp;
+	int ytemp;
+	int y;
+	int r;
+
+	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, COLPIX, ROWPIX);
+	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &(fdf->bits_per_pixel) \
+	, &fdf->line_length, &fdf->endian);
+	r = 10;
+	x = fdf->objx - r;
+	while (++x < fdf->objx + r)
+	{
+		y = fdf->objy - r;
+		while (++y < fdf->objy + r)
+		{
+			if ((x - fdf->objx) * (x - fdf->objx) + (y - fdf->objy) * (y - fdf->objy) < r * r)
+			{
+				if (x < fdf->objx)
+				{
+					xtemp = cos(fdf->obja) * (x - fdf->objx) - sin(fdf->obja) * (y - fdf->objy) + fdf->objx;
+					ytemp = sin(fdf->obja) * (x - fdf->objx) + cos(fdf->obja) * (y - fdf->objy) + fdf->objy;
+					my_mlx_pixel_put(fdf, xtemp, ytemp, 0xff00ff);
+				}
+			}
+		}
+	}
+	draw_map(fdf);
+	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
+}
+/*
 static void mul(void *param)
 {
 	t_fdf	*fdf;
@@ -119,13 +157,70 @@ static void mul(void *param)
 	}
 	draw_map(fdf);
 }
+*/
+
+void move_up(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	fdf->objx -= fdf->objdx;
+	fdf->objy -= fdf->objdy;
+	mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
+	draw_obj(fdf);
+}
+
+void move_down(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	fdf->objx += fdf->objdx;
+	fdf->objy += fdf->objdy;
+	mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
+	draw_obj(fdf);
+}
+
+void turn_right(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	fdf->obja -= 0.1;
+	if (fdf->obja < 0)
+		fdf->obja += 2 * PI;
+	fdf->objdx = cos(fdf->obja) * 5;
+	fdf->objdy = sin(fdf->obja) * 5;
+	mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
+	draw_obj(fdf);
+}
+
+void turn_left(void *param)
+{
+	t_fdf	*fdf;
+
+	fdf = param;
+	fdf->obja += 0.1;
+	if (fdf->obja > 2 * PI)
+		fdf->obja -= 2 * PI;
+	fdf->objdx = cos(fdf->obja) * 5;
+	fdf->objdy = sin(fdf->obja) * 5;
+	mlx_destroy_image(fdf->mlx_ptr, fdf->img_ptr);
+	draw_obj(fdf);
+}
 
 int	key_handler(int keycode, void *param)
 {
 	if (keycode == ESC)
 		fin(param);
-	if (keycode == 12)
-		mul(param);
+	if (keycode == KW)
+		move_up(param);
+	if (keycode == KS)
+		move_down(param);
+	if (keycode == KA)
+		turn_left(param);
+	if (keycode == KD)
+		turn_right(param);
 	return (0);
 }
 
@@ -140,8 +235,9 @@ int	main(int ac, char **av)
 	mlx_hook(fdf.win_ptr, EVT_KEYE, 0, key_handler, &fdf);
 	mlx_hook(fdf.win_ptr, EVT_EXIT, 0, fin, &fdf);
 	weit(&fdf);
-	rota(&fdf);
+//	rota(&fdf);
 	bias(&fdf);
+	draw_obj(&fdf);
 	draw_map(&fdf);
 	mlx_loop(fdf.mlx_ptr);
 	free_map(&fdf);

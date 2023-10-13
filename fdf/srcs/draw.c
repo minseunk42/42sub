@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 03:59:37 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/11 09:23:22 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/14 01:36:05 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,9 +117,9 @@ void	draw_map(t_fdf *fdf)
 	int	i;
 	int	j;
 
-	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, COLPIX, ROWPIX);
-	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &(fdf->bits_per_pixel) \
-	, &fdf->line_length, &fdf->endian);
+	//fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, COLPIX, ROWPIX);
+	//fdf->addr = mlx_get_data_addr(fdf->img_ptr, &(fdf->bits_per_pixel) \
+	//, &fdf->line_length, &fdf->endian);
 	i = -1;
 	while (++i < fdf->row - 1)
 	{
@@ -134,5 +134,4 @@ void	draw_map(t_fdf *fdf)
 	j = -1;
 	while (++j < fdf->col - 1)
 		draw_line(fdf, fdf->map[i][j], fdf->map[i][j + 1]);
-	mlx_put_image_to_window(fdf->mlx_ptr, fdf->win_ptr, fdf->img_ptr, 0, 0);
 }
