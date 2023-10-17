@@ -6,11 +6,12 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 04:49:00 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/14 06:40:06 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:51:16 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
+#include <stdio.h>
 
 int worldMap[24][24]=
 {
@@ -40,6 +41,19 @@ int worldMap[24][24]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
+void draw(t_mlx_data *md)
+{
+	int	w = 0;
+	int	h = 0;
+  int *temp;
+
+	md->img_ptr = mlx_xpm_file_to_image(md->mlx_ptr, "./test", &w, &h);
+  md->addr = mlx_get_data_addr(md->img_ptr, &(md->bits_per_pixel) \
+	, &md->line_length, &md->endian);
+  temp = (int *)&md->addr[(md->bits_per_pixel / 8) * 4];
+  printf("%d %d %d \n", w, h, temp[0]);
+}
+
 int	main(void)
 {
 	t_mlx_data	md;
@@ -47,6 +61,7 @@ int	main(void)
 	init(&md);
 	mlx_hook(md.win_ptr, EVT_KEYE, 0, key_handler, &md);
 	mlx_hook(md.win_ptr, EVT_EXIT, 0, fin, &md);
-	raycast(&md);
+  //draw(&md);
+  raycast(&md);
 	mlx_loop(md.mlx_ptr);
 }

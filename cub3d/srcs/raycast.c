@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/14 07:17:44 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/17 10:33:38 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_rc(t_rc_data *rc, t_mlx_data *md, int linei)
 {
-	rc->camerax = linei * 2 / (double)COLPIX - 1;
+	rc->camerax = (linei * 2 / (double)COLPIX) - 1;
 	rc->raydirx = md->dval[DRX] + md->dval[PLX] * rc->camerax;
 	rc->raydiry = md->dval[DRY] + md->dval[PLY] * rc->camerax;
 	if (rc->raydirx == 0)
@@ -114,10 +114,14 @@ static void	draw_vline(t_rc_data *rc, t_mlx_data *md, int linei)
 	}
 	//끝!
 	temp = -1;
-	while (++temp < drawend)
+	while (++temp < ROWPIX)
 	{
-		if (temp > drawstart)
-			my_mlx_pixel_put(md, temp, linei, color);
+		if (temp < drawstart)
+			my_mlx_pixel_put(md, linei, temp, 0xffff);
+		else if (temp < drawend)
+			my_mlx_pixel_put(md, linei, temp, color);
+		else
+			my_mlx_pixel_put(md, linei, temp, 0xd3d3d3);
 	}
 }
 
