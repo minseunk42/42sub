@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/17 11:12:00 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 08:26:34 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,16 @@ typedef struct s_rc_data
 # define KS 1
 # define KD 2
 # define KW 13
+# define KL 123
+# define KR 124
 # define PSX 0
 # define PSY 1
 # define DRX 2
 # define DRY 3
 # define PLX 4
 # define PLY 5
-# define SPINSP 0.1
+# define SPINA 0.13
+# define PI 3.14159
 
 void	movef(void *param);
 void	moveb(void *param);
