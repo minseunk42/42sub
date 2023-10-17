@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:16:43 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/17 10:49:48 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:13:07 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ int	key_handler(int keycode, void *param)
 	if (keycode == KS)
 		moveb(param);
 	if (keycode == KA)
-		turnl(param);
+		movel(param);
 	if (keycode == KD)
-		turnr(param);
+		mover(param);
 	return (0);
 }
 

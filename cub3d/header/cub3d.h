@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/14 07:14:08 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/17 11:12:00 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_rc_data
 
 void	movef(void *param);
 void	moveb(void *param);
+void	movel(void *param);
+void	mover(void *param);
 void	turnl(void *param);
 void	turnr(void *param);
 void	raycast(t_mlx_data *mlx_data);
