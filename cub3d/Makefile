@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 HEADER = -I./header
 RM = rm -rf
-SRCS = srcs/main.c srcs/raycast.c srcs/move.c srcs/util.c srcs/turn.c
+SRCS = srcs/main.c srcs/raycast.c srcs/move.c srcs/util.c srcs/turn.c srcs/event_util.c srcs/draw_util.c
 OBJS = $(SRCS:.c=.o)
 MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGl -framework AppKit
 

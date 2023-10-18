@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:10:56 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/18 09:30:11 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:24:24 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_err_exit(const char *s)
 	exit(1);
 }
 
-void	free_data(t_file_data *data)
+int	free_data(t_data *data)
 {
 	int	i;
 
@@ -51,4 +51,5 @@ void	free_data(t_file_data *data)
 	free(data->map);
 	free(data->pos);
 	free(data);
+	return (-1);
 }

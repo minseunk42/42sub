@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   config.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/18 09:30:11 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/16 22:36:17 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	check_checker(t_checker *checker)
 	return (0);
 }
 
-static void	get_s_config(t_file_data *data, char *line)
+static void	get_s_config(t_data *data, char *line)
 {
 	int	idx;
 	int	id;
@@ -59,11 +59,13 @@ static void	get_s_config(t_file_data *data, char *line)
 		data->checker->ceiling += 1;
 	if (id >= 1 && id <= 4)
 		get_text(data, line, &idx, id);
-	if (id == 5 || id == 6)
+	else if (id == 5 || id == 6)
 		get_rgb(data, line, &idx, id);
+	else
+		free(line);
 }
 
-static void	get_config(t_file_data *data)
+static void	get_config(t_data *data)
 {
 	char		*line;
 
@@ -88,12 +90,12 @@ static void	get_config(t_file_data *data)
 		print_err_exit("Config Error\n");
 }
 
-t_file_data	*get_data(const char *path)
+t_data	*get_data(const char *path)
 {
-	t_file_data	*data;
+	t_data	*data;
 	char	*line;
 
-	data = (t_file_data *)malloc(sizeof(t_file_data));
+	data = (t_data *)malloc(sizeof(t_data));
 	if (!data)
 		print_err_exit("Parse Error\n");
 	data->fd = open(path, O_RDONLY);

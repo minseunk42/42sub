@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 10:42:19 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:21:31 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,50 +82,34 @@ static void	singleray(t_rc_data *rc, t_mlx_data *md)
 		rc->walldist = (rc->sidedisty - rc->deltadisty);
 }
 
-static void	draw_vline(t_rc_data *rc, t_mlx_data *md, int linei)
+static void	draw_vline(t_rc_data *rc, t_mlx_data *md, t_data *data, int linex)
 {
-	int	lineheight;
-	int	drawstart;
-	int	drawend;
-	int	color;
-	int	temp;
 
-	lineheight = (int)(ROWPIX / rc->walldist);
-	drawstart = -lineheight / 2 + ROWPIX / 2;
-	if (drawstart < 0)
-		drawstart = 0;
-	drawend = lineheight / 2 + ROWPIX / 2;
-	if (drawend >= ROWPIX)
-		drawend = ROWPIX - 1;
+	int	liney;
+
+	rc->lineheight = (int)(ROWPIX / rc->walldist);
+	rc->drawstart = ROWPIX / 2 - (rc->lineheight / 2);
+	if (rc->drawstart < 0)
+		rc->drawstart = 0;
+	rc->drawend = ROWPIX / 2 + (rc->lineheight / 2);
+	if (rc->drawend >= ROWPIX)
+		rc->drawend = ROWPIX - 1;
 	//여기부터 텍스쳐 매핑하면
-	if (rc->side == 1)
-	{
-		if (rc->raydiry > 0)
-			color = 0xff0000;
-		else
-			color = 0x00ff00;
-	}
-	else
-	{
-		if (rc->raydirx > 0)
-			color = 0x0000ff;
-		else
-			color = 0xffffff;
-	}
+
 	//끝!
-	temp = -1;
-	while (++temp < ROWPIX)
+	liney = -1;
+	while (++liney < ROWPIX)
 	{
-		if (temp < drawstart)
-			my_mlx_pixel_put(md, linei, temp, 0xffff);
+		if (liney < drawstart)
+			my_mlx_pixel_put(md, linex, liney, get_color(data->ceiling));
 		else if (temp < drawend)
-			my_mlx_pixel_put(md, linei, temp, color);
+			my_mlx_pixel_put(md, linex, liney, tex_color(rc, md));
 		else
-			my_mlx_pixel_put(md, linei, temp, 0xd3d3d3);
+			my_mlx_pixel_put(md, linex, liney, get_color(data->floor));
 	}
 }
 
-void	raycast(t_mlx_data *md)
+void	raycast(t_mlx_data *md, t_data *data)
 {
 	t_rc_data	rc;
 	int			linei;
@@ -133,7 +117,7 @@ void	raycast(t_mlx_data *md)
 	linei = -1;
 	while (++linei < COLPIX)
 	{
-		init_rc(&rc, md, linei);
+		init_rc(&rc, md, data, linei);
 		singleray(&rc, md);
 		draw_vline(&rc, md, linei);
 	}

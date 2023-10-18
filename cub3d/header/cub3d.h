@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 08:26:34 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:14:11 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+# include "../srcs/parser/parse.h"
 
 typedef struct s_mlx_data
 {
@@ -49,6 +50,9 @@ typedef struct s_rc_data
 	int		stepx;
 	int		stepy;
 	int		side;
+	int		lineheight;
+	int		drawstart;
+	int		drawend;
 }	t_rc_data;
 
 # define COLPIX 1920
@@ -71,6 +75,10 @@ typedef struct s_rc_data
 # define DRY 3
 # define PLX 4
 # define PLY 5
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 # define SPINA 0.13
 # define PI 3.14159
 
@@ -82,9 +90,11 @@ void	turnl(void *param);
 void	turnr(void *param);
 void	raycast(t_mlx_data *mlx_data);
 void	my_mlx_pixel_put(t_mlx_data *md, int x, int y, int color);
-void	init(t_mlx_data *md);
+int		tex_color(t_rc_data *rc, t_mlx_data *md, t_data *data, int linei);
+int		init(t_mlx_data *md);
 int		fin(void *param);
 int		key_handler(int keycode, void *param);
+int		get_color(t_rgb);
 
 extern int	worldMap[24][24];
 

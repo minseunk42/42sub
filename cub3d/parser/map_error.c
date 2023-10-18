@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:37:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/18 10:32:58 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 18:01:06 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_pos(t_file_data *data)
 	return (0);
 }
 
-static int	get_wall_fw(t_file_data *data, int *wall_f, int *wall_r)
+static int	get_wall_fw(t_data *data, int *wall_f, int *wall_r)
 {
 	int	i;
 
@@ -76,7 +76,7 @@ static int	get_wall_fw(t_file_data *data, int *wall_f, int *wall_r)
 	return (1);
 }
 
-int	check_wall(t_file_data *data)
+int	check_wall(t_data *data)
 {
 	int	wall_f;
 	int	wall_r;

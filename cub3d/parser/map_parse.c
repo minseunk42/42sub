@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:21:28 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/18 09:30:11 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/16 22:39:14 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_mapline	*new_mapline(char *line)
 	return (p);
 }
 
-static t_mapline	*link_map(t_file_data *data, char *line)
+static t_mapline	*link_map(t_data *data, char *line)
 {
 	t_mapline	*p;
 	t_mapline	*q;
@@ -50,7 +50,7 @@ static t_mapline	*link_map(t_file_data *data, char *line)
 	return (p);
 }
 
-void	mov_to_arr(t_file_data *data, t_mapline *mapline)
+void	mov_to_arr(t_data *data, t_mapline *mapline)
 {
 	t_mapline	*p;
 
@@ -75,7 +75,7 @@ void	mov_to_arr(t_file_data *data, t_mapline *mapline)
 	make_arr(data, mapline);
 }
 
-void	get_map(t_file_data *data, char *line)
+void	get_map(t_data *data, char *line)
 {
 	t_mapline	*mapline;
 
