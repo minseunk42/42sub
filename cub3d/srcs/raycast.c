@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 22:32:00 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/18 22:33:54 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,15 +114,15 @@ int	raycast(t_mlx_data *md)
 
 	md->img_ptr = mlx_new_image(md->mlx_ptr, COLPIX, ROWPIX);
 	if (!md->img_ptr)
-		return (free_mlx(md), free_data(data));
+		return (free_mlx(md));
 	md->addr = mlx_get_data_addr(md->img_ptr, &(md->bits_per_pixel) \
 	, &md->line_length, &md->endian);
 	if (!md->addr)
-		return (free_mlx(md), free_data(data));
+		return (free_mlx(md));
 	linei = -1;
 	while (++linei < COLPIX)
 	{
-		init_rc(&rc, md, data, linei);
+		init_rc(&rc, md, linei);
 		singleray(&rc, md);
 		draw_vline(&rc, md, linei);
 	}
