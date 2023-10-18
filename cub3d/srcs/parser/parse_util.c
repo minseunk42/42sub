@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 21:10:56 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/17 18:12:27 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:30:11 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	print_err_exit(const char *s)
 	exit(1);
 }
 
-void	free_data(t_data *data)
+void	free_data(t_file_data *data)
 {
 	int	i;
 

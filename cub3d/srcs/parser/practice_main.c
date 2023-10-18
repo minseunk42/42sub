@@ -9,7 +9,7 @@ void	check_leak(void)
 int main(int argc, char *argv[])
 {
 	//atexit(check_leak);
-	t_data *data = run_parse(argc, argv);
+	t_file_data *data = run_parse(argc, argv);
 	printf("NO : %s\n", data->north);
 	printf("SO : %s\n", data->south);
 	printf("WE : %s\n", data->west);

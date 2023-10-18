@@ -3,27 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:37:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/17 22:39:16 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/18 10:32:58 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-int	check_pos(t_data *data)
+static int	get_dir(char c)
+{
+	if (c == 'N')
+		return (IDN);
+	if (c == 'S')
+		return (IDS);
+	if (c == 'W')
+		return (IDW);
+	if (c == 'E')
+		return (IDE);
+}
+
+int	check_pos(t_file_data *data)
 {
 	int	i;
 	int	j;
 	int	count;
 
-	i = 0;
+	i = -1;
 	count = 0;
-	while (data->map[i])
+	while (data->map[++i])
 	{
-		j = 0;
-		while (data->map[i][j])
+		j = -1;
+		while (data->map[i][++j])
 		{
 			if (data->map[i][j] == 'N' || data->map[i][j] == 'S'
 			|| data->map[i][j] == 'W' || data->map[i][j] == 'E')
@@ -31,17 +43,16 @@ int	check_pos(t_data *data)
 				count++;
 				data->pos->x = j;
 				data->pos->y = i;
+				data->pos->d = get_dir(data->map[i][j]);
 			}
-			j++;
 		}
-		i++;
 	}
 	if (count == 1)
 		return (1);
 	return (0);
 }
 
-static int	get_wall_fw(t_data *data, int *wall_f, int *wall_r)
+static int	get_wall_fw(t_file_data *data, int *wall_f, int *wall_r)
 {
 	int	i;
 
@@ -65,7 +76,7 @@ static int	get_wall_fw(t_data *data, int *wall_f, int *wall_r)
 	return (1);
 }
 
-int	check_wall(t_data *data)
+int	check_wall(t_file_data *data)
 {
 	int	wall_f;
 	int	wall_r;

@@ -6,12 +6,11 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 04:49:00 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 09:13:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 10:34:44 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
-#include <stdio.h>
 
 int worldMap[24][24]=
 {
@@ -43,15 +42,12 @@ int worldMap[24][24]=
 
 void draw(t_mlx_data *md)
 {
-	int	w = 0;
-	int	h = 0;
   int *temp;
 
 	md->img_ptr = mlx_xpm_file_to_image(md->mlx_ptr, "./test", &w, &h);
   md->addr = mlx_get_data_addr(md->img_ptr, &(md->bits_per_pixel) \
 	, &md->line_length, &md->endian);
   temp = (int *)&md->addr[(md->bits_per_pixel / 8) * 4];
-  printf("%d %d %d \n", w, h, temp[0]);
 }
 
 int	main(void)

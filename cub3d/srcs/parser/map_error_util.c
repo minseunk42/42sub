@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_error_util.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:33:36 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/17 22:39:49 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:30:11 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	check_f_roop(t_data *data, int *wall_f, int i)
+static int	check_f_roop(t_file_data *data, int *wall_f, int i)
 {
 	if (*wall_f > 0)
 	{
@@ -35,7 +35,7 @@ static int	check_f_roop(t_data *data, int *wall_f, int i)
 	return (0);
 }
 
-static int	check_r_roop(t_data *data, int *wall_r, int i)
+static int	check_r_roop(t_file_data *data, int *wall_r, int i)
 {
 	if (*wall_r < data->map_w - 1)
 	{
@@ -58,7 +58,7 @@ static int	check_r_roop(t_data *data, int *wall_r, int i)
 	return (0);
 }
 
-int	check_wall_fw(t_data *data, int *wall_f, int *wall_r)
+int	check_wall_fw(t_file_data *data, int *wall_f, int *wall_r)
 {
 	int	i;
 

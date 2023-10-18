@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   config_detail.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:12:58 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 20:21:53 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/18 09:30:11 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include "parse.h"
 
-void	get_text(t_data *data, char *line, int *idx, int id)
+void	get_text(t_file_data *data, char *line, int *idx, int id)
 {
 	char	*loc;
 	int		start;
@@ -69,7 +69,7 @@ static void	check_rgb_err(char *line, int *idx)
 	add_rgb_err(line, idx);
 }
 
-void	get_rgb(t_data *data, char *line, int *idx, int id)
+void	get_rgb(t_file_data *data, char *line, int *idx, int id)
 {
 	if (!data || !line)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/17 10:33:38 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 10:42:19 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	init_rc(t_rc_data *rc, t_mlx_data *md, int linei)
 	rc->mapy = (int)md->dval[PSY];
 }
 
-static void	set_raydir(t_rc_data *rc, t_mlx_data *md)
+static void	init_ray(t_rc_data *rc, t_mlx_data *md)
 {
 	if (rc->raydirx < 0)
 	{	
@@ -58,7 +58,7 @@ static void	singleray(t_rc_data *rc, t_mlx_data *md)
 	int	is_wall;
 
 	is_wall = 0;
-	set_raydir(rc, md);
+	init_ray(rc, md);
 	while (!is_wall)
 	{
 		if (rc->sidedistx < rc->sidedisty)
