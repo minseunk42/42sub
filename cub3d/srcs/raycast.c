@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 20:14:58 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/18 22:32:00 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ static void	draw_vline(t_rc_data *rc, t_mlx_data *md, t_data *data, int linex)
 	liney = -1;
 	while (++liney < ROWPIX)
 	{
+		rc->winy = liney;
 		if (liney < rc->drawstart)
 			my_mlx_pixel_put(md, linex, liney, get_color(data->ceiling));
 		else if (liney < rc->drawend)
