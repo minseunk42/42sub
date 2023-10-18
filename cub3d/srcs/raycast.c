@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 19:21:31 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/18 20:14:58 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	singleray(t_rc_data *rc, t_mlx_data *md)
 			rc->mapy += rc->stepy;
 			rc->side = 1;
 		}
-		if (worldMap[rc->mapx][rc->mapy] > 0)
+		if (md->data->map[rc->mapx][rc->mapy] == 1)
 			is_wall = 1;
 	}
 	if (rc->side == 0)
@@ -94,26 +94,30 @@ static void	draw_vline(t_rc_data *rc, t_mlx_data *md, t_data *data, int linex)
 	rc->drawend = ROWPIX / 2 + (rc->lineheight / 2);
 	if (rc->drawend >= ROWPIX)
 		rc->drawend = ROWPIX - 1;
-	//여기부터 텍스쳐 매핑하면
-
-	//끝!
 	liney = -1;
 	while (++liney < ROWPIX)
 	{
-		if (liney < drawstart)
+		if (liney < rc->drawstart)
 			my_mlx_pixel_put(md, linex, liney, get_color(data->ceiling));
-		else if (temp < drawend)
+		else if (liney < rc->drawend)
 			my_mlx_pixel_put(md, linex, liney, tex_color(rc, md));
 		else
 			my_mlx_pixel_put(md, linex, liney, get_color(data->floor));
 	}
 }
 
-void	raycast(t_mlx_data *md, t_data *data)
+int	raycast(t_mlx_data *md)
 {
 	t_rc_data	rc;
 	int			linei;
 
+	md->img_ptr = mlx_new_image(md->mlx_ptr, COLPIX, ROWPIX);
+	if (!md->img_ptr)
+		return (free_mlx(md), free_data(data));
+	md->addr = mlx_get_data_addr(md->img_ptr, &(md->bits_per_pixel) \
+	, &md->line_length, &md->endian);
+	if (!md->addr)
+		return (free_mlx(md), free_data(data));
 	linei = -1;
 	while (++linei < COLPIX)
 	{
@@ -122,4 +126,5 @@ void	raycast(t_mlx_data *md, t_data *data)
 		draw_vline(&rc, md, linei);
 	}
 	mlx_put_image_to_window(md->mlx_ptr, md->win_ptr, md->img_ptr, 0, 0);
+	return (0);
 }

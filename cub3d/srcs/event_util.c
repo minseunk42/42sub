@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:16:43 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 17:41:22 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/18 20:10:02 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,20 @@ int	key_handler(int keycode, void *param)
 	return (0);
 }
 
+int	free_mlx(t_mlx_data *md)
+{
+	if (md->img_ptr)
+		mlx_destroy_image(md->mlx_ptr, md->img_ptr);
+	mlx_destroy_window(md->mlx_ptr, md->win_ptr);
+	free_data(md->data);
+	return (-1);
+}
+
 int	fin(void *param)
 {
 	t_mlx_data	*md;
 
 	md = param;
-	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
-	mlx_destroy_window(md->mlx_ptr, md->win_ptr);
-	exit(0);
+	free_mlx(md);
 	return (0);
 }

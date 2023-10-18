@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 19:14:11 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/18 21:04:12 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,28 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
-# include "../srcs/parser/parse.h"
+# include "../parser/parse.h"
 
-typedef struct s_mlx_data
+typedef struct s_texture
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*img_ptr;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	double	dval[6];
+}	t_texture;
+
+typedef struct s_mlx_data
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	void		*img_ptr;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	double		dval[6];
+	t_texture	texture[4];
+	t_data		*data;
 }	t_mlx_data;
 
 typedef struct s_rc_data
@@ -45,11 +55,13 @@ typedef struct s_rc_data
 	double	sidedistx;
 	double	sidedisty;
 	double	walldist;
+	double	tstep;
 	int		mapx;
 	int		mapy;
 	int		stepx;
 	int		stepy;
 	int		side;
+	int		winy;
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
@@ -57,7 +69,6 @@ typedef struct s_rc_data
 
 # define COLPIX 1920
 # define ROWPIX 1080
-
 # define ST 0
 # define ED 1
 # define ESC 53
@@ -88,14 +99,13 @@ void	movel(void *param);
 void	mover(void *param);
 void	turnl(void *param);
 void	turnr(void *param);
-void	raycast(t_mlx_data *mlx_data);
+int		raycast(t_mlx_data *md);
 void	my_mlx_pixel_put(t_mlx_data *md, int x, int y, int color);
-int		tex_color(t_rc_data *rc, t_mlx_data *md, t_data *data, int linei);
+int		tex_color(t_rc_data *rc, t_mlx_data *md);
 int		init(t_mlx_data *md);
 int		fin(void *param);
 int		key_handler(int keycode, void *param);
-int		get_color(t_rgb);
-
-extern int	worldMap[24][24];
+int		get_color(t_rgb *rgb);
+int		free_mlx(t_mlx_data *md);
 
 #endif

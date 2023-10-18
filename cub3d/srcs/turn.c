@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   turn.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:20:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 08:28:47 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 19:49:19 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,6 @@ void	turnl(void *param)
 
 	md = param;
 	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
-	md->img_ptr = mlx_new_image(md->mlx_ptr, COLPIX, ROWPIX);
-	md->addr = mlx_get_data_addr(md->img_ptr, &(md->bits_per_pixel) \
-	, &md->line_length, &md->endian);
 	plx_temp = md->dval[PLX];
 	dx_temp = md->dval[DRX];
 	md->dval[DRX] = md->dval[DRX] * cos(SPINA) - md->dval[DRY] * sin(SPINA);
@@ -40,9 +37,6 @@ void	turnr(void *param)
 
 	md = param;
 	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
-	md->img_ptr = mlx_new_image(md->mlx_ptr, COLPIX, ROWPIX);
-	md->addr = mlx_get_data_addr(md->img_ptr, &(md->bits_per_pixel) \
-	, &md->line_length, &md->endian);
 	plx_temp = md->dval[PLX];
 	dx_temp = md->dval[DRX];
 	md->dval[DRX] = md->dval[DRX] * cos(-SPINA) - md->dval[DRY] * sin(-SPINA);
