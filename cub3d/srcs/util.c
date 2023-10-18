@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:16:43 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 08:30:25 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/18 08:54:48 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	init(t_mlx_data *md)
 	md->dval[DRX] = -1;
 	md->dval[DRY] = 0;
 	md->dval[PLX] = 0;
-	md->dval[PLY] = 0.66;
+	md->dval[PLY] = 0.7;
 }
 
 int	fin(void *param)
