@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/19 11:54:29 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:07:35 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,16 @@ static void	draw_vline(t_rc_data *rc, t_mlx_data *md, int linex)
 	if (rc->drawend >= ROWPIX)
 		rc->drawend = ROWPIX - 1;
 	liney = -1;
+	rc->wally = 0;
 	while (++liney < ROWPIX)
 	{
-		rc->winy = liney;
 		if (liney < rc->drawstart)
 			my_mlx_pixel_put(md, linex, liney, get_color(md->data->ceiling));
 		else if (liney < rc->drawend)
+		{
 			my_mlx_pixel_put(md, linex, liney, tex_color(rc, md));
+			rc->wally += 1;
+		}
 		else
 			my_mlx_pixel_put(md, linex, liney, get_color(md->data->floor));
 	}

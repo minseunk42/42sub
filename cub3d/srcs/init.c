@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:37:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/19 12:13:20 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:05:25 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,33 @@ static void	set_dir(t_mlx_data *md)
 	}
 }
 
-static int	set_tex(t_mlx_data *md)
+static int	set_tex_dir(t_mlx_data *md, int dir)
 {
 	md->img_ptr = mlx_new_image(md->mlx_ptr, COLPIX, ROWPIX);
 	if (!md->img_ptr)
-		return (free_mlx(md));
-	md->texture[NORTH].addr = mlx_get_data_addr(md->img_ptr, \
-	&(md->texture[NORTH].bits_per_pixel) \
-	, &md->texture[NORTH].line_length, &md->texture[NORTH].endian);
-	if (!md->texture[NORTH].addr)
+		return (-1);
+	md->texture[dir].addr = mlx_get_data_addr(md->img_ptr, \
+	&md->texture[dir].bits_per_pixel \
+	, &md->texture[dir].line_length, &md->texture[dir].endian);
+	if (!md->texture[dir].addr)
 	{
 		mlx_destroy_image(md->mlx_ptr, md->img_ptr);
-		return (free_mlx(md));
+		return (-1);
 	}
 	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
 	return (0);
+}
+
+static int	set_tex(t_mlx_data *md)
+{
+	if (set_tex_dir(md, NORTH))
+		return (-1);
+	if (set_tex_dir(md, SOUTH))
+		return (-1);
+	if (set_tex_dir(md, EAST))
+		return (-1);
+	if (set_tex_dir(md, WEST))
+		return (-1);
 }
 
 int	init(t_mlx_data *md)

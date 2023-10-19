@@ -6,7 +6,7 @@
 /*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 21:04:12 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/19 14:07:49 by ubuntu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_rc_data
 	int		stepx;
 	int		stepy;
 	int		side;
-	int		winy;
+	int		wally;
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
