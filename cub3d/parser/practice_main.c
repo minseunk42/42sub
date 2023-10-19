@@ -8,7 +8,7 @@ void	check_leak(void)
 
 int main(int argc, char *argv[])
 {
-	atexit(check_leak);
+	//atexit(check_leak);
 	t_data *data = run_parse(argc, argv);
 	printf("NO : %s\n", data->north);
 	printf("SO : %s\n", data->south);
@@ -17,9 +17,10 @@ int main(int argc, char *argv[])
 	printf("Floor : %d, %d, %d\n", data->floor->red, data->floor->green, data->floor->blue);
 	printf("Ceiling: %d, %d, %d\n", data->ceiling->red, data->ceiling->green, data->ceiling->blue);
 	int i = 0;
-
+	
 	if (!data->map[i])
 		return (0);
+	data->map[data->pos->y][data->pos->x] = 0;
 	while ((data->map[i]))
 	{
 		printf("%s\n", data->map[i]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:14:49 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 20:14:05 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/19 12:14:12 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void	movef(void *param)
 
 	md = param;
 	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
-	if (!md->data->map[(int)(md->dval[PSX] + md->dval[DRX])][(int)md->dval[PSY]])
+	if (md->data->map[(int)md->dval[PSY]][(int)(md->dval[PSX] + md->dval[DRX])] \
+	!= '1')
 		md->dval[PSX] += md->dval[DRX] / 3;
-	if (!md->data->map[(int)md->dval[PSX]][(int)(md->dval[PSY] + md->dval[DRY])])
+	if (md->data->map[(int)(md->dval[PSY] + md->dval[DRY])][(int)md->dval[PSX]] \
+	!= '1')
 		md->dval[PSY] += md->dval[DRY] / 3;
 	raycast(md);
 }
@@ -31,9 +33,11 @@ void	moveb(void *param)
 
 	md = param;
 	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
-	if (!md->data->map[(int)(md->dval[PSX] - md->dval[DRX])][(int)md->dval[PSY]])
+	if (md->data->map[(int)md->dval[PSY]][(int)(md->dval[PSX] - md->dval[DRX])] \
+	!= '1')
 		md->dval[PSX] -= md->dval[DRX] / 3;
-	if (!md->data->map[(int)md->dval[PSX]][(int)(md->dval[PSY] - md->dval[DRY])])
+	if (md->data->map[(int)(md->dval[PSY] - md->dval[DRY])][(int)md->dval[PSX]] \
+	!= '1')
 		md->dval[PSY] -= md->dval[DRY] / 3;
 	raycast(md);
 }
@@ -48,9 +52,9 @@ void	mover(void *param)
 	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
 	t_drx = -(md->dval[DRY] * sin(PI / 2));
 	t_dry = md->dval[DRX] * sin(PI / 2);
-	if (!md->data->map[(int)(md->dval[PSX] - t_drx)][(int)md->dval[PSY]])
+	if (md->data->map[(int)md->dval[PSY]][(int)(md->dval[PSX] - t_drx)] != '1')
 		md->dval[PSX] -= t_drx / 3;
-	if (!md->data->map[(int)md->dval[PSX]][(int)(md->dval[PSY] - t_dry)])
+	if (md->data->map[(int)(md->dval[PSY] - t_dry)][(int)md->dval[PSX]] != '1')
 		md->dval[PSY] -= t_dry / 3;
 	raycast(md);
 }
@@ -65,9 +69,9 @@ void	movel(void *param)
 	mlx_destroy_image(md->mlx_ptr, md->img_ptr);
 	t_drx = -(md->dval[DRY] * sin(PI / 2));
 	t_dry = md->dval[DRX] * sin(PI / 2);
-	if (!md->data->map[(int)(md->dval[PSX] + t_drx)][(int)md->dval[PSY]])
+	if (md->data->map[(int)md->dval[PSY]][(int)(md->dval[PSX] + t_drx)] != '1')
 		md->dval[PSX] += t_drx / 3;
-	if (!md->data->map[(int)md->dval[PSX]][(int)(md->dval[PSY] + t_dry)])
+	if (md->data->map[(int)(md->dval[PSY] + t_dry)][(int)md->dval[PSX]] != '1')
 		md->dval[PSY] += t_dry / 3;
 	raycast(md);
 }

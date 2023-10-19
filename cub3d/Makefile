@@ -3,10 +3,10 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 HEADER = -I./header
 RM = rm -rf
-SRCS = srcs/main.c srcs/raycast.c srcs/move.c srcs/util.c srcs/turn.c srcs/event_util.c srcs/draw_util.c \
+SRCS = srcs/main.c srcs/raycast.c srcs/move.c srcs/init.c srcs/turn.c srcs/event_util.c srcs/draw_util.c \
 parser/arg.c parser/array.c parser/config_detail.c parser/config_utils.c parser/config.c parser/ft_atoi.c \
-parser/get_next_line.c parser/get_next_line_util.c parser/map_error.c parser/map_error_util.c parser/map_parse.c \
-parser/map_parse_util.c parser/parse.c parser/rgb_parse.c parser/rgb_utils.c 
+parser/get_next_line.c parser/get_next_line_utils.c parser/map_error.c parser/map_error_util.c parser/map_parse.c \
+parser/map_parse_util.c parser/parse.c parser/rgb_parse.c parser/rgb_utils.c parser/parse_util.c
 OBJS = $(SRCS:.c=.o)
 MLX = -I /usr/local/include -L /usr/local/lib/ -lmlx -framework OpenGl -framework AppKit
 

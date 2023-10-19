@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:37:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/18 20:11:36 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/19 12:13:20 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	set_dir(t_mlx_data *md)
 		md->dval[PLX] = 0;
 		md->dval[PLY] = 0.7;
 		if (md->data->pos->d == NORTH)
-			md->dval[DRX] = -1;
-		else
 			md->dval[DRX] = 1;
+		else
+			md->dval[DRX] = -1;
 	}
 	else
 	{
@@ -30,9 +30,9 @@ static void	set_dir(t_mlx_data *md)
 		md->dval[PLY] = 0;
 		md->dval[PLX] = 0.7;
 		if (md->data->pos->d == WEST)
-			md->dval[DRY] = -1;
-		else
 			md->dval[DRY] = 1;
+		else
+			md->dval[DRY] = -1;
 	}
 }
 
@@ -41,9 +41,10 @@ static int	set_tex(t_mlx_data *md)
 	md->img_ptr = mlx_new_image(md->mlx_ptr, COLPIX, ROWPIX);
 	if (!md->img_ptr)
 		return (free_mlx(md));
-	md->texture->addr = mlx_get_data_addr(md->img_ptr, &(md->texture->bits_per_pixel) \
-	, &md->texture->line_length, &md->texture->endian);
-	if (!md->texture->addr)
+	md->texture[NORTH].addr = mlx_get_data_addr(md->img_ptr, \
+	&(md->texture[NORTH].bits_per_pixel) \
+	, &md->texture[NORTH].line_length, &md->texture[NORTH].endian);
+	if (!md->texture[NORTH].addr)
 	{
 		mlx_destroy_image(md->mlx_ptr, md->img_ptr);
 		return (free_mlx(md));
@@ -62,8 +63,8 @@ int	init(t_mlx_data *md)
 		return (free_mlx(md));
 	if (set_tex(md))
 		return (free_mlx(md));
-	md->dval[PSX] = md->data->pos->x;
-	md->dval[PSY] = md->data->pos->y;
+	md->dval[PSX] = md->data->pos->x + 0.5;
+	md->dval[PSY] = md->data->pos->y + 0.5;
 	set_dir(md);
 	return (0);
 }

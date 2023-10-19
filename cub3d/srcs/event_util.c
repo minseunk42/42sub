@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event_util.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:16:43 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 22:32:52 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/19 11:23:13 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int	fin(void *param)
 
 	md = param;
 	free_mlx(md);
+	exit(0);
 	return (0);
 }

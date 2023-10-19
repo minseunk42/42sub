@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/18 22:33:54 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/19 11:54:29 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	singleray(t_rc_data *rc, t_mlx_data *md)
 			rc->mapy += rc->stepy;
 			rc->side = 1;
 		}
-		if (md->data->map[rc->mapx][rc->mapy] == 1)
+		if (md->data->map[rc->mapy][rc->mapx] == '1')
 			is_wall = 1;
 	}
 	if (rc->side == 0)
@@ -82,9 +82,8 @@ static void	singleray(t_rc_data *rc, t_mlx_data *md)
 		rc->walldist = (rc->sidedisty - rc->deltadisty);
 }
 
-static void	draw_vline(t_rc_data *rc, t_mlx_data *md, t_data *data, int linex)
+static void	draw_vline(t_rc_data *rc, t_mlx_data *md, int linex)
 {
-
 	int	liney;
 
 	rc->lineheight = (int)(ROWPIX / rc->walldist);
@@ -99,11 +98,11 @@ static void	draw_vline(t_rc_data *rc, t_mlx_data *md, t_data *data, int linex)
 	{
 		rc->winy = liney;
 		if (liney < rc->drawstart)
-			my_mlx_pixel_put(md, linex, liney, get_color(data->ceiling));
+			my_mlx_pixel_put(md, linex, liney, get_color(md->data->ceiling));
 		else if (liney < rc->drawend)
 			my_mlx_pixel_put(md, linex, liney, tex_color(rc, md));
 		else
-			my_mlx_pixel_put(md, linex, liney, get_color(data->floor));
+			my_mlx_pixel_put(md, linex, liney, get_color(md->data->floor));
 	}
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/18 19:48:51 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/19 10:57:15 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,10 @@ int		check_wall(t_data *data);
 t_data	*get_data(const char *path);
 t_data	*run_parse(int argc, char *argv[]);
 int		free_data(t_data *data);
+
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 #endif

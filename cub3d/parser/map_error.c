@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_error.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 16:37:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/18 18:01:06 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/19 09:32:11 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 static int	get_dir(char c)
 {
 	if (c == 'N')
-		return (IDN);
+		return (NORTH);
 	if (c == 'S')
-		return (IDS);
+		return (SOUTH);
 	if (c == 'W')
-		return (IDW);
+		return (WEST);
 	if (c == 'E')
-		return (IDE);
+		return (EAST);
+	return (0);
 }
 
-int	check_pos(t_file_data *data)
+int	check_pos(t_data *data)
 {
 	int	i;
 	int	j;
