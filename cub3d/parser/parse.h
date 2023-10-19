@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/19 10:57:15 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:41:06 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_pos
 {
 	int	x;
 	int	y;
-	int d;
+	int	d;
 }	t_pos;
 
 typedef struct s_rgb
@@ -81,7 +81,7 @@ void	free_mapline(t_mapline *mapline);
 void	get_map(t_data *data, char *line);
 void	map_err_exit(int errnum);
 int		check_pos(t_data *data);
-int		check_wall_fw(t_data *data, int *wall_f, int *wall_r);
+int		char_surr(t_data *data);
 int		check_wall(t_data *data);
 t_data	*get_data(const char *path);
 t_data	*run_parse(int argc, char *argv[]);

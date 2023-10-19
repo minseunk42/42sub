@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	
 	if (!data->map[i])
 		return (0);
-	data->map[data->pos->y][data->pos->x] = 0;
+	//data->map[data->pos->y][data->pos->x] = 0;
 	while ((data->map[i]))
 	{
 		printf("%s\n", data->map[i]);

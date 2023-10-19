@@ -53,49 +53,55 @@ int	check_pos(t_data *data)
 	return (0);
 }
 
-static int	get_wall_fw(t_data *data, int *wall_f, int *wall_r)
+static int	check_surr(t_data *data, int i, int j)
 {
-	int	i;
-
-	i = 0;
-	while (i < data->map_w)
+	if (i > 0)
 	{
-		if (data->map[0][i] == '1')
-			break ;
-		i++;
+		if (data->map[i - 1][j] == ' ')
+			return (0);
 	}
-	if (i == data->map_w)
-		return (0);
-	*wall_f = i;
-	while (i < data->map_w)
+	if (i < data->map_h - 1)
 	{
-		if (data->map[0][i] == '0')
-			break ;
-		i++;
+		if (data->map[i + 1][j] == ' ')
+			return (0);
 	}
-	*wall_r = i - 1;
+	if (j > 0)
+	{
+		if (data->map[i][j - 1] == ' ')
+			return (0);
+	}
+	if (j < data->map_w - 1)
+	{
+		if (data->map[i][j + 1] == ' ')
+			return (0);
+	}
 	return (1);
 }
 
 int	check_wall(t_data *data)
 {
-	int	wall_f;
-	int	wall_r;
+	int	i;
+	int	j;
 
-	if (!(get_wall_fw(data, &wall_f, &wall_r)))
-		return (0);
-	if (data->pos->y == 0)
+	i = 0;
+	while (data->map[i])
 	{
-		if (wall_f >= data->pos->x || wall_r <= data->pos->x)
-			return (0);
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == '0')
+			{
+				if (i == 0 || i == data->map_h - 1
+					|| j == 0 || j == data->map_w - 1)
+					return (0);
+				if (!(check_surr(data, i, j)))
+					return (0);
+			}
+			j++;
+		}
+		i++;
 	}
-	if (!(check_wall_fw(data, &wall_f, &wall_r)))
+	if (!(char_surr(data)))
 		return (0);
-	while (wall_f <= wall_r)
-	{
-		if (data->map[data->map_h - 1][wall_f] != '1')
-			return (0);
-		wall_f++;
-	}
 	return (1);
 }

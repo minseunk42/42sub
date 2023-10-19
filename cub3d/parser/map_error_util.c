@@ -6,79 +6,63 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:33:36 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/17 22:39:49 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/19 14:40:09 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parse.h"
 
-static int	check_f_roop(t_data *data, int *wall_f, int i)
-{
-	if (*wall_f > 0)
-	{
-		if (data->map[i][*wall_f - 1] == '1')
-		{
-			*wall_f -= 1;
-			return (1);
-		}
-	}
-	if (data->map[i][*wall_f] == '1')
-		return (1);
-	if (*wall_f < data->map_w - 1)
-	{
-		if (data->map[i][*wall_f + 1] == '1')
-		{
-			*wall_f += 1;
-			return (1);
-		}	
-	}
-	return (0);
-}
-
-static int	check_r_roop(t_data *data, int *wall_r, int i)
-{
-	if (*wall_r < data->map_w - 1)
-	{
-		if (data->map[i][*wall_r + 1] == '1')
-		{
-			*wall_r += 1;
-			return (1);
-		}
-	}
-	if (data->map[i][*wall_r] == '1')
-		return (1);
-	if (*wall_r > 0)
-	{
-		if (data->map[i][*wall_r - 1] == '1')
-		{
-			*wall_r -= 1;
-			return (1);
-		}
-	}
-	return (0);
-}
-
-int	check_wall_fw(t_data *data, int *wall_f, int *wall_r)
+static int	check_char_i(t_data *data)
 {
 	int	i;
+	int	j;
 
-	i = 1;
-	while (data->map[i])
+	i = data->pos->y;
+	j = data->pos->x;
+	while (i >= 0 && data->map[i][j] != '1')
 	{
-		if (!(check_f_roop(data, wall_f, i)))
+		if (data->map[i][j] == ' ')
 			return (0);
-		if ((data->pos->y == i) && (data->pos->x <= *wall_f))
+		i--;
+	}
+	i = data->pos->y;
+	while (i < data->map_h && data->map[i][j] != '1')
+	{
+		if (data->map[i][j] == ' ')
 			return (0);
 		i++;
 	}
-	i = 1;
-	while (data->map[i])
+	return (1);
+}
+
+static int	check_char_j(t_data *data)
+{
+	int	i;
+	int	j;
+
+	i = data->pos->y;
+	j = data->pos->x;
+	while (j >= 0 && data->map[i][j] != '1')
 	{
-		if (!(check_r_roop(data, wall_r, i)))
+		if (data->map[i][j] == ' ')
 			return (0);
-		if ((data->pos->y == i) && (data->pos->x >= *wall_r))
-			return (0);
-		i++;
+		j--;
 	}
+	j = data->pos->x;
+	while (j < data->map_w && data->map[i][j] != '1')
+	{
+		if (data->map[i][j] == ' ')
+			return (0);
+		j++;
+	}
+	return (1);
+}
+
+int	char_surr(t_data *data)
+{
+	if (!(check_char_i(data)))
+		return (0);
+	if (!(check_char_j(data)))
+		return (0);
 	return (1);
 }
