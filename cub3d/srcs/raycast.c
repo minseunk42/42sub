@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:13:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/19 14:07:35 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/21 00:11:01 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static void	init_rc(t_rc_data *rc, t_mlx_data *md, int linei)
 		rc->deltadisty = fabs(1 / rc->raydiry);
 	rc->mapx = (int)md->dval[PSX];
 	rc->mapy = (int)md->dval[PSY];
+	rc->texpos = 0;
+	rc->tstep = 0;
 }
 
 static void	init_ray(t_rc_data *rc, t_mlx_data *md)
@@ -86,23 +88,17 @@ static void	draw_vline(t_rc_data *rc, t_mlx_data *md, int linex)
 {
 	int	liney;
 
-	rc->lineheight = (int)(ROWPIX / rc->walldist);
-	rc->drawstart = ROWPIX / 2 - (rc->lineheight / 2);
-	if (rc->drawstart < 0)
-		rc->drawstart = 0;
-	rc->drawend = ROWPIX / 2 + (rc->lineheight / 2);
-	if (rc->drawend >= ROWPIX)
-		rc->drawend = ROWPIX - 1;
+	init_draw_val(rc, md);
 	liney = -1;
-	rc->wally = 0;
 	while (++liney < ROWPIX)
 	{
 		if (liney < rc->drawstart)
 			my_mlx_pixel_put(md, linex, liney, get_color(md->data->ceiling));
 		else if (liney < rc->drawend)
 		{
-			my_mlx_pixel_put(md, linex, liney, tex_color(rc, md));
-			rc->wally += 1;
+			rc->texy = (int)rc->texpos ;
+			my_mlx_pixel_put(md, linex, liney, get_color_tex(rc, md, rc->dir));
+			rc->texpos += rc->tstep;
 		}
 		else
 			my_mlx_pixel_put(md, linex, liney, get_color(md->data->floor));
@@ -126,6 +122,7 @@ int	raycast(t_mlx_data *md)
 	{
 		init_rc(&rc, md, linei);
 		singleray(&rc, md);
+		set_rc_dir(&rc);
 		draw_vline(&rc, md, linei);
 	}
 	mlx_put_image_to_window(md->mlx_ptr, md->win_ptr, md->img_ptr, 0, 0);

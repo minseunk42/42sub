@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/19 14:07:49 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/20 23:12:10 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 typedef struct s_texture
 {
+	int		width;
+	int		height;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -56,15 +58,20 @@ typedef struct s_rc_data
 	double	sidedisty;
 	double	walldist;
 	double	tstep;
+	double	texpos;
+	double	wallx;
+	double	wally;
 	int		mapx;
 	int		mapy;
 	int		stepx;
 	int		stepy;
 	int		side;
-	int		wally;
 	int		lineheight;
 	int		drawstart;
 	int		drawend;
+	int		dir;
+	int		texx;
+	int		texy;
 }	t_rc_data;
 
 # define COLPIX 1920
@@ -105,7 +112,10 @@ int		tex_color(t_rc_data *rc, t_mlx_data *md);
 int		init(t_mlx_data *md);
 int		fin(void *param);
 int		key_handler(int keycode, void *param);
+void	init_draw_val(t_rc_data *rc, t_mlx_data *md);
 int		get_color(t_rgb *rgb);
 int		free_mlx(t_mlx_data *md);
+int		get_color_tex(t_rc_data *rc, t_mlx_data *md, int dir);
+void	set_rc_dir(t_rc_data *rc);
 
 #endif

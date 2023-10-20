@@ -1,7 +1,7 @@
-NO ./test
-SO ./test
-WE ./test
-EA ./test
+NO ./test42
+SO ./test42
+WE ./test42
+EA ./test42
 F 10,100,0
 C 225,30,0
 1111111111111

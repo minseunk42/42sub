@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_util.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ubuntu <ubuntu@student.42.fr>              +#+  +:+       +#+        */
+/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:36:34 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/19 14:08:01 by ubuntu           ###   ########.fr       */
+/*   Updated: 2023/10/21 00:21:09 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,56 +33,51 @@ int	get_color(t_rgb *rgb)
 	return (out);
 }
 
-static void	set_txy(t_rc_data *rc, t_mlx_data *md, int *pos, int dir)
+int	get_color_tex(t_rc_data *rc, t_mlx_data *md, int dir)
 {
-	double	wallx;
-	double	texpos;
+	int	*temp;
 
-	if (rc->side == 0)
-		wallx = md->dval[PSY] + rc->walldist * rc->raydiry;
-	else
-		wallx = md->dval[PSX] + rc->walldist * rc->raydirx;
-	wallx -= floor((wallx));
-	pos[PSX] = (int)(wallx * (double)md->texture[dir].bits_per_pixel);
-    if (rc->side == 0 && rc->raydirx > 0)
-		pos[PSX] = md->texture[dir].bits_per_pixel - pos[PSX] - 1;
-    if (rc->side == 1 && rc->raydiry < 0)
-		pos[PSX] = md->texture[dir].bits_per_pixel - pos[PSX] - 1;
-	rc->tstep = 1.0 * md->texture[dir].line_length / rc->lineheight;
-	rc->tstep *= rc->wally;
-    texpos = (rc->drawstart - ROWPIX / 2 + rc->lineheight / 2) * rc->tstep;
-	pos[PSY] = (int)texpos & (md->texture[dir].line_length - 1);
-}
-
-static int get_color_tex(t_rc_data *rc, t_mlx_data *md, int dir)
-{
-	int *temp;
-	int	pos[2];
-
-	set_txy(rc, md, pos, dir);
-	temp = (int *)&md->texture[dir].addr[pos[PSY] * md->texture[dir].line_length + \
-	pos[PSX] * (md->texture[dir].bits_per_pixel / 8)];
+	temp = (int *)&md->texture[dir].addr[rc->texy \
+	* md->texture[dir].line_length \
+	+ rc->texx * (md->texture[dir].bits_per_pixel / 8)];
 	return (*temp);
 }
 
-int	tex_color(t_rc_data *rc, t_mlx_data *md)
+void	init_draw_val(t_rc_data *rc, t_mlx_data *md)
 {
-	int	color;
+	rc->lineheight = (int)(ROWPIX / rc->walldist);
+	rc->drawstart = ROWPIX / 2 - (rc->lineheight / 2);
+	if (rc->drawstart < 0)
+		rc->drawstart = 0;
+	rc->drawend = ROWPIX / 2 + (rc->lineheight / 2);
+	if (rc->drawend >= ROWPIX)
+		rc->drawend = ROWPIX - 1;
+	if (rc->dir == NORTH || rc->dir == SOUTH)
+		rc->wallx = md->dval[PSY] + rc->walldist * rc->raydiry;
+	else
+		rc->wallx = md->dval[PSX] + rc->walldist * rc->raydirx;
+	rc->wallx -= floor((rc->wallx));
+	rc->texx = (int)(rc->wallx * (double)md->texture[rc->dir].width);
+	if (rc->dir == SOUTH || rc->dir == EAST)
+		rc->texx = md->texture[rc->dir].width - rc->texx - 1;
+	rc->tstep = 1.0 * md->texture[rc->dir].height / rc->lineheight;
+	rc->texpos = (rc->drawstart - ROWPIX / 2 + rc->lineheight / 2) * rc->tstep;
+}
 
-	(void)md;
+void	set_rc_dir(t_rc_data *rc)
+{
 	if (rc->side == 1)
 	{
 		if (rc->raydiry > 0)
-			color = 0xff0000;
+			rc->dir = WEST;
 		else
-			color = 0x00ff00;
+			rc->dir = EAST;
 	}
 	else
 	{
 		if (rc->raydirx > 0)
-			color = 0x0000ff;
+			rc->dir = SOUTH;
 		else
-			color = 0xffffff;
+			rc->dir = NORTH;
 	}
-	return (color);
 }
