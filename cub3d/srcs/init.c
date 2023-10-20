@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:37:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/21 00:18:51 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/21 01:11:54 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,32 @@ static void	set_dir(t_mlx_data *md)
 	{
 		md->dval[DRY] = 0;
 		md->dval[PLX] = 0;
-		md->dval[PLY] = -0.7;
 		if (md->data->pos->d == NORTH)
-			md->dval[DRX] = -1;
-		else
+		{
+			md->dval[PLY] = 0.7;
 			md->dval[DRX] = 1;
+		}
+		else
+		{
+			md->dval[PLY] = -0.7;
+			md->dval[DRX] = -1;
+		}
 	}
 	else
 	{
 		md->dval[DRY] = 0;
 		md->dval[PLY] = 0;
-		md->dval[PLX] = -0.7;
 		if (md->data->pos->d == WEST)
+		{
+			md->dval[PLX] = 0.7;
 			md->dval[DRY] = -1;
+		}
 		else
+		{
+			md->dval[PLX] = -0.7;
 			md->dval[DRY] = 1;
-	}
+		}
+	}		
 }
 
 static int	set_tex_dir(t_mlx_data *md, int dir, char *path)
@@ -71,9 +81,9 @@ int	init(t_mlx_data *md)
 	if (!md->win_ptr)
 		return (free_mlx(md));
 	if (set_tex(md))
-		return (free_mlx(md));
-	md->dval[PSX] = md->data->pos->x + 0.5;
-	md->dval[PSY] = md->data->pos->y + 0.5;
+		return (-1);
+	md->dval[PSX] = md->data->pos->x + 0.4;
+	md->dval[PSY] = md->data->pos->y + 0.4;
 	set_dir(md);
 	return (0);
 }

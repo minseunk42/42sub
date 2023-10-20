@@ -6,13 +6,13 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:20:27 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/21 00:10:24 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/21 00:41:43 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/cub3d.h"
 
-void	turnl(void *param)
+void	turnr(void *param)
 {
 	double		dx_temp;
 	double		plx_temp;
@@ -29,7 +29,7 @@ void	turnl(void *param)
 	raycast(md);
 }
 
-void	turnr(void *param)
+void	turnl(void *param)
 {
 	double		dx_temp;
 	double		plx_temp;

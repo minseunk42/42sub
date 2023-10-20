@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:14:49 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/21 00:10:30 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/21 00:42:35 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	moveb(void *param)
 	raycast(md);
 }
 
-void	mover(void *param)
+void	movel(void *param)
 {
 	t_mlx_data	*md;
 	double		t_drx;
@@ -59,7 +59,7 @@ void	mover(void *param)
 	raycast(md);
 }
 
-void	movel(void *param)
+void	mover(void *param)
 {
 	t_mlx_data	*md;
 	double		t_drx;

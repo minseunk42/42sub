@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:36:34 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/21 00:21:09 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/21 01:12:13 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,14 +68,14 @@ void	set_rc_dir(t_rc_data *rc)
 {
 	if (rc->side == 1)
 	{
-		if (rc->raydiry > 0)
+		if (rc->raydiry < 0)
 			rc->dir = WEST;
 		else
 			rc->dir = EAST;
 	}
 	else
 	{
-		if (rc->raydirx > 0)
+		if (rc->raydirx < 0)
 			rc->dir = SOUTH;
 		else
 			rc->dir = NORTH;

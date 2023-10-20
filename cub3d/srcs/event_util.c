@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:16:43 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/19 11:23:13 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/21 00:33:29 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	key_handler(int keycode, void *param)
 
 int	free_mlx(t_mlx_data *md)
 {
-	if (md->img_ptr)
-		mlx_destroy_image(md->mlx_ptr, md->img_ptr);
 	mlx_destroy_window(md->mlx_ptr, md->win_ptr);
 	free_data(md->data);
 	return (-1);
