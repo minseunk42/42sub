@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:37:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/21 01:11:54 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/21 02:08:55 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,21 @@ static void	set_dir(t_mlx_data *md)
 	{
 		md->dval[DRY] = 0;
 		md->dval[PLX] = 0;
-		if (md->data->pos->d == NORTH)
+		md->dval[PLY] = 0.7;
+		md->dval[DRX] = 1;
+		if (md->data->pos->d == SOUTH)
 		{
-			md->dval[PLY] = 0.7;
-			md->dval[DRX] = 1;
-		}
-		else
-		{
-			md->dval[PLY] = -0.7;
-			md->dval[DRX] = -1;
+			md->dval[PLY] *= -1;
+			md->dval[DRX] *= -1;
 		}
 	}
 	else
 	{
 		md->dval[DRY] = 0;
 		md->dval[PLY] = 0;
-		if (md->data->pos->d == WEST)
-		{
-			md->dval[PLX] = 0.7;
-			md->dval[DRY] = -1;
-		}
-		else
+		md->dval[PLX] = 0.7;
+		md->dval[DRY] = -1;
+		if (md->data->pos->d == EAST)
 		{
 			md->dval[PLX] = -0.7;
 			md->dval[DRY] = 1;
@@ -48,14 +42,15 @@ static void	set_dir(t_mlx_data *md)
 
 static int	set_tex_dir(t_mlx_data *md, int dir, char *path)
 {
-	md->img_ptr = mlx_new_image(md->mlx_ptr, COLPIX, ROWPIX);
-	if (!md->img_ptr)
-		return (-1);
-	md->img_ptr = mlx_xpm_file_to_image(md->mlx_ptr, \
+	md->texture[dir].has_img = 0;
+	md->texture[dir].img_ptr = mlx_xpm_file_to_image(md->mlx_ptr, \
 	path, &md->texture[dir].width, &md->texture[dir].height);
-	md->texture[dir].addr = mlx_get_data_addr(md->img_ptr, \
+	if (!md->texture[dir].img_ptr)
+		return (-1);
+	md->texture[dir].addr = mlx_get_data_addr(md->texture[dir].img_ptr, \
 	&md->texture[dir].bits_per_pixel \
 	, &md->texture[dir].line_length, &md->texture[dir].endian);
+	md->texture[dir].has_img = 1;
 	return (0);
 }
 
@@ -76,10 +71,10 @@ int	init(t_mlx_data *md)
 {
 	md->mlx_ptr = mlx_init();
 	if (!md->mlx_ptr)
-		return (free_mlx(md));
+		return (-1);
 	md->win_ptr = mlx_new_window(md->mlx_ptr, COLPIX, ROWPIX, "cub3D");
 	if (!md->win_ptr)
-		return (free_mlx(md));
+		return (-1);
 	if (set_tex(md))
 		return (-1);
 	md->dval[PSX] = md->data->pos->x + 0.4;

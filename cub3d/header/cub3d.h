@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/20 23:12:10 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/21 01:57:06 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@
 
 typedef struct s_texture
 {
+	void	*img_ptr;
+	int		has_img;
 	int		width;
 	int		height;
 	char	*addr;
