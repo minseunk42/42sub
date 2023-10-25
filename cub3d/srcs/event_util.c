@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 05:16:43 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/23 08:00:11 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:34:22 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	free_mlx(t_mlx_data *md)
 	mlx_destroy_window(md->mlx_ptr, md->win_ptr);
 	free(md->mlx_ptr);
 	free_data(md->data);
-	exit(0);
 	return (-1);
 }
 

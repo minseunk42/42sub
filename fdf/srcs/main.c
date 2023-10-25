@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 11:38:54 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/14 01:24:23 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/23 09:00:22 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,18 +88,22 @@ int	fin(void *param)
 	return (0);
 }
 
+int dotp(int x1, int y1, int x2, int y2)
+{
+	return (x1 * x2 + y1 * y2);
+}
+
 void	draw_obj(t_fdf *fdf)
 {
 	int x;
-	int	xtemp;
-	int ytemp;
+
 	int y;
 	int r;
 
 	fdf->img_ptr = mlx_new_image(fdf->mlx_ptr, COLPIX, ROWPIX);
 	fdf->addr = mlx_get_data_addr(fdf->img_ptr, &(fdf->bits_per_pixel) \
 	, &fdf->line_length, &fdf->endian);
-	r = 10;
+	r = 20;
 	x = fdf->objx - r;
 	while (++x < fdf->objx + r)
 	{
@@ -108,12 +112,8 @@ void	draw_obj(t_fdf *fdf)
 		{
 			if ((x - fdf->objx) * (x - fdf->objx) + (y - fdf->objy) * (y - fdf->objy) < r * r)
 			{
-				if (x < fdf->objx)
-				{
-					xtemp = cos(fdf->obja) * (x - fdf->objx) - sin(fdf->obja) * (y - fdf->objy) + fdf->objx;
-					ytemp = sin(fdf->obja) * (x - fdf->objx) + cos(fdf->obja) * (y - fdf->objy) + fdf->objy;
-					my_mlx_pixel_put(fdf, xtemp, ytemp, 0xff00ff);
-				}
+					if (dotp(x - fdf->objx, y - fdf->objy, fdf->objx, fdf->objy) > 0)
+						my_mlx_pixel_put(fdf, x, y, 0xff00ff);
 			}
 		}
 	}

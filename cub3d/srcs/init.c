@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:37:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/21 02:08:55 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/25 10:35:27 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,27 @@ static void	set_dir(t_mlx_data *md)
 	}		
 }
 
+int	check_path(t_mlx_data *md)
+{
+	int	fd;
+
+	fd = 0;
+	fd = open(md->data->north, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	fd = open(md->data->south, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	fd = open(md->data->east, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	fd = open(md->data->west, O_RDONLY);
+	if (fd == -1)
+		return (-1);
+	close(fd);
+	return (0);
+}
+
 static int	set_tex_dir(t_mlx_data *md, int dir, char *path)
 {
 	md->texture[dir].has_img = 0;
@@ -70,11 +91,7 @@ static int	set_tex(t_mlx_data *md)
 int	init(t_mlx_data *md)
 {
 	md->mlx_ptr = mlx_init();
-	if (!md->mlx_ptr)
-		return (-1);
 	md->win_ptr = mlx_new_window(md->mlx_ptr, COLPIX, ROWPIX, "cub3D");
-	if (!md->win_ptr)
-		return (-1);
 	if (set_tex(md))
 		return (-1);
 	md->dval[PSX] = md->data->pos->x + 0.4;

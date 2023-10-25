@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/14 00:56:14 by minseunk          #+#    #+#             */
-/*   Updated: 2023/10/21 01:57:06 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/25 09:40:23 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,6 @@ int		get_color(t_rgb *rgb);
 int		free_mlx(t_mlx_data *md);
 int		get_color_tex(t_rc_data *rc, t_mlx_data *md, int dir);
 void	set_rc_dir(t_rc_data *rc);
+int		check_path(t_mlx_data *md);
 
 #endif
