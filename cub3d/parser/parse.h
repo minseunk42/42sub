@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 19:23:25 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/19 14:41:06 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:21:01 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int		map_strlen(const char *s);
 void	make_arr(t_data *data, t_mapline *mapline);
 void	free_mapline(t_mapline *mapline);
 void	get_map(t_data *data, char *line);
+void	check_char_side(t_data *data);
+void	check_char_side(t_data *data);
 void	map_err_exit(int errnum);
 int		check_pos(t_data *data);
 int		char_surr(t_data *data);

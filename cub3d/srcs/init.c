@@ -6,7 +6,7 @@
 /*   By: minseunk <minseunk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 17:37:23 by ubuntu            #+#    #+#             */
-/*   Updated: 2023/10/25 10:35:27 by minseunk         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:24:13 by minseunk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,11 @@ static int	set_tex_dir(t_mlx_data *md, int dir, char *path)
 	md->texture[dir].img_ptr = mlx_xpm_file_to_image(md->mlx_ptr, \
 	path, &md->texture[dir].width, &md->texture[dir].height);
 	if (!md->texture[dir].img_ptr)
+	{
+		perror("Path Error\n");
+		printf("Error\n");
 		return (-1);
+	}
 	md->texture[dir].addr = mlx_get_data_addr(md->texture[dir].img_ptr, \
 	&md->texture[dir].bits_per_pixel \
 	, &md->texture[dir].line_length, &md->texture[dir].endian);

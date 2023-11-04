@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/17 21:33:36 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/19 14:40:09 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/26 20:04:49 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,13 @@ int	char_surr(t_data *data)
 	if (!(check_char_j(data)))
 		return (0);
 	return (1);
+}
+
+void	check_char_side(t_data *data)
+{
+	if (data->pos->x == 0 || data->pos->y == 0)
+		print_err_exit("Play Error\n");
+	if (data->pos->x == data->map_w - 1
+		|| data->pos->y == data->map_h - 1)
+		print_err_exit("Player Error\n");
 }

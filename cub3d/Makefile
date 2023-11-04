@@ -23,7 +23,7 @@ re :
 	make fclean
 	make all
 
-$(NAME) : $(LIBFT) $(GNL) $(OBJS)
+$(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(HEADER) $(OBJS) $(MLX) -o $@
 
 %.o : %.c

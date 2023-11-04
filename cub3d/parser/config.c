@@ -6,7 +6,7 @@
 /*   By: changhyl <changhyl@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 22:05:55 by changhyl          #+#    #+#             */
-/*   Updated: 2023/10/16 22:36:17 by changhyl         ###   ########.fr       */
+/*   Updated: 2023/10/26 19:20:02 by changhyl         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ t_data	*get_data(const char *path)
 	get_config(data);
 	line = get_next_line(data->fd);
 	get_map(data, line);
+	check_char_side(data);
 	close(data->fd);
 	return (data);
 }
