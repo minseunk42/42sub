@@ -1,9 +1,9 @@
-NAME = phonebook
+NAME = human
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 HEADER = ./
-SRCS = main.cpp PhoneBook.cpp Contact.cpp
+SRCS = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all :

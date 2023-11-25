@@ -2,20 +2,27 @@ NAME = megaphone
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
-HEADER = includes
+HEADER = ./
 SRCS = megaphone.cpp
+OBJS = $(SRCS:.cpp=.o)
 
 all :
 	make $(NAME)
 
 clean :
+	$(RM) $(OBJS)
+
+fclean : clean
 	$(RM) $(NAME)
 
 re :
-	make clean
+	make fclean
 	make all
 
-$(NAME) : $(SRCS)
-	$(CC) $(CFLAGS) $(SRCS) -I $(HEADER) -o $@ 
+$(NAME) : $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) -I $(HEADER) -o $@ 
 
-.PHONY : all clean re
+%.o : %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+.PHONY : all clean fclean re
