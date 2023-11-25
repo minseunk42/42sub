@@ -122,33 +122,35 @@ static void	print_ct(Contact contact)
 
 void    PhoneBook::search(void)
 {
-	std::string	user_index;
+	std::string	str;
+	int			idx;
 
 	print_pb(this->contacts);
-	while(user_index.empty())
+	while(str.empty())
 	{
 		std::cout << "자세히 보려면 인덱스를 입력하세요." << std::endl;
-		std::getline(std::cin, user_index);
+		std::getline(std::cin, str);
 		if(std::cin.eof())
 		{
 			std::cout << std::endl;
 			return;
 		}
-		if (std::stoi(user_index) < 1 || std::stoi(user_index) > 8)
+		std::istringstream(str) >> idx;
+		if (idx < 1 || idx > 8)
 		{
 			std::cout << "잘못된 인덱스" << std::endl;
-			user_index = "";
+			str = "";
 			continue;
 		}
-		else if (this->contacts[std::stoi(user_index) - 1].get_firstname().empty())
+		else if (this->contacts[idx - 1].get_firstname().empty())
 		{
 			std::cout << "해당 번호는 비어있습니다." << std::endl;
-			user_index = "";
+			str = "";
 			continue;
 		}
 		else
 		{
-			print_ct(this->contacts[std::stoi(user_index) - 1]);
+			print_ct(this->contacts[idx - 1]);
 			break;
 		}
 	}

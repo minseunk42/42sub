@@ -2,9 +2,10 @@
 # define PHONEBOOK_HPP
 
 # include <iostream>
-# include <iomanip> 
+# include <iomanip>
 # include "Contact.hpp"
 # include <string>
+# include <sstream>
 
 # define MAX_CONTACT 8
 class PhoneBook
