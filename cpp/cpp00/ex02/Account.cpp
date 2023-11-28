@@ -62,7 +62,7 @@ bool	Account::makeWithdrawal( int withdrawal )
 {
      _displayTimestamp();
     std::cout <<  "index:" << _accountIndex \
-    << ";amount:" << _amount;
+    << ";p_amount:" << _amount;
     if (checkAmount() < withdrawal)
     {
         std::cout << ";withdrawal:refused" << std::endl;
