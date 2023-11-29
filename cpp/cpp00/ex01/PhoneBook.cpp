@@ -15,76 +15,36 @@ static int	check_str(std::string str)
 	return 0;
 }
 
-void    PhoneBook::add(void)
+static bool set_elem(std::string prompt, std::string (Contact::*getter)(void) const \
+, void (Contact::*setter)(const std::string &firstname), Contact *ct)
 {
-	Contact		ct;
 	std::string str;
 
-	while (ct.get_firstname().empty())
+	while ((ct->*getter)().empty())
 	{
-		std::cout << "firstname : ";
+		std::cout << prompt;
 		std::getline(std::cin, str);
 		if(check_str(str))
 			continue;
-		ct.set_firstname(str);
+		(ct->*setter)(str);
 		if(std::cin.eof())
 		{
 			std::cout << std::endl;
-			return;
+			return 1;
 		}
 	}
-	while (ct.get_lastname().empty())
-	{
-		std::cout << "lastname : ";
-		std::getline(std::cin, str);
-		if (check_str(str))
-			continue;
-		ct.set_lastname(str);
-		if(std::cin.eof())
-		{
-			std::cout << std::endl;
-			return;
-		}
-	}
-	while (ct.get_nickname().empty())
-	{
-		std::cout << "nickname : ";
-		std::getline(std::cin, str);
-		if (check_str(str))
-			continue;
-		ct.set_nickname(str);
-		if(std::cin.eof())
-		{
-			std::cout << std::endl;
-			return;
-		}
-	}
-	while (ct.get_phonenumber().empty())
-	{
-		std::cout << "phonenumber : ";
-		std::getline(std::cin, str);
-		if (check_str(str))
-			continue;
-		ct.set_phonenumber(str);
-		if(std::cin.eof())
-		{
-			std::cout << std::endl;
-			return;
-		}
-	}
-	while (ct.get_darkestsecret().empty())
-	{
-		std::cout << "darkestsecret : ";
-		std::getline(std::cin, str);
-		if (check_str(str))
-			continue;
-		ct.set_darkestsecret(str);
-		if(std::cin.eof())
-		{
-			std::cout << std::endl;
-			return;
-		}
-	}
+	return 0;
+}
+
+void    PhoneBook::add(void)
+{
+	Contact		ct;
+
+	if (set_elem("firstname : ", &Contact::get_firstname, &Contact::set_firstname,  &ct))return;
+	if (set_elem("lastname : ", &Contact::get_lastname, &Contact::set_lastname, &ct))return;
+	if (set_elem("nickname : ", &Contact::get_nickname, &Contact::set_nickname, &ct))return;
+	if (set_elem("phonenumber : ", &Contact::get_phonenumber, &Contact::set_phonenumber, &ct))return;
+	if (set_elem("darkestsecret : ", &Contact::get_darkestsecret, &Contact::set_darkestsecret, &ct))return;
 	this->contacts[idx] = ct;
 	std::cout << "contact added at " << ++this->idx << std::endl;
 	if(this->idx == MAX_CONTACT)

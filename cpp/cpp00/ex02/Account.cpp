@@ -4,8 +4,6 @@
 
 #define DATE "[19920104_091532] "
 
-
-
 Account::Account(int initial_deposit)
 {
     this->_accountIndex = _nbAccounts++;
