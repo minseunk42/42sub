@@ -1,9 +1,9 @@
-NAME = human
+NAME = sedisforlosers
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 HEADER = ./
-SRCS = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all :
