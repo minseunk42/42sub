@@ -85,6 +85,7 @@ void    PhoneBook::search(void)
 	std::string	str;
 	int			idx;
 
+	idx = 0;
 	print_pb(this->contacts);
 	while(str.empty())
 	{
