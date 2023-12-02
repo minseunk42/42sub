@@ -78,7 +78,10 @@
         "cub3d.h": "c",
         "temp": "c",
         "parse.h": "c",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "stack": "cpp"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
