@@ -36,20 +36,20 @@ Harl::Harl()
 
 void Harl::complain( std::string level )
 {
-    Harl *h;
+    Harl h;
     switch (check_lv(level))
     {
         case DEBUG:
-            (h->*fp[DEBUG])();
+            (h.*fp[DEBUG])();
             break;
         case INFO:
-            (h->*fp[INFO])();
+            (h.*fp[INFO])();
             break;
         case WARNING:
-            (h->*fp[WARNING])();
+            (h.*fp[WARNING])();
             break;
         case ERROR:
-            (h->*fp[ERROR])();
+            (h.*fp[ERROR])();
             break;
         default:
             std::cout << "Wrong input" << std::endl;

@@ -36,21 +36,21 @@ Harl::Harl()
 
 void Harl::complain( std::string level )
 {
-    Harl *h;
+    Harl h;
     switch (check_lv(level))
     {
         case DEBUG:
             std::cout << "[ DEBUG ]" << std::endl;
-            (h->*fp[DEBUG])();
+            (h.*fp[DEBUG])();
         case INFO:
             std::cout << "[ INFO ]" << std::endl;
-            (h->*fp[INFO])();
+            (h.*fp[INFO])();
         case WARNING:
             std::cout << "[ WARNING ]" << std::endl;
-            (h->*fp[WARNING])();
+            (h.*fp[WARNING])();
         case ERROR:
             std::cout << "[ ERROR ]" << std::endl;
-            (h->*fp[ERROR])();
+            (h.*fp[ERROR])();
             break;
         default:
             std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
