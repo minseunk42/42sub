@@ -22,7 +22,7 @@ re :
 $(NAME) : $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -I $(HEADER) -o $@ 
 
-%.o : %.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+%.o : %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@ 
 
 .PHONY : all clean fclean re

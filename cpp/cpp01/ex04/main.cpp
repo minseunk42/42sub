@@ -6,7 +6,7 @@
 void tr_str(std::string &buf, std::string s1, std::string s2)
 {
     std::string temp;
-    std::size_t fidx = buf.find(s1);;
+    std::size_t fidx = buf.find(s1);
     while (fidx != std::string::npos)
     {
         temp = buf.substr(0, fidx);
@@ -27,7 +27,7 @@ int main(int ac, char **av)
     out_name += ".replace";
     out_name[(int)out_name.length()] = 0;
     std::ofstream fout((&out_name[0]), std::ios_base::out);
-    std::ifstream fin((&av[1][0]), std::ios_base::in);
+    std::ifstream fin(av[1], std::ios_base::in);
     while (std::getline(fin, buf))
     {
         if (buf.empty())

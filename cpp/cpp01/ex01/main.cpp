@@ -1,4 +1,5 @@
 #include "Zombie.hpp"
+#include <stdlib.h>
 
 int main()
 {
@@ -7,5 +8,6 @@ int main()
 
     zh = zombieHorde(N, "zombie");
     zh[5].announce();
+    zh[9].announce();
     delete[]zh;
 }
