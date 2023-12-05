@@ -14,17 +14,17 @@ class Fixed
         Fixed(const int val);
         Fixed(const float val);
         ~Fixed();
-        Fixed&      operator=(Fixed const &f);
-        bool	    operator>(const Fixed &ref) const;
-	    bool	    operator<(const Fixed &ref) const;
-	    bool	    operator>=(const Fixed &ref) const;
-	    bool	    operator<=(const Fixed &ref) const;
-	    bool	    operator==(const Fixed &ref) const;
-	    bool	    operator!=(const Fixed &ref) const;
-	    Fixed	    operator+(const Fixed &ref) const;
-	    Fixed	    operator-(const Fixed &ref) const;
-	    Fixed	    operator*(const Fixed &ref) const;
-	    Fixed	    operator/(const Fixed &ref) const;
+        Fixed&      operator=(Fixed const &fxp);
+        bool	    operator>(const Fixed &fxp) const;
+	    bool	    operator<(const Fixed &fxp) const;
+	    bool	    operator>=(const Fixed &fxp) const;
+	    bool	    operator<=(const Fixed &fxp) const;
+	    bool	    operator==(const Fixed &fxp) const;
+	    bool	    operator!=(const Fixed &fxp) const;
+	    Fixed	    operator+(const Fixed &fxp) const;
+	    Fixed	    operator-(const Fixed &fxp) const;
+	    Fixed	    operator*(const Fixed &fxp) const;
+	    Fixed	    operator/(const Fixed &fxp) const;
         Fixed		&operator++(void);
 	    Fixed		&operator--(void);
 	    const Fixed	operator++(int);
@@ -40,6 +40,6 @@ class Fixed
         static Fixed   const &max(const Fixed &a, const Fixed &b);
 };
 
-std::ostream    &operator<<(std::ostream &out, const Fixed &ref);
+std::ostream    &operator<<(std::ostream &out, const Fixed &fxp);
 
 #endif

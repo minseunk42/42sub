@@ -29,62 +29,62 @@ Fixed &Fixed::operator=(Fixed const &f)
     return *this;
 }
 
-std::ostream    &operator<<(std::ostream &out, const Fixed &ref)
+std::ostream    &operator<<(std::ostream &out, const Fixed &fxp)
 {
-    out << ref.toFloat();
+    out << fxp.toFloat();
 	return (out);
 }
 
-bool	    Fixed::operator>(const Fixed &ref) const
+bool	    Fixed::operator>(const Fixed &fxp) const
 {
-    return (this->rawbits > ref.rawbits);
+    return (this->rawbits > fxp.rawbits);
 }
 
-bool	    Fixed::operator<(const Fixed &ref) const
+bool	    Fixed::operator<(const Fixed &fxp) const
 {
-    return (this->rawbits < ref.rawbits);
+    return (this->rawbits < fxp.rawbits);
 }
 
-bool	    Fixed::operator>=(const Fixed &ref) const
+bool	    Fixed::operator>=(const Fixed &fxp) const
 {
-    return (this->rawbits >= ref.rawbits);
+    return (this->rawbits >= fxp.rawbits);
 }
 
-bool	    Fixed::operator<=(const Fixed &ref) const
+bool	    Fixed::operator<=(const Fixed &fxp) const
 {
-    return (this->rawbits <= ref.rawbits);
+    return (this->rawbits <= fxp.rawbits);
 }
 
-bool	    Fixed::operator==(const Fixed &ref) const
+bool	    Fixed::operator==(const Fixed &fxp) const
 {
-    return (this->rawbits == ref.rawbits);
+    return (this->rawbits == fxp.rawbits);
 }
 
-bool	    Fixed::operator!=(const Fixed &ref) const
+bool	    Fixed::operator!=(const Fixed &fxp) const
 {
-    return (this->rawbits != ref.rawbits);
+    return (this->rawbits != fxp.rawbits);
 }
 
-Fixed	    Fixed::operator+(const Fixed &ref) const
+Fixed	    Fixed::operator+(const Fixed &fxp) const
 {
-    return Fixed((float)(this->rawbits + ref.rawbits) / (1 << this->fractionalbit));
+    return Fixed((float)(this->rawbits + fxp.rawbits) / (1 << this->fractionalbit));
 }
 
-Fixed	    Fixed::operator-(const Fixed &ref) const
+Fixed	    Fixed::operator-(const Fixed &fxp) const
 {
-   return Fixed((float)(this->rawbits - ref.rawbits) / (1 << this->fractionalbit));
+   return Fixed((float)(this->rawbits - fxp.rawbits) / (1 << this->fractionalbit));
 }
 
-Fixed	    Fixed::operator*(const Fixed &ref) const
+Fixed	    Fixed::operator*(const Fixed &fxp) const
 {
-    double temp = (double)(this->rawbits * ref.rawbits);
+    double temp = (double)(this->rawbits * fxp.rawbits);
     temp /= (1 << this->fractionalbit * 2);
     return Fixed((float)temp);
 }
 
-Fixed	    Fixed::operator/(const Fixed &ref) const
+Fixed	    Fixed::operator/(const Fixed &fxp) const
 {
-    double temp = (double)((this->rawbits * 256) / ref.rawbits);
+    double temp = (double)((this->rawbits * 256) / fxp.rawbits);
     temp /= (1 << this->fractionalbit);
     return Fixed((float)temp);
 }
