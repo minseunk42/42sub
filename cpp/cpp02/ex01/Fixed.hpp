@@ -7,7 +7,7 @@ class Fixed
 {
     private:
         int rawbits;
-        static const int fractionalbit;
+        static const int fractionalbit = 8;
     public:
         Fixed();
         Fixed(Fixed const &f);
@@ -21,5 +21,7 @@ class Fixed
         int     getRawBits(void);
         void    setRawBits(int const raw);
 };
+
+std::ostream    &operator<<(std::ostream &out, const Fixed &ref);
 
 #endif
