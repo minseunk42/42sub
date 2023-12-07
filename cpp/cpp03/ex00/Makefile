@@ -1,9 +1,9 @@
-NAME = bsp
+NAME = claptrap
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 HEADER = ./
-SRCS = main.cpp Fixed.cpp Point.cpp bsp.cpp
+SRCS = main.cpp ClapTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all :
