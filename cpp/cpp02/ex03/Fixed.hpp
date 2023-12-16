@@ -31,7 +31,6 @@ class Fixed
 	    const Fixed	operator--(int);
         int     toInt( void ) const;
         float   toFloat( void ) const;
-        int     getRawBits(void);
         int     getRawBits(void) const;
         void    setRawBits(int const raw);
         static Fixed   &min(Fixed &a, Fixed &b);

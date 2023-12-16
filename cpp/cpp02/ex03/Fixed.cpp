@@ -115,11 +115,6 @@ const Fixed	Fixed::operator--(int)
     return temp;
 }
 
-int     Fixed::getRawBits(void)
-{ 
-    return this->rawbits;
-}
-
 int     Fixed::getRawBits(void) const
 { 
     return this->rawbits;

@@ -18,8 +18,8 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
     Fixed a2 = dot(d1, d2);
     Fixed b2 = dot(d2, d2);
     Fixed c2 = dot(d2, p);
-    Fixed denom = a1 * b2 - a2 * b1;
 
+    Fixed denom = a1 * b2 - a2 * b1;
     Fixed x = (c1 * b2 - c2 * b1) / denom;
     Fixed y = (a1 * c2 - a2 * c1) / denom;
 

@@ -44,12 +44,12 @@ ClapTrap&      ClapTrap::operator=(ClapTrap const &cref)
 
 void ClapTrap::attack(const std::string& target)
 {
-    if (this->hit_point <= 0)
+    if (!this->hit_point)
     {
         std::cout << "ClapTrap " << this->name << " is dead" << std::endl;
         return;
     }
-    if (this->energy_point <= 0)
+    if (!this->energy_point)
     {
         std::cout << "ClapTrap " << this->name << " has not enough energy" << std::endl;
         return;
@@ -62,24 +62,24 @@ void ClapTrap::attack(const std::string& target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    if (this->hit_point <= 0)
+    if (!this->hit_point)
     {
         std::cout << "ClapTrap " << this->name << " is dead" << std::endl;
         return;
     }
-    std::cout << "ClapTrap " << this->name \
-    << " taked " << amount << " of damage" << std::endl;
-    this->hit_point -= amount;
+    this->hit_point = this->hit_point < amount ? 0 : this->hit_point -= amount;
+    std::cout << this->name \
+    << " taked " << amount << " of damage" << ", now HP : " << this->hit_point << std::endl;
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
-    if (this->hit_point <= 0)
+    if (!this->hit_point)
     {
         std::cout << "ClapTrap " << this->name << " is dead" << std::endl;
         return;
     }
-    if (this->energy_point <= 0)
+    if (!this->energy_point)
     {
         std::cout << "ClapTrap " << this->name << " has not enough energy" << std::endl;
         return;
@@ -90,17 +90,17 @@ void ClapTrap::beRepaired(unsigned int amount)
     this->energy_point -= 1;
 }
 
-int ClapTrap::get_hit_point(void) const
+unsigned int ClapTrap::get_hit_point(void) const
 {
     return this->hit_point;
 }
 
-int ClapTrap::get_energy_point(void) const
+unsigned int ClapTrap::get_energy_point(void) const
 {
     return this->energy_point;
 }
 
-int ClapTrap::get_attack_damage(void) const
+unsigned int ClapTrap::get_attack_damage(void) const
 {
     return this->attack_damage;
 }

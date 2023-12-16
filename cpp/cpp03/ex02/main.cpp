@@ -1,10 +1,11 @@
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
     ClapTrap c1 = ClapTrap("c1");
-    ScavTrap s1 = ScavTrap("s1");
+    FragTrap s1 = FragTrap("s1");
     ScavTrap s2 = ScavTrap("s2");
 
     s1.attack("c1");
@@ -17,10 +18,6 @@ int main()
     s1.takeDamage(s2.get_attack_damage());
     s1.attack("s2");
     s2.takeDamage(s1.get_attack_damage());
-    s1.attack("s2");
-    s2.takeDamage(s1.get_attack_damage());
-    s1.attack("s2");
-    s2.takeDamage(s1.get_attack_damage());
     s2.beRepaired(1);
     s1.attack("s2");
     s2.takeDamage(s1.get_attack_damage());
@@ -29,5 +26,5 @@ int main()
     s2.takeDamage(s1.get_attack_damage());
     s2.beRepaired(1);
     s2.guardGate();
-    s1.guardGate();
+    s1.highFivesGuys();
 }

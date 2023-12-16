@@ -68,3 +68,8 @@ void ScavTrap::guardGate()
     std::cout << "ScavTrap " << this->name \
     << " is now in gatekeeper mode" << std::endl;
 }
+
+unsigned int ScavTrap::get_energy_point(void) const
+{
+    return this->energy_point;
+}
