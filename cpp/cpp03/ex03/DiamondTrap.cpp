@@ -5,19 +5,18 @@ DiamondTrap::DiamondTrap() : ClapTrap()
 {
     std::cout << "dt기본생성자 호출" << std::endl;
     this->name = ClapTrap::name + "_clap_name";
-    this->hit_point = FragTrap::hit_point;
-    this->attack_damage = FragTrap::attack_damage;
-    this->energy_point = ScavTrap::get_energy_point();
+    this->hit_point = dt_hp;
+    this->attack_damage = dt_ad;
+    this->energy_point = dt_ep;
 }
 
 DiamondTrap::DiamondTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "dt생성자 호출" << std::endl;
     this->name = ClapTrap::name + "_clap_name";
-    this->hit_point = FragTrap::hit_point;
-    this->attack_damage = FragTrap::attack_damage;
-    this->energy_point = ScavTrap::energy_point;
-    std::cout << "??? : " << ScavTrap::get_energy_point() << std::endl;
+    this->hit_point = dt_hp;
+    this->attack_damage = dt_ad;
+    this->energy_point = dt_ep;
 }
 
 DiamondTrap::~DiamondTrap()

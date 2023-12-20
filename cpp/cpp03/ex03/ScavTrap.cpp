@@ -4,17 +4,17 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
     std::cout << "st기본생성자 호출" << std::endl;
-    this->hit_point = 100;
-    this->energy_point = 50;
-    this->attack_damage = 20;
+    this->hit_point = st_hp;
+    this->energy_point = st_ep;
+    this->attack_damage = st_ad;
 }
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "st생성자 호출" << std::endl;
-    this->hit_point = 100;
-    this->energy_point = 50;
-    this->attack_damage = 20;
+    this->hit_point = st_hp;
+    this->energy_point = st_ep;
+    this->attack_damage = st_ad;
 }
 
 ScavTrap::~ScavTrap()

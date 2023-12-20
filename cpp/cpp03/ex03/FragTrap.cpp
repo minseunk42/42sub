@@ -4,17 +4,17 @@
 FragTrap::FragTrap() : ClapTrap()
 {
     std::cout << "ft기본생성자 호출" << std::endl;
-    this->hit_point = 100;
-    this->energy_point = 100;
-    this->attack_damage = 30;
+    this->hit_point = ft_hp;
+    this->energy_point = ft_ep;
+    this->attack_damage = ft_ad;
 }
 
 FragTrap::FragTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "ft생성자 호출" << std::endl;
-    this->hit_point = 100;
-    this->energy_point = 100;
-    this->attack_damage = 30;
+    this->hit_point = ft_hp;
+    this->energy_point = ft_ep;
+    this->attack_damage = ft_ad;
 }
 
 FragTrap::~FragTrap()
