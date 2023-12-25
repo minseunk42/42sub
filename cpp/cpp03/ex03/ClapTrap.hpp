@@ -21,7 +21,7 @@ class ClapTrap
         void takeDamage(unsigned int amount);
         void beRepaired(unsigned int amount);
         unsigned int get_hit_point(void) const;
-        unsigned int virtual get_energy_point(void) const;
+        unsigned int get_energy_point(void) const;
         unsigned int get_attack_damage(void) const;
 };
 
