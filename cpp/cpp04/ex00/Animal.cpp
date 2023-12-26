@@ -3,7 +3,7 @@
 Animal::Animal()
 {
     std::cout << "animal기본생성자 호출" << std::endl;
-    this->type = "...";
+    this->type = "Animal";
 }
 
 Animal::~Animal()
@@ -24,9 +24,9 @@ Animal&      Animal::operator=(Animal const &ref)
     return *this;
 }
 
-std::string Animal::getType() const{return this->type;}
-
-void    Animal::makeSound()
+void    Animal::makeSound() const
 {
-    std::cout << "..." << std::endl;    
+    std::cout << "...(animal)" << std::endl;    
 }
+
+std::string Animal::getType() const{return this->type;}
