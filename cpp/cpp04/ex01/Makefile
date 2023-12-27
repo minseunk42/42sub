@@ -1,9 +1,9 @@
-NAME = polymorphism	
+NAME = polymorphism
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 HEADER = ./
-SRCS = main.cpp Dog.cpp Cat.cpp Animal.cpp Wanimal.cpp Wcat.cpp
+SRCS = main.cpp Dog.cpp Cat.cpp Animal.cpp Brain.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all :

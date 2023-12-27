@@ -15,6 +15,7 @@ Animal::Animal(Animal const &ref)
 {
     std::cout << "animal복사생성자 호출" << std::endl;
     this->type = ref.type;
+
 }
 
 Animal&      Animal::operator=(Animal const &ref)
