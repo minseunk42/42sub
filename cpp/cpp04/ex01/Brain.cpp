@@ -4,6 +4,8 @@ Brain::Brain()
 {
     std::cout << "brain 기본생성자 호출" << std::endl;
     this->ideas = new std::string[this->bsize];
+    for (int i = 0; i < bsize - 1; i++)
+        ideas[i] = " ";
     idx = 0;
 }
 
@@ -33,7 +35,7 @@ std::string Brain::getIdeas() const
     std::string out;
     for (int i = 0; i < this->bsize; i++)
     {
-        if (this->ideas[i].size())
+        if (this->ideas[i] != " ")
         {
             out += this->ideas[i];
             out += "\n";

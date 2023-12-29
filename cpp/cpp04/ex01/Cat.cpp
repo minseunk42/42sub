@@ -28,3 +28,8 @@ void    Cat::makeSound() const
 {
     std::cout << "야옹" << std::endl;    
 }
+
+Brain* Cat::getBrain() const
+{
+    return this->brain;
+}

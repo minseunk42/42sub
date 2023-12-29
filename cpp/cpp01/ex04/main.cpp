@@ -16,8 +16,14 @@ void tr_str(std::string &buf, std::string s1, std::string s2)
     }
 }
 
+void lc()
+{
+    system("leaks sedisforlosers");
+}
+
 int main(int ac, char **av)
 {
+    atexit(lc);
     if (ac != 4 || std::string(av[2]).empty())
         return -1;
     std::string out_name;
@@ -25,13 +31,18 @@ int main(int ac, char **av)
     out_name += av[1];
     out_name += ".replace";
     out_name[(int)out_name.length()] = 0;
-    std::ofstream fout((&out_name[0]), std::ios_base::out);
     std::ifstream fin(av[1], std::ios_base::in);
+    if (!fin)
+        return (fin.close(), -1);
+    std::ofstream fout((&out_name[0]), std::ios_base::out);
     while (std::getline(fin, buf))
     {
-        if (buf.empty())
-            break;
         tr_str(buf, std::string(av[2]), std::string(av[3]));
+        if (fin.eof())
+        {
+            fout << buf;
+            break;
+        }
         fout << buf << std::endl;
     }
     fout.close();
