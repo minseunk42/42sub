@@ -8,8 +8,8 @@ class Brain
     private:
         std::string *ideas;
         int         idx;
-    public:
         const static int    bsize = 100;
+    public:
         Brain();
         virtual ~Brain();
         Brain(Brain const &ref);
