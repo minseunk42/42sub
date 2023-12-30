@@ -4,6 +4,9 @@
 
 int main()
 {
+    //순수 가상 함수를 1개라도 가지는 추상클래스는 인스턴스를 생성할 수 없다.
+    //Animal *wrong = new Animal();
+    
     std::cout << "<basic test>" << std::endl;
 
     const Animal* j = new Dog();
@@ -41,6 +44,7 @@ int main()
     arr[0]->makeSound();
     arr[1]->makeSound();
     for (int i = 0; i < 2; i++)
-        delete arr[i];        
+        delete arr[i];
+    
     return 0;
 }
