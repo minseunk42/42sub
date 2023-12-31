@@ -20,6 +20,7 @@ Dog::Dog(Dog const &ref) : Animal(ref)
 Dog&      Dog::operator=(Dog const &ref)
 {
     std::cout << "Dog 복사대입 연산자 호출" << std::endl;
+    Animal:: operator=(ref);
     this->type = ref.type;
     return *this;
 }

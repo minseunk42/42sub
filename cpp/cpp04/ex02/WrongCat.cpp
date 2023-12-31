@@ -1,4 +1,5 @@
 #include "WrongCat.hpp"
+#include "WrongAnimal.hpp"
 
 WrongCat::WrongCat()
 {
@@ -11,7 +12,7 @@ WrongCat::~WrongCat()
     std::cout << "WCat 소멸자 호출" << std::endl;
 }
 
-WrongCat::WrongCat(WrongCat const &ref)
+WrongCat::WrongCat(WrongCat const &ref) : WrongAnimal()
 {
     std::cout << "WCat 복사생성자 호출" << std::endl;
     this->type = ref.type;
@@ -20,6 +21,7 @@ WrongCat::WrongCat(WrongCat const &ref)
 WrongCat&      WrongCat::operator=(WrongCat const &ref)
 {
     std::cout << "WCat 복사대입 연산자 호출" << std::endl;
+    WrongAnimal:: operator=(ref);
     this->type = ref.type;
     return *this;
 }

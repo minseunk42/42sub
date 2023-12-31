@@ -1,4 +1,5 @@
 #include "Cat.hpp"
+#include "Animal.hpp"
 
 Cat::Cat()
 {
@@ -11,7 +12,7 @@ Cat::~Cat()
     std::cout << "Cat 소멸자 호출" << std::endl;
 }
 
-Cat::Cat(Cat const &ref)
+Cat::Cat(Cat const &ref) : Animal(ref)
 {
     std::cout << "Cat 복사생성자 호출" << std::endl;
     this->type = ref.type;
@@ -20,6 +21,7 @@ Cat::Cat(Cat const &ref)
 Cat&      Cat::operator=(Cat const &ref)
 {
     std::cout << "Cat 복사대입 연산자 호출" << std::endl;
+    Animal:: operator=(ref);
     this->type = ref.type;
     return *this;
 }
