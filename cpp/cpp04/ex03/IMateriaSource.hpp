@@ -2,6 +2,7 @@
 # define IMATERIASOURE_HPP
 
 class AMateria;
+#include <string>
 
 class IMateriaSource
 {

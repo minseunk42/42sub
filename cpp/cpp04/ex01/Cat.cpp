@@ -13,7 +13,7 @@ Cat::~Cat()
     delete this->brain;
 }
 
-Cat::Cat(Cat const &ref)
+Cat::Cat(Cat const &ref) : Animal(ref)
 {
     std::cout << "Cat 복사생성자 호출" << std::endl;
     this->type = ref.type;
@@ -23,6 +23,7 @@ Cat::Cat(Cat const &ref)
 Cat&      Cat::operator=(Cat const &ref)
 {
     std::cout << "Cat 복사대입 연산자 호출" << std::endl;
+    Animal:: operator=(ref);
     this->type = ref.type;
     delete this->brain;
     this->brain = new Brain(*(ref.getBrain()));
