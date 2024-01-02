@@ -12,7 +12,7 @@ int main(int ac, char **av)
     {
         const Animal* meta = new Animal();
         const Animal* j = new Dog();
-        Animal* i = new Cat();
+        const Animal* i = new Cat();
         std::cout << meta->getType() << " " << std::endl;
         std::cout << j->getType() << " " << std::endl;
         std::cout << i->getType() << " " << std::endl;
@@ -29,7 +29,7 @@ int main(int ac, char **av)
         std::cout << "-----wrong test-----" << std::endl;
 
         const WrongAnimal* wmeta = new WrongAnimal();
-        WrongAnimal* wi = new WrongCat();
+        const WrongAnimal* wi = new WrongCat();
         std::cout << wmeta->getType() << " " << std::endl;
         std::cout << wi->getType() << " " << std::endl;
         wi->makeSound(); //will output the wrong_cat sound!

@@ -1,4 +1,5 @@
 #include "Animal.hpp"
+#include "Brain.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
@@ -31,6 +32,14 @@ int main(int ac, char **av)
         std::cout << c2->getBrain()->getIdeas() << " " << std::endl;
         delete c1;
         delete c2;
+    }
+    else if (std::string(av[1]) == "3")
+    {
+        Cat *c = new Cat();
+        c->getBrain()->addIdeas("i am cat");
+        *c = *c;
+        std::cout << c->getBrain()->getIdeas() << " " << std::endl;
+        delete c;
     }
     else
     {

@@ -3,8 +3,8 @@
 Brain::Brain()
 {
     std::cout << "brain 기본생성자 호출" << std::endl;
-    this->ideas = new std::string[this->bsize];
-    for (int i = 0; i < bsize; i++)
+    this->ideas = new std::string[BSIZE];
+    for (int i = 0; i < BSIZE; i++)
         ideas[i] = " ";
     idx = 0;
 }
@@ -18,17 +18,20 @@ Brain::~Brain()
 Brain::Brain(Brain const &ref)
 {
     std::cout << "brain 복사생성자 호출" << std::endl;
-    this->ideas = new std::string[this->bsize];
-    for (int i = 0; i < bsize; i++)
+    this->ideas = new std::string[BSIZE];
+    for (int i = 0; i < BSIZE; i++)
         this->ideas[i] = ref.ideas[i];
+    idx = 0;
 }
 
 Brain&      Brain::operator=(Brain const &ref)
 {
     std::cout << "brain 복사대입 생성자 호출" << std::endl;
-    delete this->ideas;
-    this->ideas = new std::string[this->bsize];
-    for (int i = 0; i < this->bsize; i++)
+    if (this == &ref)
+        return *this;
+    delete[] this->ideas;
+    this->ideas = new std::string[BSIZE];
+    for (int i = 0; i < BSIZE; i++)
         this->ideas[i] = ref.ideas[i];
     return *this;
 }
@@ -36,7 +39,7 @@ Brain&      Brain::operator=(Brain const &ref)
 std::string Brain::getIdeas() const
 {
     std::string out;
-    for (int i = 0; i < this->bsize; i++)
+    for (int i = 0; i < BSIZE; i++)
     {
         if (this->ideas[i] != " ")
         {
@@ -50,6 +53,6 @@ std::string Brain::getIdeas() const
 void         Brain::addIdeas(std::string str)
 {
     this->ideas[idx++] = str;
-    if (idx == this->bsize)
+    if (idx == BSIZE)
         idx = 0;
 }
