@@ -16,14 +16,8 @@ void tr_str(std::string &buf, std::string s1, std::string s2)
     }
 }
 
-void lc()
-{
-    system("leaks sedisforlosers");
-}
-
 int main(int ac, char **av)
 {
-    atexit(lc);
     if (ac != 4 || std::string(av[2]).empty())
         return -1;
     std::string out_name;
