@@ -1,0 +1,20 @@
+There are ICharacter and IMateriaSource interfaces that are exactly like
+required in the subject.
+
+MateriaSource
+The MateriaSource class is present and implements IMateriaSource. The
+member functions work as intended.
+
+Concrete Materia
+There are concrete Ice and Cure classes that inherit from AMateria. Their
+clone() method is correctly implemented. Their outputs are correct.
+The AMateria class is still abstract (clone() is a pure function).
+virtual ~AMateria() is present.
+AMateria contains a protected string attribute to store the type.
+
+Character
+The Character class is present and implements ICharacter. It has
+an inventory of 4 Materias maximum.
+The member functions are implemented as the subject requires.
+The copy and assignment of a Character are implemented as required
+(deep copy).
