@@ -12,7 +12,10 @@ int main(int ac, char **av)
     {
         const Animal* meta = new Animal();
         const Animal* j = new Dog();
+        Dog* jj = new Dog();
+        Dog* jjj = new Dog(*jj);
         const Animal* i = new Cat();
+        std::cout << jjj->getType() << " " << std::endl;
         std::cout << meta->getType() << " " << std::endl;
         std::cout << j->getType() << " " << std::endl;
         std::cout << i->getType() << " " << std::endl;

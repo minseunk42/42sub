@@ -14,14 +14,12 @@ Dog::~Dog()
 Dog::Dog(Dog const &ref) : Animal(ref)
 {
     std::cout << "Dog 복사생성자 호출" << std::endl;
-    this->type = ref.type;
 }
 
 Dog&      Dog::operator=(Dog const &ref)
 {
     std::cout << "Dog 복사대입 연산자 호출" << std::endl;
     Animal:: operator=(ref);
-    this->type = ref.type;
     return *this;
 }
 

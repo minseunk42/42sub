@@ -1,8 +1,9 @@
 #ifndef IMATERIASOURCE_HPP
-# define IMATERIASOURE_HPP
+# define IMATERIASOURCE_HPP
 
 class AMateria;
-#include <string>
+# include <iostream>
+
 
 class IMateriaSource
 {
