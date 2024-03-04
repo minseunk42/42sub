@@ -41,7 +41,7 @@ AForm*  Intern::makeForm(std::string formName, std::string target)
             break;
         }
         default:
-            std::cout << "Wrong input" << std::endl;
+            throw NoForm();
     }
     return 0;
 }

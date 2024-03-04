@@ -20,7 +20,7 @@ int main( void )
 		rrf1 = someRandomIntern.makeForm("robotomy request", "Bender");
 		rrf2 = someRandomIntern.makeForm("robotomy request", "Bender");
 		rrf3 = someRandomIntern.makeForm("robotomy request", "Bender");
-		rrf4 = someRandomIntern.makeForm("presidential pardon", "Bender");
+		rrf4 = someRandomIntern.makeForm("", "Bender");
 		king.signForm(rrf4);
 		king.executeForm(*rrf4);
 	}

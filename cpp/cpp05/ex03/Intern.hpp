@@ -24,6 +24,14 @@ class Intern
         ~Intern();
         Intern();
         AForm *makeForm(std::string formName, std::string target);
+    public:
+        class NoForm : public std::exception 
+        {
+            virtual const char* what() const throw()
+            {
+                return "there is no form";
+            }
+        };
 };
 
 #endif

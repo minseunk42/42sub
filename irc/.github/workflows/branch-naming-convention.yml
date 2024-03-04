@@ -1,0 +1,27 @@
+name: Check Branch Name
+
+on: [push, pull_request]
+
+jobs:
+  branch-name-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Verify Branch Name
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          PR_BRANCH_NAME=${GITHUB_HEAD_REF}
+
+          if [[ -n $PR_BRANCH_NAME ]]; then
+            BRANCH_NAME=$PR_BRANCH_NAME
+          fi
+
+          # Check if branch name is master, dev, or follows the specific pattern
+          if ! [[ $BRANCH_NAME =~ ^(master|dev|main)$ ]] && ! [[ $BRANCH_NAME =~ ^(build|ci|docs|feat|fix|perf|refactor|test)/#([0-9]+)$ ]]; then
+            echo "Branch name does not follow convention (master|dev|build|ci|docs|feat|fix|perf|refactor|test)/#<issue number>"
+            exit 1
+          fi
+
+          # Echo the current branch name
+          echo "Current branch name: $BRANCH_NAME"

@@ -1,0 +1,23 @@
+name: Angular Commit Message Lint
+
+on: [push, pull_request]
+
+jobs:
+  commit-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0  # 모든 히스토리 가져옴.
+
+      - name: Install Commitlint
+        run: npm install @commitlint/{config-conventional,cli}
+
+      - name: Lint Commit Messages
+        run: |
+          if [ "${{ github.event_name }}" == "push" ]; then
+            npx commitlint --config .github/workflows/commitlint.config.js --from=HEAD~1 --to=HEAD --verbose
+          elif [ "${{ github.event_name }}" == "pull_request" ]; then
+            npx commitlint --config .github/workflows/commitlint.config.js --from=${{ github.event.pull_request.base.sha }} --to=${{ github.event.pull_request.head.sha }} --verbose
+          fi
