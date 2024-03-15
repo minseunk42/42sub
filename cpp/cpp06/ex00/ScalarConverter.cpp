@@ -11,7 +11,15 @@ static bool isCLiteral(std::string input)
 
 static bool isILiteral(std::string input)
 {
-    if (input.size() > 10 + (input[0] == '-')) 
+    stringstream ss;
+    int i;
+    ss << input;
+    ss >> i;
+    if (i == 2147483647 && input != "2147483647")
+        return (false);
+    if (i == -2147483648 && input != "-2147483648")
+        return (false);
+    if (input.size() > 10 + (input[0] == '-') + (input[0] == '+')) 
         return (false);
     for (unsigned long i = 0; i < input.size(); ++i)
     {
@@ -71,28 +79,42 @@ static bool isDLiteral(std::string input)
     return (true);
 }
 
-static void printAll(char c, int i, long l, float f, double d, bool is_int)
+static bool isNonPrintable(char c)
+{
+    if ((c > 31 && c < 127) || (c >= 9 && c <= 13))
+        return (false);
+    return (true);
+}
+
+static void printAll(char c, int i, float f, double d, std::string input)
 {
     if (i > 127 || i < 0)
         std::cout << "char : impossible" << std::endl;
-    else if (c < 9 || c > 126)
+    else if (isNonPrintable(c))
         std::cout << "char : Non displayable" << std::endl;
     else 
         std::cout << "char : '" << c << "'" << std::endl;
-    if (l != i)
-        std::cout << "int : impossible" << std::endl;
+    if (isOFI(i, input))
+        std::cout << "int : impossible" << i << std::endl;
     else
         std::cout << "int : " << i << std::endl;
-    if (is_int == true)
-    {
-        std::cout << "float : " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
-        std::cout << "double : " << std::fixed << std::setprecision(1) << d << std::endl;
-    }
-    else
-    {
-        std::cout << "float : "  << f << "f" << std::endl;
-        std::cout << "double : " << d << std::endl;    
-    }
+    
+    std::cout << "float : " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+    std::cout << "double : " << std::fixed << std::setprecision(1) << d << std::endl;
+}
+
+static bool isNanLiteral(std::string input)
+{
+    if (input == "nan" || input == "nanf")
+        return true;
+    return false;
+}
+
+static bool isInfLiteral(std::string input)
+{
+    if (input == "inf" || input == "inff")
+        return true;
+    return false;
 }
 
 static void printNan()
@@ -105,51 +127,54 @@ static void printNan()
 
 void ScalarConverter::convert(std::string input)
 {
-    if (input == "nan")
+    
+    char    c;
+    int     i;
+    float   f;
+    double  d;
+    std::stringstream ss;
+    if (isNanLiteral(input))
     {
         printNan();
         return ;
     }
-    char    c;
-    int     i;
-    long    l;
-    float   f;
-    double  d;
-    std::stringstream ss;
-    std::stringstream ss1;
-    if (isCLiteral(input))
+    else if (isInfLiteral(input))
+    {
+        f = 1/0.0;
+        c = static_cast<char>(f);
+        i = static_cast<int>(f);
+        d = static_cast<double>(f);
+        printAll(c,i,f,d);
+        return ;
+    }
+    else if (isCLiteral(input))
     {
         c = input[0];
         i = static_cast<int>(c);
         f = static_cast<float>(c);
         d = static_cast<double>(c);
-        l = static_cast<long>(d);
-        printAll(c,i,l,f,d,true);
+        printAll(c,i,f,d);
         return ;
     }
     else if (isILiteral(input))
     {
         ss << input;
         ss >> i;
-        ss1 << input;
-        ss1 >> l;
         c = static_cast<char>(i);
         f = static_cast<float>(i);
         d = static_cast<double>(i);
-        printAll(c,i,l,f,d,true);
+        printAll(c,i,f,d);
         return ;
     }
     else if (isFLiteral(input))
     {
         input[input.size() - 1] = 0;
         ss << input;
-        std::cout << input << std::endl;
         ss >> f;
         c = static_cast<char>(f);
         i = static_cast<int>(f);
         d = static_cast<double>(f);
-        l = static_cast<long>(f);
-        printAll(c,i,l,f,d,false);
+        printAll(c,i,f,d);
         return ;
     }
     else if (isDLiteral(input))
@@ -159,8 +184,7 @@ void ScalarConverter::convert(std::string input)
         c = static_cast<char>(d);
         i = static_cast<int>(d);
         f = static_cast<float>(d);
-        l = static_cast<long>(d);
-        printAll(c,i,l,f,d,false);
+        printAll(c,i,f,d);
         return ;
     }
     else
