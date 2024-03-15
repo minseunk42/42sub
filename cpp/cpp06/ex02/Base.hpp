@@ -1,10 +1,10 @@
 #ifndef BASE_HPP
 # define BASE_HPP
 
-class Bass
+class Base
 {
     public:
-        virtual ~Base();
+        virtual ~Base(){};
 };
 
 #endif

@@ -20,6 +20,7 @@ static int checkFormName(std::string formName)
 AForm*  Intern::makeForm(std::string formName, std::string target)
 {
     std::stringstream ss;
+    std::cout << checkFormName(formName) << std::endl;
     switch (checkFormName(formName))
     {
         case SCF:

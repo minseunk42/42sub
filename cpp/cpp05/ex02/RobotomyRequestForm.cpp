@@ -14,7 +14,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const
     checkPermit(executor);
     std::srand(std::time(NULL));
     if (std::rand() % 2 == 1)
-        std::cout << this->target << "has been robotomized" << std::endl;
+        std::cout << this->target << " has been robotomized" << std::endl;
     else
-        std::cout << this->target << "fail to robotomize" << std::endl;
+        std::cout << this->target << " fail to robotomize" << std::endl;
 }
