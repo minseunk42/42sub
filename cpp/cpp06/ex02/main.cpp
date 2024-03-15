@@ -35,17 +35,17 @@ void identify(Base& p) {
         Base &t = dynamic_cast<A&>(p);
         std::cout << "A" << std::endl;
         (void)t;
-    } catch (std::bad_cast&) {}
+    } catch (...) {}
     try {
         Base &t = dynamic_cast<B&>(p);
         std::cout << "B" << std::endl;
         (void)t;
-    } catch (std::bad_cast&) {}
+    } catch (...) {}
     try {
         Base &t = dynamic_cast<C&>(p);
         std::cout << "C" << std::endl;
         (void)t;
-    } catch (std::bad_cast&) {}
+    } catch (...) {}
     
 }
 

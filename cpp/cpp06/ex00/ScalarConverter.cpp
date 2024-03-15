@@ -116,6 +116,7 @@ void ScalarConverter::convert(std::string input)
     float   f;
     double  d;
     std::stringstream ss;
+    std::stringstream ss1;
     if (isCLiteral(input))
     {
         c = input[0];
@@ -130,7 +131,8 @@ void ScalarConverter::convert(std::string input)
     {
         ss << input;
         ss >> i;
-        ss >> l;
+        ss1 << input;
+        ss1 >> l;
         c = static_cast<char>(i);
         f = static_cast<float>(i);
         d = static_cast<double>(i);
@@ -141,6 +143,7 @@ void ScalarConverter::convert(std::string input)
     {
         input[input.size() - 1] = 0;
         ss << input;
+        std::cout << input << std::endl;
         ss >> f;
         c = static_cast<char>(f);
         i = static_cast<int>(f);
