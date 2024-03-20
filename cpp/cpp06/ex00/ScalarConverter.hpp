@@ -7,13 +7,8 @@
 
 class ScalarConverter
 {
-    private:
-        ScalarConverter();
-        ScalarConverter(ScalarConverter const &ref);
-        ScalarConverter&  operator=(ScalarConverter const &ref);
     public:
-        ~ScalarConverter();
-        static void convert(std::string input);
+    static void convert(std::string input);
 };
 
 #endif

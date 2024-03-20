@@ -9,15 +9,22 @@ static bool isCLiteral(std::string input)
     return (true);
 }
 
+static bool isOFI(int i, std::string input)
+{
+    if (i == 2147483647 && !(input == "2147483647" || input == "+2147483647"))
+        return (true);
+    if (i == -2147483648 && input != "-2147483648")
+        return (true);
+    return (false);
+}
+
 static bool isILiteral(std::string input)
 {
-    stringstream ss;
+    std::stringstream ss;
     int i;
     ss << input;
     ss >> i;
-    if (i == 2147483647 && input != "2147483647")
-        return (false);
-    if (i == -2147483648 && input != "-2147483648")
+    if (isOFI(i, input))
         return (false);
     if (input.size() > 10 + (input[0] == '-') + (input[0] == '+')) 
         return (false);
@@ -44,14 +51,13 @@ static bool isFLiteral(std::string input)
             continue;
         if (input[i] == '.')
         {
-            dotCnt += 1;
+            if (++dotCnt > 1)
+                return (false);
             continue;
         }
         if (input[i] < '0' || input[i] > '9')
             return (false);
     }
-    if (dotCnt > 1)
-        return (false);
     if (input[input.size() - 1] != 'f')
         return (false);
     return (true);
@@ -68,20 +74,19 @@ static bool isDLiteral(std::string input)
             continue;
         if (input[i] == '.')
         {
-            dotCnt += 1;
+            if (++dotCnt > 1)
+                return (false);
             continue;
         }
         if (input[i] < '0' || input[i] > '9')
             return (false);
     }
-    if (dotCnt > 1)
-        return (false);
     return (true);
 }
 
 static bool isNonPrintable(char c)
 {
-    if ((c > 31 && c < 127) || (c >= 9 && c <= 13))
+    if ((c > 31 && c < 127) || (c > 8 && c < 14))
         return (false);
     return (true);
 }
@@ -95,12 +100,19 @@ static void printAll(char c, int i, float f, double d, std::string input)
     else 
         std::cout << "char : '" << c << "'" << std::endl;
     if (isOFI(i, input))
-        std::cout << "int : impossible" << i << std::endl;
+        std::cout << "int : impossible" << std::endl;
     else
         std::cout << "int : " << i << std::endl;
-    
-    std::cout << "float : " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
-    std::cout << "double : " << std::fixed << std::setprecision(1) << d << std::endl;
+    if (isILiteral(input) || isCLiteral(input))
+    {
+        std::cout << "float : " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+        std::cout << "double : " << std::fixed << std::setprecision(1) << d << std::endl;
+    }
+    else
+    {
+        std::cout << "float : " << f << "f" << std::endl;
+        std::cout << "double : " << d << std::endl;
+    }
 }
 
 static bool isNanLiteral(std::string input)
@@ -113,6 +125,8 @@ static bool isNanLiteral(std::string input)
 static bool isInfLiteral(std::string input)
 {
     if (input == "inf" || input == "inff")
+        return true;
+    if (input == "-inf" || input == "-inff")
         return true;
     return false;
 }
@@ -127,7 +141,6 @@ static void printNan()
 
 void ScalarConverter::convert(std::string input)
 {
-    
     char    c;
     int     i;
     float   f;
@@ -140,11 +153,14 @@ void ScalarConverter::convert(std::string input)
     }
     else if (isInfLiteral(input))
     {
-        f = 1/0.0;
+        if (input[0] == '-')
+            f = -1/0.0;
+        else
+            f = 1/0.0;
         c = static_cast<char>(f);
         i = static_cast<int>(f);
         d = static_cast<double>(f);
-        printAll(c,i,f,d);
+        printAll(c,i,f,d,input);
         return ;
     }
     else if (isCLiteral(input))
@@ -153,7 +169,7 @@ void ScalarConverter::convert(std::string input)
         i = static_cast<int>(c);
         f = static_cast<float>(c);
         d = static_cast<double>(c);
-        printAll(c,i,f,d);
+        printAll(c,i,f,d,input);
         return ;
     }
     else if (isILiteral(input))
@@ -163,7 +179,7 @@ void ScalarConverter::convert(std::string input)
         c = static_cast<char>(i);
         f = static_cast<float>(i);
         d = static_cast<double>(i);
-        printAll(c,i,f,d);
+        printAll(c,i,f,d,input);
         return ;
     }
     else if (isFLiteral(input))
@@ -174,7 +190,7 @@ void ScalarConverter::convert(std::string input)
         c = static_cast<char>(f);
         i = static_cast<int>(f);
         d = static_cast<double>(f);
-        printAll(c,i,f,d);
+        printAll(c,i,f,d,input);
         return ;
     }
     else if (isDLiteral(input))
@@ -184,7 +200,7 @@ void ScalarConverter::convert(std::string input)
         c = static_cast<char>(d);
         i = static_cast<int>(d);
         f = static_cast<float>(d);
-        printAll(c,i,f,d);
+        printAll(c,i,f,d,input);
         return ;
     }
     else
