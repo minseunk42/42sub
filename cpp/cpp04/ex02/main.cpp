@@ -13,7 +13,8 @@ int main(int ac, char **av)
         std::cout << "<basic test>" << std::endl;
 
         const Animal* j = new Dog();
-        const Animal* i = new Cat();
+        Animal* i = new Cat();
+        i = i;
         delete j;//should not create a leak
         delete i;
     }

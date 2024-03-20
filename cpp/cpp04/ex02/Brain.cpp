@@ -27,8 +27,8 @@ Brain::Brain(Brain const &ref)
 Brain&      Brain::operator=(Brain const &ref)
 {
     std::cout << "brain 복사대입 생성자 호출" << std::endl;
-    if (this == &ref)
-        return *this;
+    // if (this == &ref)
+    //     return *this;
     delete[] this->ideas;
     this->ideas = new std::string[BSIZE];
     for (int i = 0; i < BSIZE; i++)

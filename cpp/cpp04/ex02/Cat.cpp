@@ -22,8 +22,8 @@ Cat::Cat(Cat const &ref) : Animal(ref)
 Cat&      Cat::operator=(Cat const &ref)
 {
     std::cout << "Cat 복사대입 연산자 호출" << std::endl;
-    if (this == &ref)
-        return *this;
+    // if (this == &ref)
+    //     return *this;
     Animal:: operator=(ref);
     delete this->brain;
     this->brain = new Brain(*(ref.getBrain()));
