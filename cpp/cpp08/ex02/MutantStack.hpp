@@ -10,20 +10,8 @@ class MutantStack : public std::stack<T>
     public:
         MutantStack() {};
         ~MutantStack() {};
-        MutantStack(MutantStack const & ref) 
-        {    
-            for (MutantStack<T>::const_iterator it = ref.begin(); it != ref.end(); it++)
-                (*this).push(*it);
-        };
-        MutantStack& operator=(MutantStack const & ref) 
-        {
-            if (this != &ref)
-            {
-                for (MutantStack<T>::const_iterator it = ref.begin(); it != ref.end(); it++)
-                    (*this).push(*it);
-            }
-            return *this;
-        };
+        MutantStack(MutantStack const &ref) : std::stack<T>(ref) {};
+        MutantStack& operator=(MutantStack const &ref) {std::stack<T>::operator=(ref);};
         typedef typename MutantStack<T>::stack::container_type::iterator iterator;
         iterator begin() {return this->c.begin();}
         iterator end() {return this->c.end();}
