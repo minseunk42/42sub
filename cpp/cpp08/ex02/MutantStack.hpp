@@ -9,9 +9,21 @@ class MutantStack : public std::stack<T>
 {
     public:
         MutantStack() {};
-        MutantStack(const MutantStack& ref) {*this = ref;};
-        MutantStack& operator=(const MutantStack& ref) {*this = ref; return (*this);}
         ~MutantStack() {};
+        MutantStack(MutantStack& ref) 
+        {    
+            for (MutantStack<T>::iterator it = ref.begin(); it != ref.end(); it++)
+                (*this).push(*it);
+        };
+        MutantStack& operator=(MutantStack& ref) 
+        {
+            if (this != &ref)
+            {
+                for (MutantStack<T>::iterator it = ref.begin(); it != ref.end(); it++)
+                    (*this).push(*it);
+            }
+            return *this;
+        };
         typedef typename MutantStack<T>::stack::container_type::iterator iterator;
         iterator begin() {return this->c.begin();}
         iterator end() {return this->c.end();}
