@@ -13,12 +13,12 @@ int main()
     std::cout << sp.shortestSpan() << std::endl;
     std::cout << sp.longestSpan() << std::endl;
     std::cout << "------------------------" << std::endl;
-    Span sp1 = Span(10000);
+    Span sp1 = Span(2);
     std::srand(std::time(0));
-    for (int i = 0; i < 10000; ++i)
+    unsigned int ui = 0;
+    ui--;
+    for (int i = 0; i < 2; ++i)
     {
-        unsigned int ui = 0;
-        ui--;
         sp1.addNumber(std::rand() % ui);
     }
     std::cout << sp1.shortestSpan() << std::endl;
