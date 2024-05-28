@@ -152,12 +152,19 @@ void BitcoinExchange::exchange(char *filename)
     std::string date;
     char sep;
     float amount;
+    std::getline(fin, buf);
+    std::stringstream sst(buf);
+    sst >> date;
+    if (date != "date")
+    {
+        std::cout << "Error: wrong file." << std::endl;
+        fin.close();
+        return;
+    }
     while (std::getline(fin, buf))
     {
         std::stringstream ss(buf);
         ss >> date >> sep >> amount;
-        if (date == "date")
-            continue;
         printResult(date, amount, data);
     }
 }

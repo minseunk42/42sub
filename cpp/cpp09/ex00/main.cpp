@@ -8,7 +8,15 @@ int main(int ac, char *av[])
         return -1;
     }
     char df[] = "data.csv";
-    BitcoinExchange be(df);
-    be.exchange(av[1]);
+    try
+    {
+        BitcoinExchange be(df);
+        be.exchange(av[1]);
+    }
+    catch (std::exception &e) 
+    {
+		std::cout << e.what() << std::endl;
+        return -1;
+	}
     return 0;
 }
