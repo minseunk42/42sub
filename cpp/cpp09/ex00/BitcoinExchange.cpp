@@ -165,6 +165,11 @@ void BitcoinExchange::exchange(char *filename)
     {
         std::stringstream ss(buf);
         ss >> date >> sep >> amount;
+        if (sep != '|')
+        {
+            std::cout << "Error: bad sep. => " << sep << std::endl;
+            continue;
+        }
         printResult(date, amount, data);
     }
 }
