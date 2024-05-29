@@ -28,6 +28,7 @@ void PmergeMe::sort()
         out += " ";
     }
     std::cout << out << std::endl;
+    
     // sort with count;
 
     out = "After  : ";
@@ -39,5 +40,5 @@ void PmergeMe::sort()
         out += " ";
     }
     std::cout << out << std::endl;
-    std::cout << cnt << std::endl;
+    std::cout << cnt << std::endl; 
 }
