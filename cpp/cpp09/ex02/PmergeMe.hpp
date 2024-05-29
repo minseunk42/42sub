@@ -4,7 +4,29 @@
 # include <vector>
 # include <list>
 # include <iostream>
+# include <sstream>
 
-
+class PmergeMe
+{
+    private:
+        PmergeMe(PmergeMe const &ref){(void)ref;};
+        PmergeMe&  operator=(PmergeMe const &ref){(void)ref; return *this;};
+        std::vector<unsigned int> v;
+        std::list<unsigned int> l;
+        unsigned int cnt;
+    public:
+        PmergeMe(){};
+        ~PmergeMe(){};
+        void add(char *val);
+        void sort();
+    public:
+        class InputIsWrong : public std::exception 
+        {
+            virtual const char* what() const throw()
+            {
+                return "Error: Input Is Wrong";
+            }
+        };
+};
 
 #endif
