@@ -14,7 +14,6 @@ class PmergeMe
         PmergeMe&  operator=(PmergeMe const &ref){(void)ref; return *this;};
         std::vector<unsigned int> v;
         std::list<unsigned int> l;
-        unsigned int cnt;
     public:
         PmergeMe(){};
         ~PmergeMe(){};
