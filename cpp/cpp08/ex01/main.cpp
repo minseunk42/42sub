@@ -17,7 +17,7 @@ int main()
     std::srand(std::time(0));
     unsigned int ui = 0;
     ui--;
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 100; ++i)
     {
         sp1.addNumber(std::rand() % ui);
     }

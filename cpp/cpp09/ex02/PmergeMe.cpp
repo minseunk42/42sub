@@ -16,7 +16,7 @@ void PmergeMe::add(char *val)
     l.push_back(ui);
 }
 
-void fj(std::vector<unsigned int> &v, int depth)
+void fj(std::vector<unsigned int> &v)
 {
     
 }
@@ -37,7 +37,7 @@ void PmergeMe::sort()
     clock_gettime(CLOCK_MONOTONIC, &start);
 
     //fj()
-    fj(v, 1);
+    fj(v);
 
     clock_gettime(CLOCK_MONOTONIC, &end);
 
