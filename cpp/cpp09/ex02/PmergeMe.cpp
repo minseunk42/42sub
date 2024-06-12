@@ -5,8 +5,11 @@ void PmergeMe::add(char *val)
     int i = -1;
     while (val[++i])
     {
-        if (!(val[i] > '0' && val[i] < '9'))
+        if (!(val[i] >= '0' && val[i] <= '9'))
+        {
+            std::cout << "fj";
             throw InputIsWrong();
+        }
     }
     std::stringstream ss;
     unsigned int ui;
@@ -16,19 +19,76 @@ void PmergeMe::add(char *val)
     l.push_back(ui);
 }
 
-void fj(std::vector<unsigned int> &v, int level)
+void devide(std::vector<unsigned int> &v, int level)
 {
     std::vector<unsigned int>::iterator mc = v.begin();
     std::vector<unsigned int>::iterator sc = mc;
     std::advance(sc, level);
+    while (sc != v.end())
+    {
+        if (std::distance(mc ,v.end()) < level * 2)
+            break;
+        if (*sc > *mc)
+        {
+            int temp = level;
+            while (temp-- && sc != v.end())
+            {
+                std::swap(*mc, *sc);
+                mc++;
+                sc++;
+            }
+        }
+        else
+        {
+            int temp = level;
+            while (temp-- && sc != v.end())
+            {
+                mc++;
+                sc++;
+            }
+        }
+        int temp = level;
+        while (temp-- && sc != v.end())
+        {
+            mc++;
+            sc++;
+        }
+    }
+}
 
+// void insert(std::vector<unsigned int> &v, int level)
+// {
+//     int 
+// }
 
+void printv(std::vector<unsigned int> &v)
+{
+    std::string out = "now : ";
+    for (std::vector<unsigned int>::iterator it = v.begin(); it != v.end(); ++it)
+    {
+        std::stringstream ss;
+        ss << *it;
+        out += ss.str();
+        out += " ";
+    }
+    std::cout << out << std::endl;
+}
+
+void fj(std::vector<unsigned int> &v, int level)
+{
+    unsigned long check = level * 2;
+    if (check > v.size())
+        return ;
+    devide(v, level);
+    printv(v);
+    // insert(v, level);
+    fj(v, level * 2);
 }
 
 void PmergeMe::sort()
 {
     std::string out = "Before : ";
-    for (std::vector<unsigned int>::reverse_iterator it = v.rbegin(); it != v.rend(); ++it)
+    for (std::vector<unsigned int>::iterator it = v.begin(); it != v.end(); ++it)
     {
         std::stringstream ss;
         ss << *it;
@@ -57,7 +117,7 @@ void PmergeMe::sort()
     double elapsed2 = (end.tv_sec - start.tv_sec) * 1e9 + (end.tv_nsec - start.tv_nsec);
 
     out = "After  : ";
-    for (std::list<unsigned int>::iterator it = l.begin(); it != l.end(); ++it)
+    for (std::vector<unsigned int>::iterator it = v.begin(); it != v.end(); ++it)
     {
         std::stringstream ss;
         ss << *it;

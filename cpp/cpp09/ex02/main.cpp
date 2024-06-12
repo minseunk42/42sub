@@ -6,8 +6,9 @@ int main(int ac, char *av[])
         if (ac < 2)
             throw PmergeMe::InputIsWrong();
         PmergeMe pm;
-        while (--ac)
-            pm.add(av[ac]);
+        int i = 0;
+        while (++i < ac)
+            pm.add(av[i]);
         pm.sort();
     }
     catch (std::exception &e) {
