@@ -95,15 +95,17 @@ void insertsc(std::vector<unsigned int> &mcv, int span)
     std::cout << "scv";printv(scv);
     //야곱스탈 수열 만들기
     int n = logTwo(scv.size() / span);
-    std::vector<unsigned int> js(n + 2);
+    std::vector<unsigned int> js(n + 1);
     js[0] = 1;
-    for (int i = 1; i <= n; ++i)
+    for (int i = 1; i < n; ++i)
         js[i] = (1 << i) - js[i - 1];
-    int elecnt;
+    mcv.insert(mcv.begin(), scv.begin() , scv.begin() + span);
+    scv.erase(scv.begin() , scv.begin() + span);
     //이진탐색하여 삽입
-    for (int i = 0; i <= n; ++i)
+    int elecnt;
+    for (int i = 1; i < n; ++i)
     {
-        elecnt = powerTwo(i);
+        elecnt = powerTwo(i + 1) - 1;
         for (int j = js[i] - 1; j >= 0; --j)
         {
             std::vector<unsigned int>::iterator pos = getPos(mcv, elecnt, *(scv.begin() + (j * span)), span);
@@ -111,11 +113,12 @@ void insertsc(std::vector<unsigned int> &mcv, int span)
             scv.erase(scv.begin() + (j * span), scv.begin() + (j * span) + span);
         }
     }
-    elecnt = powerTwo(n + 1);
     while (scv.size())
     {
         std::vector<unsigned int>::iterator it = scv.begin();
-        std::vector<unsigned int>::iterator pos = getPos(mcv, elecnt, *(it), span);
+        //upper_bound는 이미 정렬된거에만 쓸수 있다.
+        printv(mcv);
+        std::vector<unsigned int>::iterator pos = std::upper_bound(mcv.begin(), mcv.end(), *(it));
         mcv.insert(pos, it, it + span);
         scv.erase(it, it + span);
     }
