@@ -22,6 +22,7 @@ void PmergeMe::add(char *val)
 int logTwo(int n)
 {
     int out = 0;
+    n /= 2;
     while (n)
     {
         n /= 2;
@@ -51,59 +52,89 @@ void printv(std::vector<unsigned int> &v)
     std::cout << out << std::endl;
 }
 
-void divideSc(std::vector<unsigned int> &mcv, std::vector<unsigned int> &scv, int level)
+void extractSc(std::vector<unsigned int> &mcv, std::vector<unsigned int> &scv, int span)
 {
     std::vector<unsigned int>::iterator sci = mcv.begin();
-    std::advance(sci, level);
+    std::advance(sci, span);
     while (1)
     {
-        scv.insert(scv.end(), sci, sci + level);
-        mcv.erase(sci, sci + level);
-        if (std::distance(sci, mcv.end()) < level * 2)
+        scv.insert(scv.end(), sci, sci + span);
+        mcv.erase(sci, sci + span);
+        if (std::distance(sci, mcv.end()) < span * 2)
             break;
-        std::advance(sci, level);
+        std::advance(sci, span);
     }
 }
 
-void insertsc(std::vector<unsigned int> &mcv, int level)
+std::vector<unsigned int>::iterator getPos(std::vector<unsigned int> &mcv, int elecnt, unsigned int val, int span)
+{
+    int mid = elecnt / 2;
+    std::vector<unsigned int>::iterator it = mcv.begin() + (mid * span);
+    while (mid)
+    {
+        if (*it == val)
+            return it;
+        mid /= 2;
+        if (*it < val)
+            it = it + (mid * span);
+        else
+            it = it - (mid * span);
+    }
+    if (*it < val)
+    {
+        return (it + span);
+    }
+    else
+        return it;
+}
+
+void insertsc(std::vector<unsigned int> &mcv, int span)
 {
     std::vector<unsigned int> scv;
-    divideSc(mcv,scv,level);
-    
+    extractSc(mcv,scv,span);
     //야곱스탈 수열 만들기
-    int n = logTwo(scv.size() / level);
-    std::vector<unsigned int> js(n);
+    int n = logTwo(scv.size() / span);
+    std::vector<unsigned int> js(n + 1);
     js[0] = 1;
-    for (int i = 1; i < n; ++i)
+    for (int i = 1; i <= n; ++i)
         js[i] = (1 << i) - js[i - 1];
-
+    int elecnt;
+    //한개는 무조건 맨 앞에 삽입
+    mcv.insert(mcv.begin(), scv.begin() , scv.begin() + span);
+    scv.erase(scv.begin() , scv.begin() + span);
     //이진탐색하여 삽입
-    for (int i = 0; i < n; ++i)
+    for (int i = 1; i <= n; ++i)
     {
-        int elecnt = powerTwo(i + 1);
+        elecnt = powerTwo(i) * 2;
         for (int j = js[i] - 1; j >= 0; --j)
         {
-            std::vector<unsigned int>::iterator pos = std::upper_bound(mcv.begin(), mcv.begin() + elecnt, *(scv.begin() + j));
-            mcv.insert(pos, scv.begin() + j, scv.begin() + j + level);
-            scv.erase(scv.begin() + j, scv.begin() + j + level);
+            std::vector<unsigned int>::iterator pos = getPos(mcv, elecnt, *(scv.begin() + (j * span)), span);
+            mcv.insert(pos, scv.begin() + (j * span), scv.begin() + (j * span) + span);
+            scv.erase(scv.begin() + (j * span), scv.begin() + (j * span) + span);
         }
     }
-    //자투리 삽입부분
-
+    elecnt = powerTwo(n) * 2;
+    while (scv.size())
+    {
+        std::vector<unsigned int>::iterator it = scv.begin();
+        std::vector<unsigned int>::iterator pos = getPos(mcv, elecnt, *(it), span);
+        mcv.insert(pos, it, it + span);
+        scv.erase(it, it + span);
+    }
 }
 
-void divide(std::vector<unsigned int> &v, int level)
+void divide(std::vector<unsigned int> &v, int span)
 {
     std::vector<unsigned int>::iterator mc = v.begin();
     std::vector<unsigned int>::iterator sc = mc;
-    std::advance(sc, level);
+    std::advance(sc, span);
     while (sc != v.end())
     {
-        if (std::distance(mc ,v.end()) < level * 2)
+        if (std::distance(mc ,v.end()) < span * 2)
             break;
         if (*sc > *mc)
         {
-            int temp = level;
+            int temp = span;
             while (temp-- && sc != v.end())
             {
                 std::swap(*mc, *sc);
@@ -113,14 +144,14 @@ void divide(std::vector<unsigned int> &v, int level)
         }
         else
         {
-            int temp = level;
+            int temp = span;
             while (temp-- && sc != v.end())
             {
                 mc++;
                 sc++;
             }
         }
-        int temp = level;
+        int temp = span;
         while (temp-- && sc != v.end())
         {
             mc++;
@@ -129,14 +160,14 @@ void divide(std::vector<unsigned int> &v, int level)
     }
 }
 
-void fj(std::vector<unsigned int> &v, int level)
+void fj(std::vector<unsigned int> &v, int span)
 {
-    unsigned long check = level * 2;
+    unsigned long check = span * 2;
     if (check > v.size())
         return ;
-    divide(v, level);
-    fj(v, level * 2);
-    insertsc(v, level);
+    divide(v, span);
+    fj(v, span * 2);
+    insertsc(v, span);
 }
 
 void PmergeMe::sort()
