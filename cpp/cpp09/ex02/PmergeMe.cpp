@@ -64,6 +64,7 @@ void extractSc(std::vector<unsigned int> &mcv, std::vector<unsigned int> &scv, i
             break;
         std::advance(sci, span);
     }
+
 }
 
 std::vector<unsigned int>::iterator getPos(std::vector<unsigned int> &mcv, int elecnt, unsigned int val, int span)
@@ -81,9 +82,7 @@ std::vector<unsigned int>::iterator getPos(std::vector<unsigned int> &mcv, int e
             it = it - (mid * span);
     }
     if (*it < val)
-    {
         return (it + span);
-    }
     else
         return it;
 }
@@ -91,19 +90,18 @@ std::vector<unsigned int>::iterator getPos(std::vector<unsigned int> &mcv, int e
 void insertsc(std::vector<unsigned int> &mcv, int span)
 {
     std::vector<unsigned int> scv;
+    std::cout << "mcv";printv(mcv);
     extractSc(mcv,scv,span);
+    std::cout << "scv";printv(scv);
     //야곱스탈 수열 만들기
     int n = logTwo(scv.size() / span);
-    std::vector<unsigned int> js(n + 1);
+    std::vector<unsigned int> js(n + 2);
     js[0] = 1;
     for (int i = 1; i <= n; ++i)
         js[i] = (1 << i) - js[i - 1];
     int elecnt;
-    //한개는 무조건 맨 앞에 삽입
-    mcv.insert(mcv.begin(), scv.begin() , scv.begin() + span);
-    scv.erase(scv.begin() , scv.begin() + span);
     //이진탐색하여 삽입
-    for (int i = 1; i <= n; ++i)
+    for (int i = 0; i <= n; ++i)
     {
         elecnt = powerTwo(i);
         for (int j = js[i] - 1; j >= 0; --j)
