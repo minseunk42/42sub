@@ -105,7 +105,7 @@ void insertsc(std::vector<unsigned int> &mcv, int span)
     //이진탐색하여 삽입
     for (int i = 1; i <= n; ++i)
     {
-        elecnt = powerTwo(i) * 2;
+        elecnt = powerTwo(i);
         for (int j = js[i] - 1; j >= 0; --j)
         {
             std::vector<unsigned int>::iterator pos = getPos(mcv, elecnt, *(scv.begin() + (j * span)), span);
@@ -113,7 +113,7 @@ void insertsc(std::vector<unsigned int> &mcv, int span)
             scv.erase(scv.begin() + (j * span), scv.begin() + (j * span) + span);
         }
     }
-    elecnt = powerTwo(n) * 2;
+    elecnt = powerTwo(n + 1);
     while (scv.size())
     {
         std::vector<unsigned int>::iterator it = scv.begin();
