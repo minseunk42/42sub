@@ -69,5 +69,5 @@ void RPN::cal(char *input)
     }
     if (st.size() != 1)
         throw InputIsWrong();
-    std::cout << st.top();
+    std::cout << st.top() << std::endl;
 }
