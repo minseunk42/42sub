@@ -280,7 +280,6 @@ void PmergeMe::sort()
     fj(l, 1);
     clock_gettime(CLOCK_MONOTONIC, &end);
 
-    // 경과 시간 계산
     double elapsed2 = (end.tv_sec - start.tv_sec) * 1e9 + (end.tv_nsec - start.tv_nsec);
 
     out = "After  : ";
@@ -301,6 +300,6 @@ void PmergeMe::sort()
         out += " ";
     }
     std::cout << out << std::endl;
-    std::cout << "Time to process a range of 3000 elements with std::vector : " << elapsed / 1e6 << "ms" << std::endl;
-    std::cout << "Time to process a range of 3000 elements with std::list   : " << elapsed2 / 1e6 << "ms" << std::endl;
+    std::cout << "Time to process a range of 3000 elements with std::vector : " << elapsed / 1e3 << "us" << std::endl;
+    std::cout << "Time to process a range of 3000 elements with std::list   : " << elapsed2 / 1e3 << "us" << std::endl;
 }

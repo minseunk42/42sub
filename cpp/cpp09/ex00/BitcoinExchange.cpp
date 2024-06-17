@@ -33,28 +33,6 @@ std::string getYesterday(std::string date)
     return ss1.str();
 }
 
-BitcoinExchange::BitcoinExchange(char *datafile)
-{
-    std::ifstream fin(datafile, std::ios_base::in);
-    if (!fin)
-    {
-        std::cout << "Error: could not open datafile." << std::endl;
-        fin.close();
-        throw std::exception();
-    }
-    std::string buf;
-    std::string key;
-    float val;
-    while (std::getline(fin, buf))
-    {
-        std::stringstream ss;
-        ss << buf.substr(buf.find(",") + 1);
-        ss >> val;
-        key = buf.substr(0, buf.find(","));
-        data[key] = val;
-    }
-}
-
 static bool isValDate(std::string date)
 {
     int year, month, day;
@@ -108,6 +86,37 @@ static bool isValDate(std::string date)
         return false;
     return true;
 }
+
+BitcoinExchange::BitcoinExchange(char *datafile)
+{
+    std::ifstream fin(datafile, std::ios_base::in);
+    if (!fin)
+    {
+        std::cout << "Error: could not open datafile.";
+        fin.close();
+        throw std::exception();
+    }
+    std::string buf;
+    std::string key;
+    float val;
+    std::getline(fin, buf);
+    while (std::getline(fin, buf))
+    {
+        std::stringstream ss;
+        ss << buf.substr(buf.find(",") + 1);
+        ss >> val;
+        key = buf.substr(0, buf.find(","));
+        if (!isValDate(key) || data.find(key) != data.end() || val < 0)
+        {
+            std::cout << "Error: data file is wrong.";
+            fin.close();
+            throw std::exception();
+        }
+        data[key] = val;
+    }
+}
+
+
 
 static void printResult(std::string day, float amount, std::map<std::string, float> data)
 {
