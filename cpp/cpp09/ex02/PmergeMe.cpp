@@ -63,9 +63,7 @@ std::vector<unsigned int>::iterator getPos(std::vector<unsigned int> &mc, int el
 void insertsc(std::vector<unsigned int> &mc, int span)
 {
     std::vector<unsigned int> sc;
-    // std::cout << "mc";printv(mc);
     extractSc(mc,sc,span);
-    // std::cout << "sc";printv(sc);
     //야곱스탈 수열 만들기
     int cnt = sc.size() / span;
     int js[32];
