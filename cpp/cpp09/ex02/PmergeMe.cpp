@@ -27,7 +27,6 @@ int powerTwo(int n)
     return out;
 }
 
-#include "PmergeMe.hpp"
 void extractSc(std::vector<unsigned int> &mc, std::vector<unsigned int> &sc, int span)
 {
     std::vector<unsigned int>::iterator sci = mc.begin();
