@@ -31,10 +31,9 @@ void extractSc(std::list<unsigned int> &mc, std::list<unsigned int> &sc, int spa
 {
     std::list<unsigned int>::iterator sci = mc.begin();
     std::advance(sci, span);
-    std::list<unsigned int>::iterator next;
     while (1)
     {
-        next = sci;
+        std::list<unsigned int>::iterator next = sci;
         std::advance(next, span);
         sc.insert(sc.end(), sci, next);
         mc.erase(sci, next);
@@ -43,7 +42,6 @@ void extractSc(std::list<unsigned int> &mc, std::list<unsigned int> &sc, int spa
             break;
         std::advance(sci, span);
     }
-    sci = next;
     if (std::distance(sci, mc.end()) >= span)
     {
         std::list<unsigned int>::iterator next = sci;
@@ -63,53 +61,45 @@ std::list<unsigned int>::iterator getPos(std::list<unsigned int> &mc, int elecnt
         std::advance(it, span);
     }
     std::list<unsigned int>::iterator pos = std::lower_bound(temp.begin(), temp.end(), val);
-    std::list<unsigned int>::iterator out = mc.begin();
-    int idx = std::distance(pos, temp.begin());
-    std::advance(out, idx * span);
-    return (out);
+    int idx = std::distance(temp.begin(), pos);
+    std::list<unsigned int>::iterator mcPos = mc.begin();
+    std::advance(mcPos, idx * span);
+    return mcPos;
 }
 
 void insertsc(std::list<unsigned int> &mc, int span)
 {
     std::list<unsigned int> sc;
-    extractSc(mc,sc,span);
-    //야곱스탈 수열 만들기
+    extractSc(mc, sc, span);
+    // 야곱스탈 수열 만들기
     int cnt = sc.size() / span;
     int js[32];
     js[0] = 1;
     for (int i = 1; i <= 31; ++i)
         js[i] = (0b10 << i) - js[i - 1];
-    //초항은 무조건 작을수 밖에 없음
+    // 초항은 무조건 작을수 밖에 없음
     std::list<unsigned int>::iterator temp = sc.begin();
     std::advance(temp, span);
-    mc.insert(mc.begin(), sc.begin() , temp);
+    mc.insert(mc.begin(), sc.begin(), temp);
     if (cnt == 1)
-        return ;
-    //이진탐색하여 삽입
+        return;
+    // 이진탐색하여 삽입
     int elecnt;
     int i = 0;
     while (js[++i] < cnt)
     {
-        elecnt = powerTwo(i + 1) - 1;
+        elecnt = (1 << (i + 1)) - 1;
         for (int j = js[i] - 1; j >= js[i - 1]; --j)
         {
-            std::list<unsigned int>::iterator st = sc.begin();
-            std::advance(st, j * span);
-            std::list<unsigned int>::iterator ed = st;
-            std::advance(ed, span);
-            std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *st, span);
-            mc.insert(pos, st, ed);
+            std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *std::next(sc.begin(), j * span), span);
+            mc.insert(pos, std::next(sc.begin(), j * span), std::next(sc.begin(), j * span + span));
         }
     }
     for (int j = cnt - 1; j >= js[i - 1]; --j)
     {
         elecnt = mc.size() / span;
-        std::list<unsigned int>::iterator st = sc.begin();
-        std::advance(st, j * span);
-        std::list<unsigned int>::iterator ed = st;
-        std::advance(ed, span);
-        std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *st, span);
-        mc.insert(pos, st, ed);
+        std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *std::next(sc.begin(), j * span), span);
+        mc.insert(pos, std::next(sc.begin(), j * span), std::next(sc.begin(), j * span + span));
     }
 }
 
@@ -120,7 +110,7 @@ void divide(std::list<unsigned int> &v, int span)
     std::advance(sc, span);
     while (sc != v.end())
     {
-        if (std::distance(mc ,v.end()) < span * 2)
+        if (std::distance(mc, v.end()) < span * 2)
             break;
         if (*sc > *mc)
         {
@@ -154,7 +144,7 @@ void fj(std::list<unsigned int> &v, int span)
 {
     unsigned long check = span * 2;
     if (check > v.size())
-        return ;
+        return;
     divide(v, span);
     fj(v, span * 2);
     insertsc(v, span);
