@@ -1,7 +1,7 @@
 #include "PmergeMe.hpp"
-void extractSc(std::list<unsigned int> &mc, std::list<unsigned int> &sc, int span)
+void extractSc(std::vector<unsigned int> &mc, std::vector<unsigned int> &sc, int span)
 {
-    std::list<unsigned int>::iterator sci = mc.begin();
+    std::vector<unsigned int>::iterator sci = mc.begin();
     std::advance(sci, span);
     while (1)
     {
@@ -18,23 +18,23 @@ void extractSc(std::list<unsigned int> &mc, std::list<unsigned int> &sc, int spa
     }
 }
 
-std::list<unsigned int>::iterator getPos(std::list<unsigned int> &mc, int elecnt, unsigned int val, int span)
+std::vector<unsigned int>::iterator getPos(std::vector<unsigned int> &mc, int elecnt, unsigned int val, int span)
 {
-    std::list<unsigned int> temp;
-    std::list<unsigned int>::iterator it = mc.begin();
+    std::vector<unsigned int> temp;
+    std::vector<unsigned int>::iterator it = mc.begin();
     for (int i = 0; i < elecnt; ++i)
     {
         temp.push_back(*it);
         std::advance(it, span);
     }
-    std::list<unsigned int>::iterator pos = std::lower_bound(temp.begin(), temp.end(), val);
+    std::vector<unsigned int>::iterator pos = std::lower_bound(temp.begin(), temp.end(), val);
     int idx = pos - temp.begin();
     return (mc.begin() + (idx * span));
 }
 
-void insertsc(std::list<unsigned int> &mc, int span)
+void insertsc(std::vector<unsigned int> &mc, int span)
 {
-    std::list<unsigned int> sc;
+    std::vector<unsigned int> sc;
     // std::cout << "mc";printv(mc);
     extractSc(mc,sc,span);
     // std::cout << "sc";printv(sc);
@@ -56,22 +56,22 @@ void insertsc(std::list<unsigned int> &mc, int span)
         elecnt = powerTwo(i + 1) - 1;
         for (int j = js[i] - 1; j >= js[i - 1]; --j)
         {
-            std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *(sc.begin() + (j * span)), span);
+            std::vector<unsigned int>::iterator pos = getPos(mc, elecnt, *(sc.begin() + (j * span)), span);
             mc.insert(pos, sc.begin() + (j * span), sc.begin() + (j * span) + span);
         }
     }
     for (int j = cnt - 1; j >= js[i - 1]; --j)
     {
         elecnt = mc.size() / span;
-        std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *(sc.begin() + (j * span)), span);
+        std::vector<unsigned int>::iterator pos = getPos(mc, elecnt, *(sc.begin() + (j * span)), span);
         mc.insert(pos, sc.begin() + (j * span), sc.begin() + (j * span) + span);
     }
 }
 
-void divide(std::list<unsigned int> &v, int span)
+void divide(std::vector<unsigned int> &v, int span)
 {
-    std::list<unsigned int>::iterator mc = v.begin();
-    std::list<unsigned int>::iterator sc = mc;
+    std::vector<unsigned int>::iterator mc = v.begin();
+    std::vector<unsigned int>::iterator sc = mc;
     std::advance(sc, span);
     while (sc != v.end())
     {
@@ -105,7 +105,7 @@ void divide(std::list<unsigned int> &v, int span)
     }
 }
 
-void fj(std::list<unsigned int> &v, int span)
+void fj(std::vector<unsigned int> &v, int span)
 {
     unsigned long check = span * 2;
     if (check > v.size())
@@ -114,5 +114,3 @@ void fj(std::list<unsigned int> &v, int span)
     fj(v, span * 2);
     insertsc(v, span);
 }
-
-
