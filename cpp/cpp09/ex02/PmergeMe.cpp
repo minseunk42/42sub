@@ -197,15 +197,23 @@ void insertsc(std::list<unsigned int> &mc, int span)
         elecnt = (1 << (i + 1)) - 1;
         for (int j = js[i] - 1; j >= js[i - 1]; --j)
         {
-            std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *std::next(sc.begin(), j * span), span);
-            mc.insert(pos, std::next(sc.begin(), j * span), std::next(sc.begin(), j * span + span));
+            std::list<unsigned int>::iterator next = sc.begin();
+            std::list<unsigned int>::iterator next2 = sc.begin();
+            std::advance(next, j * span);
+            std::advance(next2, j * span + span);
+            std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *next, span);
+            mc.insert(pos, next, next2);
         }
     }
     for (int j = cnt - 1; j >= js[i - 1]; --j)
     {
         elecnt = mc.size() / span;
-        std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *std::next(sc.begin(), j * span), span);
-        mc.insert(pos, std::next(sc.begin(), j * span), std::next(sc.begin(), j * span + span));
+        std::list<unsigned int>::iterator next = sc.begin();
+        std::list<unsigned int>::iterator next2 = sc.begin();
+        std::advance(next, j * span);
+        std::advance(next2, j * span + span);
+        std::list<unsigned int>::iterator pos = getPos(mc, elecnt, *next, span);
+        mc.insert(pos, next, next2);
     }
 }
 
@@ -300,6 +308,6 @@ void PmergeMe::sort()
         out += " ";
     }
     std::cout << out << std::endl;
-    std::cout << "Time to process a range of 3000 elements with std::vector : " << elapsed / 1e3 << "us" << std::endl;
-    std::cout << "Time to process a range of 3000 elements with std::list   : " << elapsed2 / 1e3 << "us" << std::endl;
+    std::cout << "Time to process a range of " << v.size() << " elements with std::vector : " << elapsed / 1e3 << "us" << std::endl;
+    std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << elapsed2 / 1e3 << "us" << std::endl;
 }
