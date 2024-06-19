@@ -299,7 +299,10 @@ void PmergeMe::sort()
         out += " ";
     }
     std::cout << out << std::endl;
+<<<<<<< HEAD
     
+=======
+>>>>>>> 6565f11a13e15d63d01966591e82c224ae404881
     std::cout << "Time to process a range of " << v.size() << " elements with std::vector : " << elapsed / 1e3 << "us" << std::endl;
     std::cout << "Time to process a range of " << l.size() << " elements with std::list   : " << elapsed2 / 1e3 << "us" << std::endl;
 }
