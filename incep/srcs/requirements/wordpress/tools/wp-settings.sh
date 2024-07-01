@@ -15,8 +15,8 @@ if [ ! -e /var/www/wordpress/wp-config.php ]; then
 	
 	wp core install --allow-root --url=$DOMAIN_NAME --title=minseunk123 --admin_user=$WP_ADMIN_USER --admin_password=$WP_ADMIN_PWD --admin_email=$WP_ADMIN_EMAIL --skip-email
 	wp user create --allow-root $WP_USER $WP_USER_EMAIL --role=author --user_pass=$WP_USER_PWD
-	# wp theme install --allow-root zakra
-	# wp theme activate --allow-root zakra
+	wp theme install --allow-root zakra
+	wp theme activate --allow-root zakra
 fi
 
 exec "$@"
