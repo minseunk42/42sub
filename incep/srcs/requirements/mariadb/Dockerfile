@@ -1,8 +1,7 @@
 FROM debian:oldstable
 
-RUN	apt -y update && apt upgrade -y
-RUN	apt-get install mariadb-server -y
-RUN	apt-get update -y && apt-cache search mariadb
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install mariadb-server -y
 
 COPY conf/mariadb.conf	/etc/mysql/mariadb.conf.d/mariadb.conf
 COPY conf/mariadb.conf	/etc/mysql/my.cnf

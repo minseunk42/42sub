@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3'
 
 services:
   mariadb:
@@ -12,7 +12,7 @@ services:
       -  ictnet
     expose:
       - "3306"
-    restart: on-failure
+    restart: always
     init : true
   nginx:
     container_name: nginx
@@ -27,7 +27,7 @@ services:
       -  ictnet
     ports:
       - "443:443"
-    restart: on-failure
+    restart: always
     init : true
   wordpress:
     container_name: wordpress
@@ -42,7 +42,7 @@ services:
       - ictnet
     expose: 
       - "9000"
-    restart: on-failure
+    restart: always
     init : true
 
 volumes:
