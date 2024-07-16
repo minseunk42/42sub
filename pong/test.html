@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>game</title>
+  <style>
+    html, body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #222;
+	}
+    #score {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      text-align: center;
+      z-index: 100;
+      font-size: 50px;
+      color: white;
+    }
+    #c {
+      width: 600px;
+      height: 600px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="score">score<br>3&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;0</div>
+  <canvas id="c"></canvas>
+</body>
+	<script type="importmap">
+	{
+	"imports": {
+		"three": "https://threejs.org/build/three.module.js",
+		"three/addons/": "https://threejs.org/examples/jsm/"
+	}
+	}
+	</script>
+
+<script type="module">
+
+
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+function main() {
+	const canvas = document.querySelector( '#c' );
+	const renderer = new THREE.WebGLRenderer( { antialias: true, canvas } );
+
+	const fov = 42;
+	const aspect = 2;
+	const near = 0.1;
+	const far = 200;
+	const camera = new THREE.PerspectiveCamera( fov, aspect, near, far );
+	camera.position.set( 0, 60, 80 );
+
+	const controls = new OrbitControls( camera, canvas );
+	controls.target.set( 0, 5, 0 );
+	controls.update();
+
+	const scene = new THREE.Scene();
+	scene.background = new THREE.Color( 'blue' );
+
+	const planeSize = 60;
+	const planeGeo = new THREE.PlaneGeometry( planeSize, planeSize * 0.7 );
+	const planeMat = new THREE.MeshPhongMaterial( { color: '#a0ff00' } );
+	const plane = new THREE.Mesh( planeGeo, planeMat );
+	plane.rotation.x = Math.PI * - .5;
+	scene.add( plane );
+	const cubeSize = 2;
+	const cubeGeo = new THREE.BoxGeometry( cubeSize * 0.5, cubeSize, cubeSize * 4);
+	const cubeMat = new THREE.MeshPhongMaterial( { color: '#a0ffff' } );
+	const cubeMat2 = new THREE.MeshPhongMaterial( { color: '#ffa0ff' } );
+	const bar1 = new THREE.Mesh( cubeGeo, cubeMat );
+	const bar2 = new THREE.Mesh( cubeGeo, cubeMat2 );
+	bar1.position.set( (planeSize - cubeSize) / 2 ,cubeSize / 2, 0);
+	bar2.position.set( -(planeSize - cubeSize) / 2, cubeSize / 2, 0 );
+	scene.add( bar1 );
+	scene.add( bar2 );
+	const sphereRadius = 1;
+	const sphereWidthDivisions = 42;
+	const sphereHeightDivisions = 42;
+	const sphereGeo = new THREE.SphereGeometry( sphereRadius, sphereWidthDivisions, sphereHeightDivisions );
+	const sphereMat = new THREE.MeshPhongMaterial( { color: '#ffffff' } );
+	const ball = new THREE.Mesh( sphereGeo, sphereMat );
+	ball.position.set( 0, sphereRadius , 0 );
+	scene.add( ball );
+
+	{
+		const color = 0xffffff;
+		const intensity = 2;
+		const light = new THREE.DirectionalLight( color, intensity );
+		light.position.set( 10, 10, 0 );
+		light.target.position.set( - 1, 0, 0 );
+		scene.add( light );
+		scene.add( light.target );
+	}
+
+	{
+		const color = 0xffffff;
+		const intensity = 1;
+		const light = new THREE.DirectionalLight( color, intensity );
+		light.position.set( -10, 10, 10 );
+		light.target.position.set( - 1, 0, 0 );
+		scene.add( light );
+		scene.add( light.target );
+	}
+
+	{
+		const color = 0xffffff;
+		const intensity = 2;
+		const light = new THREE.DirectionalLight( color, intensity );
+		light.position.set( -10, 10, 0 );
+		light.target.position.set( - 1, 0, 0 );
+		scene.add( light );
+		scene.add( light.target );
+	}
+
+	function resizeRendererToDisplaySize( renderer ) {
+
+		const canvas = renderer.domElement;
+		const width = canvas.clientWidth;
+		const height = canvas.clientHeight;
+		const needResize = canvas.width !== width || canvas.height !== height;
+		if ( needResize ) {
+
+			renderer.setSize( width, height, false );
+
+		}
+
+		return needResize;
+
+	}
+
+	function render() {
+		if ( resizeRendererToDisplaySize( renderer ) ) {
+
+			const canvas = renderer.domElement;
+			camera.aspect = canvas.clientWidth / canvas.clientHeight;
+			camera.updateProjectionMatrix();
+
+		}
+		renderer.render( scene, camera );
+		requestAnimationFrame( render );
+
+	}
+	requestAnimationFrame( render );
+}
+
+main();
+
+
+</script>
+</html>
